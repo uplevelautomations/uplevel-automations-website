@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
-  const [resourcesOpen, setResourcesOpen] = useState(false)
+  const [toolsOpen, setToolsOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const scrollTo = (id: string) => {
@@ -33,18 +33,18 @@ export default function Navbar() {
             Services
           </button>
 
-          {/* Resources Dropdown */}
+          {/* Tools Dropdown */}
           <div
             className="relative"
-            onMouseEnter={() => setResourcesOpen(true)}
-            onMouseLeave={() => setResourcesOpen(false)}
+            onMouseEnter={() => setToolsOpen(true)}
+            onMouseLeave={() => setToolsOpen(false)}
           >
             <button
               className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium flex items-center gap-1"
             >
-              Resources
+              Tools
               <svg
-                className={`w-4 h-4 transition-transform ${resourcesOpen ? 'rotate-180' : ''}`}
+                className={`w-4 h-4 transition-transform ${toolsOpen ? 'rotate-180' : ''}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -53,7 +53,7 @@ export default function Navbar() {
               </svg>
             </button>
 
-            {resourcesOpen && (
+            {toolsOpen && (
               <div className="absolute top-full left-0 pt-2 w-56">
                 <div className="bg-white rounded-lg shadow-lg border border-slate-200 py-2">
                 <Link
@@ -75,21 +75,19 @@ export default function Navbar() {
             )}
           </div>
 
+          <Link
+            to="/case-studies"
+            className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
+          >
+            Case Studies
+          </Link>
+
           <button
             onClick={() => scrollTo('footer')}
             className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
           >
             Contact
           </button>
-          <a
-            href="https://cal.com/roy-banwell/ai-strategy-call"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => window.dataLayer?.push({ event: 'cal_booking_click', booking_source: 'navbar' })}
-            className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
-          >
-            Book a Call
-          </a>
           <Link
             to="/ai-readiness"
             className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-all shadow-sm hover:shadow-md"
@@ -119,7 +117,7 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-slate-200">
           <div className="px-6 py-4 space-y-4">
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Resources</div>
+            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Tools</div>
             <Link
               to="/ai-readiness"
               onClick={() => setMobileMenuOpen(false)}
@@ -134,18 +132,13 @@ export default function Navbar() {
             >
               Process Mapper
             </Link>
-            <a
-              href="https://cal.com/roy-banwell/ai-strategy-call"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => {
-                setMobileMenuOpen(false)
-                window.dataLayer?.push({ event: 'cal_booking_click', booking_source: 'navbar_mobile' })
-              }}
-              className="block py-2 text-slate-700 hover:text-blue-600 font-medium"
+            <Link
+              to="/case-studies"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-slate-700 hover:text-blue-600 font-medium pt-2"
             >
-              Book a Call
-            </a>
+              Case Studies
+            </Link>
             <div className="pt-4 border-t border-slate-200">
               <Link
                 to="/ai-readiness"

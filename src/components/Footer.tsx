@@ -32,6 +32,14 @@ export default function Footer() {
             >
               LinkedIn
             </a>
+            <a
+              href="https://cal.com/roy-banwell/ai-strategy-call"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Book a Call
+            </a>
           </div>
         </div>
 
