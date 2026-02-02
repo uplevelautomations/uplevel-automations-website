@@ -92,7 +92,7 @@ export default function Navbar() {
             to="/ai-readiness"
             className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-all shadow-sm hover:shadow-md"
           >
-            Take the Assessment
+            Free AI Assessment
           </Link>
         </div>
 
@@ -145,7 +145,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="block w-full text-center px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
               >
-                Take the Assessment
+                Free AI Assessment
               </Link>
             </div>
           </div>
