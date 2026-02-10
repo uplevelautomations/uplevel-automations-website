@@ -6,7 +6,7 @@ const caseStudies = [
   {
     slug: 'automated-seo-blog',
     title: 'Fully Automated SEO Blog for a Cleaning Company',
-    client: 'Catalina Cleaning',
+    client: 'Residential Cleaning Company',
     industry: 'Residential Cleaning',
     description: 'Built a system that writes, publishes, and manages SEO blog posts twice a week with zero human input. 65 topics queued, 8 months of content on autopilot.',
     tags: ['n8n', 'Claude AI', 'SEO', 'Content Automation'],
