@@ -63,7 +63,7 @@ export default function CaseStudyBlogAutomation() {
           <section className="mb-16">
             <h2 className="text-2xl font-bold text-slate-900 mb-4">The Client</h2>
             <p className="text-slate-600 leading-relaxed mb-4">
-              <a href="https://catalinacleaning.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 font-medium">Catalina Cleaning</a> is a residential cleaning company operating across Florida, Texas, California, Georgia, and the DC metro area. They generate roughly 70 leads per week, almost entirely through Google Local Services Ads.
+              The client is a residential cleaning company operating across Florida, Texas, California, Georgia, and the DC metro area. They generate roughly 70 leads per week, almost entirely through Google Local Services Ads.
             </p>
             <p className="text-slate-600 leading-relaxed">
               The business was growing, but 95% of its leads came from a single paid channel. There was no organic search presence, no blog, and no content strategy. If ad costs went up or lead quality dropped, there was no fallback.
@@ -90,7 +90,7 @@ export default function CaseStudyBlogAutomation() {
 
             <h3 className="text-xl font-semibold text-slate-900 mb-3">The Website</h3>
             <p className="text-slate-600 leading-relaxed mb-4">
-              The entire Catalina Cleaning website was built using Claude Code, an AI-powered development tool. This includes 33+ pages: a homepage, 5 service pages, 12 service area pages, an About page, FAQ, Reviews, Contact, and a full blog section. The site is built on Next.js, deployed on Railway, and auto-deploys every time new content is pushed.
+              The entire website was built using Claude Code, an AI-powered development tool. This includes 33+ pages: a homepage, 5 service pages, 12 service area pages, an About page, FAQ, Reviews, Contact, and a full blog section. The site is built on Next.js, deployed on Railway, and auto-deploys every time new content is pushed.
             </p>
             <p className="text-slate-600 leading-relaxed mb-6">
               The site was built with SEO in mind from the start: structured data (schema markup) on every page, a dynamically generated sitemap, Google Analytics with custom conversion events, and Google Search Console integration.
