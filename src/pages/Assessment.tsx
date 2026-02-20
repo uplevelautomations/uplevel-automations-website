@@ -755,7 +755,7 @@ export default function Assessment() {
                         </div>
                         <div className="text-center">
                           <div className="text-xl font-bold text-blue-600">$2M+</div>
-                          <div className="text-xs text-slate-500">AI Sold</div>
+                          <div className="text-xs text-slate-500">AI Solutions Sold</div>
                         </div>
                       </div>
                     </div>
@@ -764,7 +764,7 @@ export default function Assessment() {
                     <div className="md:w-2/3">
                       <div className="space-y-4 text-slate-600">
                         <p>
-                          I've spent 4+ years in AI, scoping and selling systems at startups that have raised over $50M. I've personally sold over $2M in AI solutions designed to generate pipeline and drive revenue for businesses like yours.
+                          I've spent 4+ years in AI, scoping and selling automation systems for small and mid-size businesses. I've personally sold over $2M in AI solutions designed to save time, cut costs, and improve operations.
                         </p>
                         <p>
                           I'm a certified AI Transformation Consultant through the AAA Mastermind, the top AI transformation community in the world.

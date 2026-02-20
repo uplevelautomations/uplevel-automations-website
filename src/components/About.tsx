@@ -1,8 +1,7 @@
 export default function About() {
   const stats = [
     { value: "4+", label: "Years in AI" },
-    { value: "$2M+", label: "AI Solutions Sold" },
-    { value: "$50M+", label: "Startup Funding" }
+    { value: "$2M+", label: "AI Solutions Sold" }
   ]
 
   return (
@@ -19,7 +18,7 @@ export default function About() {
             />
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 mt-6">
+            <div className="grid grid-cols-2 gap-4 mt-6">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="text-xl font-bold text-blue-600">{stat.value}</div>
@@ -38,7 +37,7 @@ export default function About() {
 
             <div className="space-y-4 text-slate-600 leading-relaxed">
               <p>
-                I'm Roy Banwell. I've spent 4+ years in AI, scoping and selling systems at startups that have raised over $50M. I've personally sold over $2M in AI solutions designed to generate pipeline and drive revenue for businesses.
+                I'm Roy Banwell. I've spent 4+ years in AI, scoping and selling automation systems for small and mid-size businesses. I've personally sold over $2M in AI solutions designed to save time, cut costs, and improve operations.
               </p>
 
               <p>
