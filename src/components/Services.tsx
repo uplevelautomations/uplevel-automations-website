@@ -31,10 +31,10 @@ export default function Services() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
-            How I can help
+            What I built for my business. What I can build for yours.
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Whether you need clarity, a roadmap, or full implementation — there's a path forward.
+            I mapped every task in my own operation and found that 40% of them could be fully automated. Here's how I help other owners do the same.
           </p>
         </div>
 

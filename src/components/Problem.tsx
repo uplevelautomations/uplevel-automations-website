@@ -3,7 +3,7 @@ export default function Problem() {
     {
       number: "1",
       title: "Too much noise",
-      description: "Everyone's talking about AI, but most of it is hype, and none of it is specific to your business."
+      description: "Everyone's talking about AI, but none of it is specific to running a service business. You need something built for your operations, not generic advice."
     },
     {
       number: "2",
@@ -13,7 +13,7 @@ export default function Problem() {
     {
       number: "3",
       title: "Scaling shouldn't mean more hiring",
-      description: "You want to grow without adding headcount, but you're not sure how AI actually fits."
+      description: "Every time you want to grow, the answer is hire more people. But hiring is slow, expensive, and half the time they don't work out."
     }
   ]
 

@@ -19,16 +19,12 @@ export default function Hero() {
 
 
       <div className="relative max-w-4xl mx-auto text-center">
-        <span className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 text-sm font-medium rounded-full mb-6 shadow-sm">
-          AI Transformation Partner
-        </span>
-
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-tight mb-6">
-          The <span className="text-blue-600">AI partner</span> for businesses who want results, not hype.
+          I'm scaling my cleaning business <span className="text-blue-600">300% with AI.</span> I can show you how to do the same.
         </h1>
 
         <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
-          Take a 2-minute assessment to see if your business is ready for AI — and where to start.
+          Take a 2-minute assessment to find out where AI can save you time, cut costs, and help you grow without adding staff.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

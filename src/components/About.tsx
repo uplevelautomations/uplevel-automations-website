@@ -1,7 +1,7 @@
 export default function About() {
   const stats = [
-    { value: "4+", label: "Years in AI" },
-    { value: "$2M+", label: "AI Solutions Sold" }
+    { value: "300%", label: "YoY Growth" },
+    { value: "2x", label: "Admin Productivity via AI" }
   ]
 
   return (
@@ -37,15 +37,11 @@ export default function About() {
 
             <div className="space-y-4 text-slate-600 leading-relaxed">
               <p>
-                I'm Roy Banwell. I've spent 4+ years in AI, scoping and selling automation systems for small and mid-size businesses. I've personally sold over $2M in AI solutions designed to save time, cut costs, and improve operations.
+                I'm Roy Banwell. I co-own Catalina Cleaning, a home service company that's growing 300% this year. Instead of hiring more admin staff to keep up, I built an AI system that handles revenue tracking, cleaner performance scoring, lead routing, automated follow-ups, and daily operations. My VAs are twice as productive as they were six months ago and the business is scaling without adding headcount.
               </p>
 
               <p>
-                I'm a certified AI Transformation Consultant through the AAA Mastermind, the top AI automation community in the world.
-              </p>
-
-              <p>
-                When implementation requires custom development, I partner with exceptional AI developers who can handle the build.
+                That experience is what I bring to other service business owners. I've been in AI for over four years and I know what actually works for small businesses vs. what's just hype. I map your operations, find the tasks AI can take off your plate, and help you build it.
               </p>
             </div>
 
