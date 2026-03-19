@@ -75,13 +75,6 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link
-            to="/case-studies"
-            className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
-          >
-            Case Studies
-          </Link>
-
           <button
             onClick={() => scrollTo('footer')}
             className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
@@ -131,13 +124,6 @@ export default function Navbar() {
               className="block py-2 text-slate-700 hover:text-blue-600 font-medium"
             >
               Process Mapper
-            </Link>
-            <Link
-              to="/case-studies"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-slate-700 hover:text-blue-600 font-medium pt-2"
-            >
-              Case Studies
             </Link>
             <div className="pt-4 border-t border-slate-200">
               <Link
