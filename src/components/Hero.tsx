@@ -20,7 +20,7 @@ export default function Hero() {
 
       <div className="relative max-w-4xl mx-auto text-center">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-tight mb-6">
-          I'm scaling my cleaning business <span className="text-blue-600">300% with AI.</span> I can show you how to do the same.
+          I'm scaling my cleaning business with <span className="text-blue-600">AI, not headcount.</span> I can show you how to do the same.
         </h1>
 
         <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto">

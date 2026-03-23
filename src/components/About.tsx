@@ -1,6 +1,6 @@
 export default function About() {
   const stats = [
-    { value: "300%", label: "YoY Growth" },
+    { value: "40%", label: "Tasks Automated" },
     { value: "2x", label: "Admin Productivity via AI" }
   ]
 
@@ -37,7 +37,7 @@ export default function About() {
 
             <div className="space-y-4 text-slate-600 leading-relaxed">
               <p>
-                I'm Roy Banwell. I co-own Catalina Cleaning, a home service company that's growing 300% this year. Instead of hiring more admin staff to keep up, I built an AI system that handles revenue tracking, cleaner performance scoring, lead routing, automated follow-ups, and daily operations. My VAs are twice as productive as they were six months ago and the business is scaling without adding headcount.
+                I'm Roy Banwell. I co-own Catalina Cleaning, a Miami-based home cleaning company. Instead of hiring more admin staff to scale, I built an AI system that handles revenue tracking, cleaner performance scoring, lead routing, automated follow-ups, and daily operations. My VAs are twice as productive as they were six months ago and the business is growing without adding headcount.
               </p>
 
               <p>
