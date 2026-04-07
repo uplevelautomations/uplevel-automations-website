@@ -20,11 +20,11 @@ export default function Hero() {
 
       <div className="relative max-w-4xl mx-auto text-center">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-tight mb-6">
-          I'm scaling my cleaning business with <span className="text-blue-600">AI, not headcount.</span> I can show you how to do the same.
+          I'm scaling my cleaning business with <span className="text-blue-600">AI, not headcount.</span>
         </h1>
 
-        <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
-          Take a 2-minute assessment to find out where AI can save you time, cut costs, and help you grow without adding staff.
+        <p className="text-lg md:text-xl font-semibold text-slate-900 mb-10 max-w-2xl mx-auto">
+          200+ customers a month. 1,000+ leads a month. Same admin team I had at half the size.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,10 +1,22 @@
 import { Link } from 'react-router-dom'
 
+type Service = {
+  title: string
+  description: string
+  descriptionLink?: { text: string; href: string }
+  price: string
+  cta: string
+  href: string
+  isLink: boolean
+  highlight?: boolean
+}
+
 export default function Services() {
-  const services = [
+  const services: Service[] = [
     {
       title: "AI Readiness Assessment",
-      description: "A 2-minute quiz to see where AI can help your business and what to tackle first.",
+      description: "Free, 2 minutes. See where AI fits in your business and what to tackle first.",
+      price: "Free",
       cta: "Take the Assessment",
       href: "/ai-readiness",
       isLink: true,
@@ -12,14 +24,17 @@ export default function Services() {
     },
     {
       title: "AI Audit",
-      description: "Deep dive into your business, identify 5-8 AI opportunities with ROI projections, and deliver a prioritized action plan. Delivered in 1-2 weeks.",
+      description: "I spend a week or more inside your business, talk to your team, map your operations, and deliver a prioritized roadmap of AI opportunities with ROI projections. You leave with a build plan, not a sales pitch.",
+      price: "Starting at $1,000",
       cta: "Start with Assessment",
       href: "/ai-readiness",
       isLink: true
     },
     {
-      title: "Custom AI Automation",
-      description: "Know what you want to automate already? I'll scope the work, manage the project, and deliver results.",
+      title: "Custom AI Build",
+      description: "Know what you want built? I scope, manage, and deliver. Anything I've shipped in my own business I can ship in yours.",
+      descriptionLink: { text: "See what I've built →", href: "/proof" },
+      price: "Starting at $2,500",
       cta: "Book a Call",
       href: "https://cal.com/roy-banwell/30minaicall",
       isLink: false
@@ -31,11 +46,8 @@ export default function Services() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
-            What I built for my business. What I can build for yours.
+            Three ways to work together.
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            I mapped every task in my own operation and found that 40% of them could be fully automated. Here's how I help other owners do the same.
-          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -53,7 +65,21 @@ export default function Services() {
               </h3>
               <p className={`leading-relaxed flex-grow ${service.highlight ? 'text-blue-100' : 'text-slate-600'}`}>
                 {service.description}
+                {service.descriptionLink && (
+                  <>
+                    {' '}
+                    <Link
+                      to={service.descriptionLink.href}
+                      className={`font-medium underline-offset-2 hover:underline ${service.highlight ? 'text-white' : 'text-blue-600'}`}
+                    >
+                      {service.descriptionLink.text}
+                    </Link>
+                  </>
+                )}
               </p>
+              <div className={`mt-4 text-sm font-semibold ${service.highlight ? 'text-white' : 'text-slate-900'}`}>
+                {service.price}
+              </div>
               <div className="mt-6">
                 {service.isLink ? (
                   <Link

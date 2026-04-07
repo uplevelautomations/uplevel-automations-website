@@ -1,32 +1,15 @@
 export default function About() {
-  const stats = [
-    { value: "40%", label: "Tasks Automated" },
-    { value: "2x", label: "Admin Productivity via AI" }
-  ]
-
   return (
     <section id="about" className="py-24 px-6 bg-slate-50 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-[280px_1fr] gap-12 items-start">
-          {/* Left column - Photo and stats */}
+          {/* Left column - Photo */}
           <div>
-            {/* Photo */}
             <img
               src="/roy-headshot.png"
               alt="Roy Banwell"
               className="w-full aspect-square max-w-[280px] mx-auto md:mx-0 rounded-2xl object-cover"
             />
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 mt-6">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-xl font-bold text-blue-600">{stat.value}</div>
-                  <div className="text-xs text-slate-500 mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
           </div>
 
           {/* Right column - Content */}

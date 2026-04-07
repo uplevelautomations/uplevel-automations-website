@@ -2,18 +2,18 @@ export default function Problem() {
   const painPoints = [
     {
       number: "1",
-      title: "Too much noise",
-      description: "Everyone's talking about AI, but none of it is specific to running a service business. You need something built for your operations, not generic advice."
+      title: "The advice doesn't fit your business.",
+      description: "Almost all the AI playbooks online are written by people who've never run a service business. They've never had to make payroll for contractors, handle a refund problem, or answer a phone at 6 AM. You can't copy-paste their advice and expect it to work in your operation."
     },
     {
       number: "2",
-      title: "No clear starting point",
-      description: "You've seen the tools, maybe tried a few things, but you don't know what's actually worth your time."
+      title: "The tools are real. The integration is the job.",
+      description: "ChatGPT is real. n8n is real. The MCP servers are real. Stitching them into a system that actually runs your operation is the part nobody talks about. That's where most AI projects die."
     },
     {
       number: "3",
-      title: "Scaling shouldn't mean more hiring",
-      description: "Every time you want to grow, the answer is hire more people. But hiring is slow, expensive, and half the time they don't work out."
+      title: "You don't need a vendor. You need a peer.",
+      description: "The consultants selling you AI haven't run a service business. The agencies have never had to make payroll for cleaners. I have. Every system I'd build for you is running in mine first."
     }
   ]
 
@@ -25,7 +25,7 @@ export default function Problem() {
 
       <div className="relative max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight text-center mb-16">
-          You know AI can help.<br className="hidden sm:block" /> You just don't know where to start.
+          Most AI advice is theory.<br className="hidden sm:block" /> You run a real business.
         </h2>
 
         <div className="grid md:grid-cols-3 gap-6">

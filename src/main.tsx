@@ -6,6 +6,10 @@ import Assessment from './pages/Assessment'
 import ProcessMapper from './pages/ProcessMapper'
 import CaseStudies from './pages/CaseStudies'
 import CaseStudyBlogAutomation from './pages/CaseStudyBlogAutomation'
+import CaseStudyDashboard from './pages/CaseStudyDashboard'
+import CaseStudyVACoaching from './pages/CaseStudyVACoaching'
+import CaseStudyOutboundMachine from './pages/CaseStudyOutboundMachine'
+import Proof from './pages/Proof'
 import './index.css'
 
 declare global {
@@ -20,6 +24,10 @@ const pageTitles: Record<string, string> = {
   '/process-mapper': 'Process Mapper | UpLevel Automations',
   '/case-studies': 'Case Studies | UpLevel Automations',
   '/case-studies/automated-seo-blog': 'Automated SEO Blog Case Study | UpLevel Automations',
+  '/case-studies/operations-dashboard': 'Operations Dashboard Case Study | UpLevel Automations',
+  '/case-studies/va-coaching': 'VA Coaching System Case Study | UpLevel Automations',
+  '/case-studies/outbound-machine': 'Outbound Machine Case Study | UpLevel Automations',
+  '/proof': 'Proof | UpLevel Automations',
 }
 
 function PageViewTracker() {
@@ -50,6 +58,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/process-mapper" element={<ProcessMapper />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/case-studies/automated-seo-blog" element={<CaseStudyBlogAutomation />} />
+        <Route path="/case-studies/operations-dashboard" element={<CaseStudyDashboard />} />
+        <Route path="/case-studies/va-coaching" element={<CaseStudyVACoaching />} />
+        <Route path="/case-studies/outbound-machine" element={<CaseStudyOutboundMachine />} />
+        <Route path="/proof" element={<Proof />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

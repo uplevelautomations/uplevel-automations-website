@@ -32,6 +32,12 @@ export default function Navbar() {
           >
             Services
           </button>
+          <Link
+            to="/proof"
+            className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
+          >
+            Proof
+          </Link>
 
           {/* Tools Dropdown */}
           <div
@@ -110,7 +116,14 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-slate-200">
           <div className="px-6 py-4 space-y-4">
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Tools</div>
+            <Link
+              to="/proof"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-slate-700 hover:text-blue-600 font-medium"
+            >
+              Proof
+            </Link>
+            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider pt-2">Tools</div>
             <Link
               to="/ai-readiness"
               onClick={() => setMobileMenuOpen(false)}
