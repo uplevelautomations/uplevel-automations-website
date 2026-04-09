@@ -800,7 +800,7 @@ export default function Assessment() {
                     <p className="text-slate-500 text-sm">Pick a time that works for you</p>
                   </div>
                   <Cal
-                    calLink="roy-banwell/ai-strategy-call"
+                    calLink="roy-banwell/30minaicall"
                     style={{ width: '100%', height: '100%', overflow: 'scroll' }}
                     config={{
                       layout: 'month_view',

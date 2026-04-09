@@ -262,7 +262,7 @@ export default function CaseStudyDashboard() {
                 If you're checking 3+ tools every morning to figure out how your business is doing, you need this. Let's talk about what your version would look like.
               </p>
               <a
-                href="https://cal.com/roy-banwell/ai-strategy-call"
+                href="https://cal.com/roy-banwell/30minaicall"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => (window as any).dataLayer?.push({ event: 'cal_booking_click', booking_source: 'case_study_dashboard_cta' })}

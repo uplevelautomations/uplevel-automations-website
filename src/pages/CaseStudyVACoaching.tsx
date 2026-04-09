@@ -258,7 +258,7 @@ Top recommendation
                 Works for VAs, SDRs, customer success reps, support agents, anyone who talks to customers. If you record calls, this can listen to them.
               </p>
               <a
-                href="https://cal.com/roy-banwell/ai-strategy-call"
+                href="https://cal.com/roy-banwell/30minaicall"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => (window as any).dataLayer?.push({ event: 'cal_booking_click', booking_source: 'case_study_va_coaching_cta' })}

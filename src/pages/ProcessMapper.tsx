@@ -1131,7 +1131,7 @@ function ProcessComplete({
               Book a free strategy call and we'll walk through how to automate this process.
             </p>
             <a
-              href="https://cal.com/roy-banwell/ai-strategy-call"
+              href="https://cal.com/roy-banwell/30minaicall"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => window.dataLayer?.push({ event: 'cal_booking_click', booking_source: 'process_mapper' })}

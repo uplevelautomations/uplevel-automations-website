@@ -70,7 +70,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://cal.com/roy-banwell/ai-strategy-call"
+                  href="https://cal.com/roy-banwell/30minaicall"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-slate-400 hover:text-white transition-colors"

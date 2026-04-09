@@ -230,7 +230,7 @@ export default function Proof() {
               I won't recommend anything I haven't run on my own P&L. Let's find which one fits yours.
             </p>
             <a
-              href="https://cal.com/roy-banwell/ai-strategy-call"
+              href="https://cal.com/roy-banwell/30minaicall"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => (window as any).dataLayer?.push({ event: 'cal_booking_click', booking_source: 'proof_page_cta' })}

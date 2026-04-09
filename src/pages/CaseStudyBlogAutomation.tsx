@@ -379,7 +379,7 @@ readingTime, and content (full HTML).`}</pre>
                 We build custom automation systems for service businesses. If you want a blog pipeline like this, or you're curious what else can be automated in your operations, let's talk.
               </p>
               <a
-                href="https://cal.com/roy-banwell/ai-strategy-call"
+                href="https://cal.com/roy-banwell/30minaicall"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => window.dataLayer?.push({ event: 'cal_booking_click', booking_source: 'case_study_cta' })}

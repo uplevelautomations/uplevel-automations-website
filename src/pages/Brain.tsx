@@ -181,7 +181,7 @@ export default function Brain() {
               <h3 className="font-semibold text-slate-900 mb-2">Help setting this up</h3>
               <p className="text-slate-600 text-sm mb-5 leading-relaxed">I'll set up your brain with you, connect your tools, and make sure it's working. $150/hr.</p>
               <a
-                href="https://cal.com/roy-banwell/ai-strategy-call"
+                href="https://cal.com/roy-banwell/30minaicall"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'Book a setup session', cta_location: 'help' })}
@@ -194,7 +194,7 @@ export default function Brain() {
               <h3 className="font-semibold text-slate-900 mb-2">AI for your whole business</h3>
               <p className="text-slate-600 text-sm mb-5 leading-relaxed">I audit your operations, find where AI creates the most leverage, and build the systems. Start with a free assessment.</p>
               <a
-                href="https://cal.com/roy-banwell/ai-strategy-call"
+                href="https://cal.com/roy-banwell/30minaicall"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'Get a free assessment', cta_location: 'help' })}

@@ -261,7 +261,7 @@ export default function CaseStudyOutboundMachine() {
                 Works for any B2B service business that needs cold outbound. Especially good if you're tired of either paying SDR salaries or watching agency campaigns underperform.
               </p>
               <a
-                href="https://cal.com/roy-banwell/ai-strategy-call"
+                href="https://cal.com/roy-banwell/30minaicall"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => (window as any).dataLayer?.push({ event: 'cal_booking_click', booking_source: 'case_study_outbound_cta' })}

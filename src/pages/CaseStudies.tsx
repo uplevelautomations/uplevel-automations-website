@@ -109,7 +109,7 @@ export default function CaseStudies() {
               Every business has processes that can be automated. Let's find yours.
             </p>
             <a
-              href="https://cal.com/roy-banwell/ai-strategy-call"
+              href="https://cal.com/roy-banwell/30minaicall"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => (window as any).dataLayer?.push({ event: 'cal_booking_click', booking_source: 'case_studies_index_cta' })}
