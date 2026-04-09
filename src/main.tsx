@@ -10,6 +10,7 @@ import CaseStudyDashboard from './pages/CaseStudyDashboard'
 import CaseStudyVACoaching from './pages/CaseStudyVACoaching'
 import CaseStudyOutboundMachine from './pages/CaseStudyOutboundMachine'
 import Proof from './pages/Proof'
+import Brain from './pages/Brain'
 import './index.css'
 
 declare global {
@@ -28,6 +29,7 @@ const pageTitles: Record<string, string> = {
   '/case-studies/va-coaching': 'VA Coaching System Case Study | UpLevel Automations',
   '/case-studies/outbound-machine': 'Outbound Machine Case Study | UpLevel Automations',
   '/proof': 'Proof | UpLevel Automations',
+  '/brain': 'AI Second Brain Kit | UpLevel Automations',
 }
 
 function PageViewTracker() {
@@ -62,6 +64,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/case-studies/va-coaching" element={<CaseStudyVACoaching />} />
         <Route path="/case-studies/outbound-machine" element={<CaseStudyOutboundMachine />} />
         <Route path="/proof" element={<Proof />} />
+        <Route path="/brain" element={<Brain />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
