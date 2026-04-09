@@ -100,8 +100,16 @@ export default function Brain() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">Its memory is shallow.</h3>
-                <p className="text-slate-600 leading-relaxed">It might remember your name or your preferences. But it doesn't know your clients, your current deals, what's urgent this week, or what tools you work in. So every time you need real help, you're still doing the setup yourself.</p>
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">It doesn't have access to your systems.</h3>
+                <p className="text-slate-600 leading-relaxed">It can't see inside the tools you actually work in. It's not connected to your:</p>
+                <ul className="mt-3 space-y-1">
+                  {['Email', 'Slack', 'Excel and Google Sheets', 'PowerPoint and Google Slides', 'Calendar', 'CRM', 'Project management tools'].map(tool => (
+                    <li key={tool} className="flex items-center gap-2 text-slate-600 text-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-400 flex-shrink-0"></span>
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
             <div className="flex gap-5">
@@ -111,16 +119,8 @@ export default function Brain() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">It doesn't have access to your systems.</h3>
-                <p className="text-slate-600 leading-relaxed">It can't see inside the tools you actually work in. So it gives you answers you still have to act on yourself. It's not connected to your:</p>
-                <ul className="mt-3 space-y-1">
-                  {['Email', 'Slack', 'Excel and Google Sheets', 'PowerPoint and Google Slides', 'Calendar', 'CRM', 'Project management tools'].map(tool => (
-                    <li key={tool} className="flex items-center gap-2 text-slate-600 text-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-400 flex-shrink-0"></span>
-                      {tool}
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">So it answers questions instead of doing work.</h3>
+                <p className="text-slate-600 leading-relaxed">You ask it something, it gives you an answer, and then you still have to go do the thing yourself. It's a thinking tool, not a working one. A second brain changes that.</p>
               </div>
             </div>
           </div>
