@@ -1,7 +1,38 @@
+import { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
+const nextSteps = [
+  {
+    n: '1',
+    title: 'Get a Claude subscription.',
+    desc: <>Go to <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">claude.ai</a> and sign up for Pro or Max ($20/mo). You need a paid plan for the features the kit uses.</>,
+  },
+  {
+    n: '2',
+    title: 'Download the Claude desktop app.',
+    desc: <>Go to <a href="https://claude.ai/download" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">claude.ai/download</a>, install it, and sign in.</>,
+  },
+  {
+    n: '3',
+    title: 'Create a folder on your computer.',
+    desc: 'Desktop or Documents works fine. Name it whatever you want: "AI Brain," your business name, anything.',
+  },
+  {
+    n: '4',
+    title: 'Drop the file in your folder.',
+    desc: 'Drag ONBOARDING.md into the folder you just created.',
+  },
+  {
+    n: '5',
+    title: 'Open the Code tab and start your session.',
+    desc: 'Open the Claude desktop app. At the top you\'ll see Chat, Projects, and Code. Click Code. Start a new session, select your folder when prompted, and type: "Read ONBOARDING.md and follow the instructions in it." Claude takes it from there.',
+  },
+]
+
 export default function Brain() {
+  const [downloaded, setDownloaded] = useState(false)
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
@@ -25,12 +56,35 @@ export default function Brain() {
           <a
             href="/ONBOARDING.md"
             download
-            onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'Download the AI Brain Kit', cta_location: 'hero' })}
+            onClick={() => {
+              window.dataLayer?.push({ event: 'cta_click', cta_text: 'Download the AI Brain Kit', cta_location: 'hero' })
+              setDownloaded(true)
+            }}
             className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 hover:-translate-y-0.5"
           >
             Download the AI Brain Kit
           </a>
           <p className="mt-4 text-sm text-slate-400">Requires Claude (Pro or Max, $20/mo). Works on Mac and PC.</p>
+
+          {/* Post-download next steps */}
+          {downloaded && (
+            <div className="mt-10 text-left bg-white border border-blue-200 rounded-2xl p-6 shadow-md">
+              <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-5">Downloaded. Here's what to do next.</p>
+              <div className="space-y-5">
+                {nextSteps.map(({ n, title, desc }) => (
+                  <div key={n} className="flex gap-4">
+                    <div className="flex-shrink-0 w-7 h-7 border-2 border-slate-300 text-slate-500 rounded-full flex items-center justify-center font-semibold text-xs">
+                      {n}
+                    </div>
+                    <div className="pt-0.5">
+                      <p className="font-semibold text-slate-900 text-sm mb-0.5">{title}</p>
+                      <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
