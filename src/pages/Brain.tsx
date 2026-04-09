@@ -100,19 +100,27 @@ export default function Brain() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">It has no memory of you.</h3>
-                <p className="text-slate-600 leading-relaxed">Every session starts from scratch. It doesn't know your clients, your priorities, or how you work. So you either re-explain everything at the start of each conversation, or accept generic answers that don't fit your situation.</p>
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">Its memory is shallow.</h3>
+                <p className="text-slate-600 leading-relaxed">It might remember your name or your preferences. But it doesn't know your clients, your current deals, what's urgent this week, or what tools you work in. So every time you need real help, you're still doing the setup yourself.</p>
               </div>
             </div>
             <div className="flex gap-5">
               <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mt-0.5">
                 <svg className="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">It can't do anything in your world.</h3>
-                <p className="text-slate-600 leading-relaxed">It can write and think, but it's not connected to your email, calendar, or systems. So you get answers you still have to act on yourself. It's a better search engine, not a second brain.</p>
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">It doesn't have access to your systems.</h3>
+                <p className="text-slate-600 leading-relaxed">It can't see inside the tools you actually work in. So it gives you answers you still have to act on yourself. It's not connected to your:</p>
+                <ul className="mt-3 space-y-1">
+                  {['Email', 'Slack', 'Excel and Google Sheets', 'PowerPoint and Google Slides', 'Calendar', 'CRM', 'Project management tools'].map(tool => (
+                    <li key={tool} className="flex items-center gap-2 text-slate-600 text-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-400 flex-shrink-0"></span>
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
