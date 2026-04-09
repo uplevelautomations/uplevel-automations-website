@@ -1,14 +1,18 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 export default function Navbar() {
   const [toolsOpen, setToolsOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  const scrollTo = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+  const scrollToSection = (id: string) => {
+    if (location.pathname === '/') {
+      const element = document.getElementById(id)
+      if (element) element.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      navigate(`/#${id}`)
     }
   }
 
@@ -21,13 +25,13 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-8">
           <button
-            onClick={() => scrollTo('about')}
+            onClick={() => scrollToSection('about')}
             className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
           >
             About
           </button>
           <button
-            onClick={() => scrollTo('services')}
+            onClick={() => scrollToSection('services')}
             className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
           >
             Services
@@ -82,7 +86,7 @@ export default function Navbar() {
           </div>
 
           <button
-            onClick={() => scrollTo('footer')}
+            onClick={() => scrollToSection('footer')}
             className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
           >
             Contact
