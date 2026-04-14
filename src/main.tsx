@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import App from './App'
 import Assessment from './pages/Assessment'
 import ProcessMapper from './pages/ProcessMapper'
@@ -10,7 +10,7 @@ import CaseStudyDashboard from './pages/CaseStudyDashboard'
 import CaseStudyVACoaching from './pages/CaseStudyVACoaching'
 import CaseStudyOutboundMachine from './pages/CaseStudyOutboundMachine'
 import Proof from './pages/Proof'
-import Brain from './pages/Brain'
+import PersonalAssistant from './pages/PersonalAssistant'
 import './index.css'
 
 declare global {
@@ -29,7 +29,7 @@ const pageTitles: Record<string, string> = {
   '/case-studies/va-coaching': 'VA Coaching System Case Study | UpLevel Automations',
   '/case-studies/outbound-machine': 'Outbound Machine Case Study | UpLevel Automations',
   '/proof': 'Proof | UpLevel Automations',
-  '/brain': 'AI Second Brain Kit | UpLevel Automations',
+  '/personal-assistant': 'AI Personal Assistant Kit | UpLevel Automations',
 }
 
 function PageViewTracker() {
@@ -64,7 +64,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/case-studies/va-coaching" element={<CaseStudyVACoaching />} />
         <Route path="/case-studies/outbound-machine" element={<CaseStudyOutboundMachine />} />
         <Route path="/proof" element={<Proof />} />
-        <Route path="/brain" element={<Brain />} />
+        <Route path="/personal-assistant" element={<PersonalAssistant />} />
+        <Route path="/brain" element={<Navigate to="/personal-assistant" replace />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
