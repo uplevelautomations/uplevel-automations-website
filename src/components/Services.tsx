@@ -16,7 +16,7 @@ export default function Services() {
     {
       title: "AI Audit",
       description: "Know AI can help but not sure where to start? I map your operations, find your highest-impact opportunities, and hand you a prioritized plan you can actually execute.",
-      price: "From $500",
+      price: "Starting at $500",
       cta: "Book an Audit",
       href: "https://cal.com/roy-banwell/30minaicall",
       isLink: false,
@@ -25,7 +25,7 @@ export default function Services() {
       title: "Service Business Operating System",
       description: "I connect your FSM, QuickBooks, and one other tool into a live intelligence dashboard — job profitability, crew performance, cash position, and operational alerts. Built on GitHub and Railway, you own it. No SaaS dependency.",
       descriptionLink: { text: "See a live demo →", href: "/demo" },
-      price: "From $1,500",
+      price: "Starting at $1,500",
       cta: "Book a Call",
       href: "https://cal.com/roy-banwell/30minaicall",
       isLink: false,
