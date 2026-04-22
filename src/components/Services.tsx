@@ -14,12 +14,12 @@ type Service = {
 export default function Services() {
   const services: Service[] = [
     {
-      title: "AI Readiness Assessment",
-      description: "Free, 2 minutes. See where AI fits in your business and what to tackle first.",
-      price: "Free",
-      cta: "Take the Assessment",
-      href: "/ai-readiness",
-      isLink: true,
+      title: "AI Audit",
+      description: "Know AI can help but not sure where to start? I map your operations, find your highest-impact opportunities, and hand you a prioritized plan you can actually execute.",
+      price: "From $500",
+      cta: "Book an Audit",
+      href: "https://cal.com/roy-banwell/30minaicall",
+      isLink: false,
     },
     {
       title: "Service Business Operating System",
@@ -47,9 +47,9 @@ export default function Services() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
-            Two ways to work together.
+            Three ways to work together.
           </h2>
-          <p className="text-slate-500 text-lg">Start with the free assessment, or go straight to the demo.</p>
+          <p className="text-slate-500 text-lg">Start with an audit, go straight to the OS, or bring a custom problem.</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
