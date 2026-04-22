@@ -83,15 +83,21 @@ export default function BuiltInMyBusiness() {
         </div>
 
         {/* CTA */}
-        <div className="text-center">
+        <div className="text-center flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            to="/proof"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-lg transition-all shadow-sm hover:shadow-md group"
+            to="/demo"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all shadow-sm hover:shadow-md group"
           >
-            See every system I've built
+            See the Service OS demo
             <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
+          </Link>
+          <Link
+            to="/proof"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium rounded-lg transition-all"
+          >
+            See everything I've built
           </Link>
         </div>
       </div>

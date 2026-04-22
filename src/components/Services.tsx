@@ -20,16 +20,16 @@ export default function Services() {
       cta: "Take the Assessment",
       href: "/ai-readiness",
       isLink: true,
-      highlight: true
     },
     {
       title: "Service Business Operating System",
       description: "I connect your FSM, QuickBooks, and one other tool into a live intelligence dashboard — job profitability, crew performance, cash position, and operational alerts. Built on GitHub and Railway, you own it. No SaaS dependency.",
-      descriptionLink: { text: "See what it looks like →", href: "/proof" },
-      price: "$2,500 + $500/mo",
+      descriptionLink: { text: "See a live demo →", href: "/demo" },
+      price: "From $1,500",
       cta: "Book a Call",
       href: "https://cal.com/roy-banwell/30minaicall",
-      isLink: false
+      isLink: false,
+      highlight: true
     },
     {
       title: "Custom AI Build",
@@ -47,8 +47,9 @@ export default function Services() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
-            Three ways to work together.
+            Two ways to work together.
           </h2>
+          <p className="text-slate-500 text-lg">Start with the free assessment, or go straight to the demo.</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">

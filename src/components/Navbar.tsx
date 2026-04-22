@@ -42,6 +42,12 @@ export default function Navbar() {
           >
             Proof
           </Link>
+          <Link
+            to="/demo"
+            className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
+          >
+            Demo
+          </Link>
 
           {/* Tools Dropdown */}
           <div
@@ -126,6 +132,13 @@ export default function Navbar() {
               className="block py-2 text-slate-700 hover:text-blue-600 font-medium"
             >
               Proof
+            </Link>
+            <Link
+              to="/demo"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-slate-700 hover:text-blue-600 font-medium"
+            >
+              Demo
             </Link>
             <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider pt-2">Tools</div>
             <Link
