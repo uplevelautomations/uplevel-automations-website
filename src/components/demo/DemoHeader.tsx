@@ -30,13 +30,16 @@ export default function DemoHeader() {
             <p className="text-xs text-slate-400 mt-0.5">Last synced: {business.lastSynced}</p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs text-slate-400 hidden sm:block">Connected:</span>
             {connectors.map((c) => (
-              <div key={c.name} className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" />
-                <span className="text-xs text-slate-600 font-medium">{c.name}</span>
-              </div>
+              <span
+                key={c.name}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded-full text-xs font-semibold text-emerald-800"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+                {c.name}
+              </span>
             ))}
           </div>
         </div>
