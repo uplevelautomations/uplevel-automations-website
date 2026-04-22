@@ -23,16 +23,17 @@ export default function Services() {
       highlight: true
     },
     {
-      title: "AI Audit",
-      description: "I spend a week or more inside your business, talk to your team, map your operations, and deliver a prioritized roadmap of AI opportunities with ROI projections. You leave with a build plan, not a sales pitch.",
-      price: "Starting at $1,000",
-      cta: "Start with Assessment",
-      href: "/ai-readiness",
-      isLink: true
+      title: "Service Business Operating System",
+      description: "I connect your FSM, QuickBooks, and one other tool into a live intelligence dashboard — job profitability, crew performance, cash position, and operational alerts. Built on GitHub and Railway, you own it. No SaaS dependency.",
+      descriptionLink: { text: "See what it looks like →", href: "/proof" },
+      price: "$2,500 + $500/mo",
+      cta: "Book a Call",
+      href: "https://cal.com/roy-banwell/30minaicall",
+      isLink: false
     },
     {
       title: "Custom AI Build",
-      description: "Know what you want built? I scope, manage, and deliver. Anything I've shipped in my own business I can ship in yours.",
+      description: "Need something outside the OS? I scope, manage, and deliver. Anything I've shipped in my own business I can ship in yours.",
       descriptionLink: { text: "See what I've built →", href: "/proof" },
       price: "Starting at $2,500",
       cta: "Book a Call",
