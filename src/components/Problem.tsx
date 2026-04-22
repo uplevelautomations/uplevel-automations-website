@@ -42,7 +42,7 @@ export default function Problem() {
             Every one of these requires data from at least two systems that don't talk to each other.
           </p>
           <p className="text-slate-400 mb-6">
-            That's what the Service OS solves. See it running on a real business.
+            I can answer all of them for my own cleaning company right now — because I built the system to do it. Now I build it for other service businesses.
           </p>
           <Link
             to="/demo"
