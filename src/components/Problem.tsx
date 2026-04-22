@@ -30,9 +30,8 @@ export default function Problem() {
           {questions.map((q, i) => (
             <div
               key={i}
-              className="flex items-start gap-4 bg-white rounded-xl p-5 border border-slate-200 shadow-sm"
+              className="bg-white rounded-xl p-5 border border-slate-200 border-l-4 border-l-amber-400 shadow-sm"
             >
-              <span className="text-blue-400 text-lg font-bold shrink-0 leading-tight mt-0.5">?</span>
               <p className="text-slate-700 font-medium leading-snug">{q}</p>
             </div>
           ))}
