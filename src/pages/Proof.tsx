@@ -219,6 +219,28 @@ export default function Proof() {
         </div>
       </section>
 
+      {/* Testimonial */}
+      <section className="pb-16 px-6">
+        <div className="max-w-4xl mx-auto">
+          <blockquote className="border-l-2 border-slate-200 pl-6 py-1">
+            <p className="text-slate-600 leading-relaxed italic">
+              "Working with UpLevel Automations on my initial business assessment helped me to get a better understanding of areas where AI can improve my daily workflow. After a couple of meetings, Roy outlined my existing system and offered a prioritized approach to building out a custom AI system tailored to my business. My goal is to reduce the admin work and increase the time I can spend on engineering. UpLevel Automations gave me a great starting point on my AI journey."
+            </p>
+            <footer className="mt-3 text-sm text-slate-500">
+              Christopher Shaffer, Owner &amp; Principal Engineer —{' '}
+              <a
+                href="https://www.associatedsolutionsllc.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-slate-700 underline underline-offset-2"
+              >
+                Associated Solutions LLC
+              </a>
+            </footer>
+          </blockquote>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="pb-24 px-6">
         <div className="max-w-4xl mx-auto">
