@@ -22,7 +22,7 @@ export default function Services() {
       isLink: false,
     },
     {
-      title: "Service Business Operating System",
+      title: "Service OS",
       description: "I connect your FSM, QuickBooks, and one other tool into a live intelligence dashboard — job profitability, crew performance, cash position, and operational alerts. Running in my own cleaning business today. Built on GitHub and Railway, you own it. No SaaS dependency.",
       descriptionLink: { text: "See a live demo →", href: "/demo" },
       price: "Starting at $1,500",
