@@ -88,7 +88,7 @@ function generateProspectEmail(
         <p style="color: #bfdbfe; font-size: 14px; margin: 0 0 16px 0;">
           You've got the foundation. Let's build your roadmap together.
         </p>
-        <a href="https://cal.com/roy-banwell/ai-strategy-call"
+        <a href="https://cal.com/roy-banwell/30minaicall"
            style="display: inline-block; background: white; color: #2563eb; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">
           Book Your Strategy Call
         </a>

@@ -302,7 +302,7 @@ export async function generatePdfHandler(req: Request, res: Response) {
       })
 
       content.push({
-        text: 'cal.com/roy-banwell/ai-strategy-call',
+        text: 'cal.com/roy-banwell/30minaicall',
         style: 'body',
         color: '#2563eb',
         alignment: 'center',

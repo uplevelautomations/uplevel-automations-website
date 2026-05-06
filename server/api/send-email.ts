@@ -75,7 +75,7 @@ export async function sendEmailHandler(req: Request, res: Response) {
             <p style="color: #475569; font-size: 14px; margin: 0 0 16px 0;">
               Let's discuss how AI can eliminate the bottlenecks in this process.
             </p>
-            <a href="https://cal.com/roy-banwell/ai-strategy-call"
+            <a href="https://cal.com/roy-banwell/30minaicall"
                style="display: inline-block; background: #2563eb; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500;">
               Book a Strategy Call
             </a>
