@@ -2,6 +2,7 @@ import DemoHeader from '../components/demo/DemoHeader'
 import RevenueModule from '../components/demo/RevenueModule'
 import TechModule from '../components/demo/TechModule'
 import JobProfitModule from '../components/demo/JobProfitModule'
+import MarketingModule from '../components/demo/MarketingModule'
 import DigestModule from '../components/demo/DigestModule'
 import { demoFixture } from '../data/demoFixture'
 
@@ -78,6 +79,12 @@ export default function Demo() {
         <section>
           <SectionHeader title="Job Profitability" source="ST + QuickBooks" />
           <JobProfitModule />
+        </section>
+
+        {/* Marketing Performance */}
+        <section>
+          <SectionHeader title="Marketing Performance" source="Ads · GBP · Angi · BrightLocal · GSC" />
+          <MarketingModule />
         </section>
 
         {/* Daily Digest */}
