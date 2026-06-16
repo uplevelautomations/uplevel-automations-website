@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { demoFixture, type RecentJob } from '../../data/demoFixture'
 
 const fmt = (n: number) =>
@@ -58,16 +58,16 @@ function RecentJobsTable({ jobs, techStatus }: { jobs: RecentJob[]; techStatus: 
 
 export default function TechModule() {
   const [expandedTech, setExpandedTech] = useState<string | null>(null)
-  const { technicians, teamAvgMargin } = demoFixture
+  const { crews, teamAvgMargin } = demoFixture
 
   return (
     <div className="space-y-6">
-      {/* Tech table */}
+      {/* Crew table */}
       <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
         <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
           <div>
-            <p className="text-sm font-semibold text-slate-700">Technician Performance — This Month</p>
-            <p className="text-xs text-slate-400 mt-0.5">Gross margin after direct labor & materials · Source: ServiceTitan</p>
+            <p className="text-sm font-semibold text-slate-700">Crew Performance — This Month</p>
+            <p className="text-xs text-slate-400 mt-0.5">Gross margin after labor & supplies · Source: Jobber</p>
           </div>
           <span className="text-xs text-slate-400 bg-slate-50 px-2 py-0.5 rounded-full">Click row to expand</span>
         </div>
@@ -77,7 +77,7 @@ export default function TechModule() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-slate-100">
-                <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Technician</th>
+                <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Crew</th>
                 <th className="text-right px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Jobs</th>
                 <th className="text-right px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Revenue</th>
                 <th className="text-right px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Avg Job</th>
@@ -85,15 +85,14 @@ export default function TechModule() {
               </tr>
             </thead>
             <tbody>
-              {technicians.map((tech, i) => {
+              {crews.map((tech, i) => {
                 const styles = marginStyles[tech.status]
                 const isExpanded = expandedTech === tech.name
-                const isLast = i === technicians.length - 1
+                const isLast = i === crews.length - 1
 
                 return (
-                  <>
+                  <Fragment key={tech.name}>
                     <tr
-                      key={tech.name}
                       onClick={() => setExpandedTech(isExpanded ? null : tech.name)}
                       className={`border-b cursor-pointer transition-colors ${
                         isLast && !isExpanded ? 'border-b-0' : 'border-slate-50'
@@ -133,7 +132,7 @@ export default function TechModule() {
                     {isExpanded && (
                       <RecentJobsTable jobs={tech.recentJobs} techStatus={tech.status} />
                     )}
-                  </>
+                  </Fragment>
                 )
               })}
             </tbody>
@@ -142,7 +141,7 @@ export default function TechModule() {
 
         {/* Mobile cards */}
         <div className="sm:hidden divide-y divide-slate-100">
-          {technicians.map((tech) => {
+          {crews.map((tech) => {
             const styles = marginStyles[tech.status]
             const isExpanded = expandedTech === tech.name
 

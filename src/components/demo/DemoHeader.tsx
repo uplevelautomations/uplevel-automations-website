@@ -1,12 +1,12 @@
 import { demoFixture } from '../../data/demoFixture'
 
 const otherConnectors = [
+  { name: 'BookingKoala' },
   { name: 'Housecall Pro' },
-  { name: 'Jobber' },
+  { name: 'ZenMaid' },
   { name: 'Service Autopilot' },
   { name: 'Stripe' },
   { name: 'Google Sheets' },
-  { name: 'Excel' },
   { name: 'HubSpot' },
   { name: 'GoHighLevel' },
   { name: 'Xero' },

@@ -15,28 +15,27 @@ export default function Services() {
   const services: Service[] = [
     {
       title: "AI Audit",
-      description: "Know AI can help but not sure where to start? I map your operations, find your highest-impact opportunities, and hand you a prioritized plan you can actually execute.",
+      description: "Know AI can help but not sure where to start? I map your cleaning operation, find your highest-impact opportunities, and hand you a prioritized plan you can actually execute.",
       price: "Starting at $500",
-      cta: "Book an Audit",
+      cta: "Book a 30-min call",
       href: "https://cal.com/roy-banwell/30minaicall",
       isLink: false,
     },
     {
       title: "Service OS",
-      description: "I connect your FSM, QuickBooks, and one other tool into a live intelligence dashboard — job profitability, crew performance, cash position, and operational alerts. Running in my own cleaning business today. Built on GitHub and Railway, you own it. No SaaS dependency.",
-      descriptionLink: { text: "See a live demo →", href: "/demo" },
+      description: "I connect your scheduling tool (Jobber, Housecall Pro, BookingKoala), QuickBooks, and one more tool into a live dashboard — job profitability, crew performance, cash position, and operational alerts. Running in my own cleaning company today. You own it outright, no SaaS lock-in. After the build, a simple monthly plan covers hosting, fixes, and a new feature each month (I'll quote it on the call).",
       price: "Starting at $1,500",
-      cta: "Book a Call",
-      href: "https://cal.com/roy-banwell/30minaicall",
-      isLink: false,
+      cta: "See the live demo",
+      href: "/demo",
+      isLink: true,
       highlight: true
     },
     {
       title: "Custom AI Build",
-      description: "Need something outside the OS? I scope, manage, and deliver. Anything I've shipped in my own business I can ship in yours.",
+      description: "Need something outside the OS? I scope, manage, and deliver. Anything I've shipped in my own cleaning company I can ship in yours.",
       descriptionLink: { text: "See what I've built →", href: "/proof" },
       price: "Starting at $2,500",
-      cta: "Book a Call",
+      cta: "Book a 30-min call",
       href: "https://cal.com/roy-banwell/30minaicall",
       isLink: false
     }

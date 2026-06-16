@@ -24,7 +24,7 @@ export default function About() {
               </p>
 
               <p>
-                That experience is what I bring to other service business owners. I've been in AI for over four years and I know what actually works for small businesses vs. what's just hype. I map your operations, find the tasks AI can take off your plate, and help you build it.
+                That experience is what I bring to other cleaning company owners. I've spent years building this stuff inside a real cleaning company, so I know what actually works on the ground vs. what's just hype. I map your operations, find the tasks AI can take off your plate, and help you build it.
               </p>
             </div>
 

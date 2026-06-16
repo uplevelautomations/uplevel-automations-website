@@ -29,17 +29,17 @@ export default function JobProfitModule() {
       {/* Insight callout */}
       <div className="bg-blue-50 border border-blue-200 rounded-xl px-5 py-4">
         <p className="text-sm font-semibold text-blue-900">
-          Emergency calls feel like wins — they're not.
+          One-time jobs feel like wins. Recurring pays the bills.
         </p>
         <p className="text-xs text-blue-700 mt-1">
-          Maintenance plans generate 61% margin. Emergency calls generate 29%. Most businesses chase the wrong work.
+          Your 198 recurring cleans threw off ~$15k in profit this month at 56% margin, and rebooked themselves. Your 50 one-time jobs: ~$2.4k at 30%, then you start hunting again. The owners who win move one-timers onto a plan.
         </p>
       </div>
 
       {/* Bar chart */}
       <div className="bg-white rounded-xl border border-slate-200 p-5">
         <p className="text-sm font-semibold text-slate-700 mb-1">Revenue by Service Type</p>
-        <p className="text-xs text-slate-400 mb-4">Source: ServiceTitan + QuickBooks</p>
+        <p className="text-xs text-slate-400 mb-4">Source: Jobber + QuickBooks</p>
         <ResponsiveContainer width="100%" height={220}>
           <BarChart
             data={jobTypes}

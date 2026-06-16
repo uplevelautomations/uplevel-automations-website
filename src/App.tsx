@@ -27,10 +27,10 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <About />
         <Problem />
         <Services />
         <BuiltInMyBusiness />
+        <About />
         <AssessmentTeaser />
       </main>
       <Footer />

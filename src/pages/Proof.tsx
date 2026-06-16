@@ -69,7 +69,7 @@ const categories: Category[] = [
   },
   {
     name: 'Operating System',
-    blurb: 'The infrastructure that lets me run two businesses from one chat.',
+    blurb: 'The infrastructure that lets me run the whole company from one chat.',
     systems: [
       {
         title: 'Daily Briefing',
@@ -78,24 +78,8 @@ const categories: Category[] = [
       },
       {
         title: 'Telegram Bot',
-        what: 'Always-on AI assistant with full access to every system in this list. I run my entire business from a chat on my phone. No laptop required.',
+        what: 'Always-on AI assistant with full access to every system in this list. I run the business from a chat on my phone. No laptop required.',
         tags: ['Claude Code', 'MCP'],
-      },
-    ],
-  },
-  {
-    name: 'Prospecting & Sales',
-    blurb: 'The systems that bring in new business.',
-    systems: [
-      {
-        title: 'The Outbound Machine',
-        what: 'Finds prospects, enriches them, sends cold emails AND LinkedIn DMs, comments on prospects\' posts before pitching, classifies every reply, and drafts the responses for me to approve from my phone with one tap. A full sales development team for under $350 a month.',
-        tags: ['Instantly', 'Apollo', 'Unipile', 'Sales Nav', 'Claude'],
-      },
-      {
-        title: 'File-Based CRM',
-        what: 'Every deal lives as a markdown file. Notes, transcripts, proposals, all in one folder. My AI reads them natively, so I get full deal context with one prompt. No SaaS bill, no integration headaches.',
-        tags: ['Claude Code', 'Markdown'],
       },
     ],
   },
@@ -184,11 +168,6 @@ export default function Proof() {
                 slug: 'va-coaching',
                 title: 'VA Coaching System',
                 blurb: 'How an AI listens to my virtual assistants\' actual sales calls every night and writes weekly coaching reports.',
-              },
-              {
-                slug: 'outbound-machine',
-                title: 'The Outbound Machine',
-                blurb: 'How I built a full sales development team out of MCP servers for under $350 a month. Email + LinkedIn DMs + post commenting, reply approval from a Telegram chat.',
               },
               {
                 slug: 'automated-seo-blog',

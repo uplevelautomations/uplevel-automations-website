@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom'
 
 const questions = [
-  "Which of your techs is actually making you money — after labor and materials?",
-  "Should you hire another tech right now, or fix how you're dispatching the ones you have?",
-  "Which job types are you losing money on?",
-  "Which lead source produces customers who stick vs. one-and-done?",
-  "Can you afford to expand to a new area — or will that break cash flow in 60 days?",
-  "Are your emergency call prices actually profitable, or are you subsidizing urgency?",
-  "Which customers cost you more than they generate?",
-  "Is that truck actually paying for itself?",
+  "Which of your cleaners or crews is actually making you money, after labor and supplies?",
+  "Should you hire another cleaner right now, or fix how you're routing the crews you have?",
+  "Which job types are quietly losing money: one-time cleans, deep cleans, move-outs?",
+  "Which lead source brings recurring clients, and which just brings one-and-done cleans?",
+  "Can you take on more recurring work without hiring, or are your crews already maxed out?",
+  "How many recurring clients did you lose last month, and which crew were they assigned to?",
+  "Which crews are racking up callbacks and redos that quietly eat your margin?",
+  "Which clients cost you more than they pay you, once you count cancellations and complaints?",
 ]
 
 export default function Problem() {
@@ -22,7 +22,7 @@ export default function Problem() {
             You should be able to answer these in 30 seconds.
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Most service business owners can't. Not because they're not paying attention — because the answer lives across QuickBooks, their field service tool, and a spreadsheet someone updates manually.
+            Most cleaning company owners can't. Not because they're not paying attention — because the answer lives across QuickBooks, your scheduling tool (Jobber, Housecall Pro, BookingKoala), and a spreadsheet someone updates by hand.
           </p>
         </div>
 
@@ -42,13 +42,13 @@ export default function Problem() {
             Every one of these requires data from at least two systems that don't talk to each other.
           </p>
           <p className="text-slate-400 mb-6">
-            I can answer all of them for my own cleaning company right now — because I built the system to do it. Now I build it for other service businesses.
+            I can answer all of them for my own cleaning company right now — because I built the system to do it. Now I build it for other cleaning companies.
           </p>
           <Link
             to="/demo"
             className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg transition-all shadow-sm"
           >
-            See the dashboard demo
+            See the live demo
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

@@ -6,7 +6,7 @@ interface Message {
   content: string
 }
 
-const EXTRACTION_PROMPT = `You are a data extraction assistant AND an automation consultant. Given the following conversation where a business process was mapped out, extract the structured data and provide automation recommendations.
+const EXTRACTION_PROMPT = `You are a data extraction assistant AND an automation consultant for cleaning companies (residential and commercial). Given the following conversation where a cleaning company's process was mapped out, extract the structured data and provide automation recommendations. Frame opportunities in cleaning terms (scheduling/dispatching crews, appointment confirmations and reminders, payment collection, cleaner onboarding, quality/redo tracking, recurring-client retention) and reference the tools cleaning companies actually use (Jobber, Housecall Pro, BookingKoala, QuickBooks, Stripe).
 
 Return ONLY valid JSON with this exact structure (no markdown, no explanation):
 

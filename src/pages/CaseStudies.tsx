@@ -4,10 +4,36 @@ import Footer from '../components/Footer'
 
 const caseStudies = [
   {
+    slug: 'operations-dashboard',
+    title: 'One Operations Dashboard for a Cleaning Company',
+    client: 'My own cleaning company',
+    industry: 'Cleaning',
+    description: 'Replaced 4 separate logins with one always-on dashboard: revenue, cash, crew margin, job profitability, cleaner quality, and ad spend, with AI-written analysis on every section.',
+    tags: ['Railway', 'Python', 'QuickBooks', 'Stripe'],
+    stats: [
+      { label: 'Logins replaced', value: '4 → 1' },
+      { label: 'Sections', value: '18' },
+      { label: 'Updated', value: 'Live' },
+    ],
+  },
+  {
+    slug: 'va-coaching',
+    title: 'AI That Coaches Cleaning-Company VAs',
+    client: 'My own cleaning company',
+    industry: 'Cleaning',
+    description: 'An AI listens to my virtual assistants\' sales calls every night, scores each on 6 dimensions, and writes weekly coaching reports. Response time, talk time, and bookings, side by side.',
+    tags: ['Claude', 'GHL API', 'Call transcripts'],
+    stats: [
+      { label: 'Calls scored', value: 'Nightly' },
+      { label: 'Dimensions', value: '6' },
+      { label: 'Reports', value: 'Weekly' },
+    ],
+  },
+  {
     slug: 'automated-seo-blog',
     title: 'Fully Automated SEO Blog for a Cleaning Company',
     client: 'Residential Cleaning Company',
-    industry: 'Residential Cleaning',
+    industry: 'Cleaning',
     description: 'Built a system that writes, publishes, and manages SEO blog posts twice a week with zero human input. 65 topics queued, 8 months of content on autopilot.',
     tags: ['n8n', 'Claude AI', 'SEO', 'Content Automation'],
     stats: [
@@ -30,7 +56,7 @@ export default function CaseStudies() {
             Case Studies
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed max-w-2xl">
-            Real projects we've built for real businesses. Each case study breaks down what we built, how it works, and what it cost.
+            Real systems I run in my own cleaning company. Each one breaks down what it does, how it works, and what it cost. If it didn't survive in my business, I don't sell it.
           </p>
         </div>
       </section>
@@ -103,10 +129,10 @@ export default function CaseStudies() {
         <div className="max-w-4xl mx-auto">
           <div className="bg-slate-900 rounded-xl p-8 md:p-10 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">
-              Want results like these?
+              Want one of these in your cleaning company?
             </h2>
             <p className="text-slate-400 mb-6 max-w-xl mx-auto leading-relaxed">
-              Every business has processes that can be automated. Let's find yours.
+              I won't recommend anything I haven't run on my own cleaning company's P&L. Let's find which one fits yours.
             </p>
             <a
               href="https://cal.com/roy-banwell/30minaicall"

@@ -12,20 +12,23 @@ export default function Hero() {
 
       <div className="relative max-w-4xl mx-auto text-center">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-tight mb-6">
-          I'm scaling my cleaning business with <span className="text-blue-600">AI, not headcount.</span>
+          I grew my cleaning company from $13K a year to <span className="text-blue-600">$60K a month</span> — in about a year.
         </h1>
 
-        <p className="text-lg md:text-xl font-semibold text-slate-900 mb-10 max-w-2xl mx-auto">
-          200+ customers a month. 1,000+ leads a month. Same admin team I had at half the size.
+        <p className="text-lg md:text-xl font-semibold text-slate-900 mb-4 max-w-2xl mx-auto">
+          $13K/year → $13K/month → $60K/month. I scaled it without adding office staff — the AI systems I built run the operation and surface every number, so nothing slips.
+        </p>
+        <p className="text-base md:text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
+          Now I build those same systems for other cleaning companies, so you can finally see job profitability, crew performance, and cash position in one screen.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             to="/demo"
-            onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'See the Dashboard', cta_location: 'hero' })}
+            onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'See the live demo', cta_location: 'hero' })}
             className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all text-center shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 hover:-translate-y-0.5"
           >
-            See the dashboard →
+            See the live demo →
           </Link>
           <a
             href="https://cal.com/roy-banwell/30minaicall"

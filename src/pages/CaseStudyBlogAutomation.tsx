@@ -373,10 +373,10 @@ readingTime, and content (full HTML).`}</pre>
           <section className="mb-16">
             <div className="bg-slate-900 rounded-xl p-8 md:p-10 text-center">
               <h2 className="text-2xl font-bold text-white mb-3">
-                Want this built for your business?
+                Want this built for your cleaning company?
               </h2>
               <p className="text-slate-400 mb-6 max-w-xl mx-auto leading-relaxed">
-                We build custom automation systems for service businesses. If you want a blog pipeline like this, or you're curious what else can be automated in your operations, let's talk.
+                I build custom automation systems for cleaning companies. If you want a blog pipeline like this, or you're curious what else can be automated in your operations, let's talk.
               </p>
               <a
                 href="https://cal.com/roy-banwell/30minaicall"

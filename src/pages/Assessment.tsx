@@ -28,7 +28,7 @@ const questions: Question[] = [
     id: 'q1',
     question: 'How much time do you and your team spend each week on repetitive, manual tasks?',
     type: 'select',
-    hint: 'Add up hours across your whole team. Think: data entry, copying info between systems, sending routine emails, scheduling, invoice processing, etc.',
+    hint: 'Add up hours across your whole team. Think: confirming and rescheduling appointments, chasing payments, copying info between your scheduling tool and QuickBooks, answering the same customer texts, building cleaner schedules.',
     options: [
       { label: 'Less than 10 hours', value: 'less-10', score: 5 },
       { label: '10-25 hours', value: '10-25', score: 10 },
@@ -53,10 +53,10 @@ const questions: Question[] = [
     type: 'select',
     conditional: { questionId: 'q2', values: ['partial', 'yes'] },
     options: [
-      { label: 'Notion, Google Docs, or similar', value: 'docs' },
-      { label: 'Shared drives or folders', value: 'drives' },
-      { label: 'Project management tool (Asana, Monday, etc.)', value: 'pm-tool' },
-      { label: 'Physical documents or scattered locations', value: 'scattered' },
+      { label: 'In our scheduling software (Jobber, Housecall Pro, BookingKoala)', value: 'fsm' },
+      { label: 'Google Docs, Notion, or shared drives', value: 'docs' },
+      { label: 'A binder, whiteboard, or printed checklists', value: 'physical' },
+      { label: "Mostly in people's heads / group texts", value: 'heads' },
     ],
   },
   {
@@ -64,9 +64,9 @@ const questions: Question[] = [
     question: "What's the biggest bottleneck to growing your business right now?",
     type: 'select',
     options: [
-      { label: 'Finding and training good people', value: 'people' },
+      { label: 'Finding and keeping good cleaners', value: 'people' },
       { label: 'My own time and bandwidth', value: 'time' },
-      { label: 'Generating enough leads or sales', value: 'leads' },
+      { label: 'Generating enough leads or bookings', value: 'leads' },
       { label: 'Cash flow or capital', value: 'cashflow' },
       { label: 'Something else', value: 'other' },
     ],
@@ -75,7 +75,7 @@ const questions: Question[] = [
     id: 'q4',
     question: 'When your team encounters a problem, what usually happens?',
     type: 'select',
-    hint: 'Think about day-to-day operational issues — customer complaints, scheduling conflicts, equipment problems.',
+    hint: 'Think about day-to-day operational issues — a customer complaint about a clean, a cleaner calling out, a scheduling conflict, a redo.',
     options: [
       { label: 'They come to me for direction', value: 'come-to-me', score: 4 },
       { label: 'They try to solve it but often need my input', value: 'need-input', score: 8 },
@@ -87,9 +87,9 @@ const questions: Question[] = [
     question: 'How aligned is your team on priorities and goals?',
     type: 'select',
     options: [
-      { label: 'Not very — people work in silos', value: 'silos', score: 4 },
-      { label: 'Somewhat — but communication gaps exist', value: 'gaps', score: 8 },
-      { label: 'Very aligned — everyone knows the priorities', value: 'aligned', score: 12 },
+      { label: "Not really — everyone's doing their own thing", value: 'silos', score: 4 },
+      { label: 'Somewhat — but things still slip through the cracks', value: 'gaps', score: 8 },
+      { label: 'Very aligned — office and crews know the priorities', value: 'aligned', score: 12 },
     ],
   },
   {
@@ -106,21 +106,21 @@ const questions: Question[] = [
   },
   {
     id: 'q7',
-    question: 'If you had a clear path to save time or increase profits using AI, how likely are you to invest in it?',
+    question: 'If you found one change that clearly saved you time or made you money, how would you approach it?',
     type: 'select',
     options: [
-      { label: "Not likely — I'm skeptical or budget-constrained", value: 'not-likely', score: 0 },
-      { label: "Somewhat likely — I'd need to see proof first", value: 'somewhat', score: 5 },
-      { label: "Likely — I'm open if the ROI is clear", value: 'likely', score: 10 },
-      { label: "Very likely — I'm actively looking for solutions", value: 'very-likely', score: 15 },
-      { label: "Definitely — I'm ready to invest now", value: 'definitely', score: 20 },
+      { label: "Probably wouldn't act — skeptical or budget's tight", value: 'not-likely', score: 0 },
+      { label: "I'd want to see proof first", value: 'somewhat', score: 5 },
+      { label: "I'm open if the ROI is clear", value: 'likely', score: 10 },
+      { label: "I'd move on it soon", value: 'very-likely', score: 15 },
+      { label: "I'd move fast — I'm ready now", value: 'definitely', score: 20 },
     ],
   },
   {
     id: 'q8',
-    question: 'Describe your business in one sentence.',
+    question: 'Describe your cleaning company in one sentence. (Optional)',
     type: 'text',
-    hint: 'Example: "We run a residential cleaning company with 15 employees serving the Denver metro area."',
+    hint: 'Helps me tailor your results. Example: "We run a residential + commercial cleaning company with 15 cleaners across the Denver metro."',
   },
   {
     id: 'q9',
@@ -151,17 +151,10 @@ function calculateScore(answers: Answers): number {
   return score
 }
 
-// Check if lead is disqualified
-function isDisqualified(answers: Answers): boolean {
-  // DQ if revenue under $500k
-  if (answers.q9 === 'under-500k') return true
-
-  // DQ if AI skeptic AND won't invest
-  if (answers.q6 === 'skeptic' && answers.q7 === 'not-likely') return true
-
-  // DQ if cash flow problems AND won't invest
-  if (answers.q3 === 'cashflow' && answers.q7 === 'not-likely') return true
-
+// Gate removed (2026-06-17): Roy will talk to anyone who completes the assessment.
+// Everyone who finishes gets the qualified path (book a call). Kept as a function so
+// the scoring/feedback call sites stay intact; flip the early return to re-enable a gate.
+function isDisqualified(_answers: Answers): boolean {
   return false
 }
 
@@ -247,7 +240,7 @@ function getDQTips(answers: Answers): string[] {
   }
 
   if (answers.q6 === 'skeptic') {
-    tips.push('Try using ChatGPT for one small task this week — drafting an email, summarizing meeting notes. See what clicks.')
+    tips.push('Try using ChatGPT for one small task this week — writing a customer follow-up text or a cleaner job checklist. See what clicks.')
   }
 
   if (answers.q9 === 'under-500k') {
@@ -304,7 +297,7 @@ export default function Assessment() {
       return contactInfo.name && contactInfo.email
     }
     if (currentQuestion.type === 'text') {
-      return (answers[currentQuestion.id] || '').length > 0
+      return true // free-text questions are optional, don't gate progress
     }
     return !!answers[currentQuestion.id]
   }
@@ -425,13 +418,13 @@ export default function Assessment() {
 
             {/* Headline */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight mb-6">
-              Is Your Business Ready for{' '}
-              <span className="text-blue-600">AI Automation?</span>
+              Is Your Cleaning Company Ready for{' '}
+              <span className="text-blue-600">AI?</span>
             </h1>
 
             {/* Subtext */}
             <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
-              Take our free readiness assessment to discover if your processes are mature enough for AI automation. Get your score and personalized roadmap in minutes.
+              Take this free 2-minute assessment, built for cleaning companies, to see where AI would actually save you time and money. Get your readiness score and a personalized roadmap in minutes.
             </p>
 
             {/* CTA button */}
@@ -450,7 +443,7 @@ export default function Assessment() {
 
             {/* Trust indicators */}
             <div className="text-sm text-slate-500 mb-2">
-              Helping small businesses build automation-ready processes
+              Helping cleaning companies build automation-ready operations
             </div>
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-600">
               <div className="flex items-center gap-2">
@@ -559,6 +552,13 @@ export default function Assessment() {
               <div className="text-6xl md:text-7xl font-bold text-slate-900 mb-2">
                 {score}<span className="text-3xl text-slate-400">/100</span>
               </div>
+              <p className="text-base font-medium text-blue-700 max-w-md mx-auto">
+                {score >= 70
+                  ? 'Strong foundation — your cleaning company is ready to automate.'
+                  : score >= 45
+                  ? "You're further along than most cleaning companies. A few gaps to close and the upside is real."
+                  : "Lots of upside here. Close a few foundational gaps and AI starts paying off fast."}
+              </p>
             </div>
 
             {/* Dynamic feedback */}
@@ -631,7 +631,7 @@ export default function Assessment() {
                 {/* Big CTA */}
                 <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 mb-8 text-center">
                   <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                    Ready to put AI to work for your business?
+                    Ready to put AI to work in your cleaning company?
                   </h2>
                   <p className="text-blue-100 text-lg">
                     You've got the foundation. Now let's build your roadmap.
@@ -652,8 +652,11 @@ export default function Assessment() {
                     </div>
                   </div>
 
-                  <p className="text-slate-600 mb-6">
-                    In 1-2 weeks, we'll map your operations, identify your highest-ROI automation opportunities, and deliver a prioritized action plan you can execute immediately.
+                  <p className="text-slate-600 mb-4">
+                    In 1-2 weeks, I'll map your cleaning operation, identify your highest-ROI automation opportunities, and deliver a prioritized action plan you can execute immediately.
+                  </p>
+                  <p className="text-sm text-slate-500 mb-6">
+                    The strategy call is free. If the Audit's a fit, I'll quote it then — no obligation.
                   </p>
 
                   <div className="grid sm:grid-cols-2 gap-4 mb-6">
@@ -685,7 +688,7 @@ export default function Assessment() {
 
                   <div className="p-4 bg-blue-50 border border-blue-100 rounded-xl">
                     <p className="text-blue-800 text-sm">
-                      <span className="font-semibold">Book a call to get started.</span> We'll review your assessment, discuss your business, and see if an AI Audit is right for you.
+                      <span className="font-semibold">Book a call to get started.</span> We'll review your assessment, talk through your cleaning operation, and see if an AI Audit is right for you.
                     </p>
                   </div>
                 </div>

@@ -45,7 +45,7 @@ type Stage = 'email' | 'mode-select' | 'chat' | 'complete'
 type MapMode = 'quick' | 'deep'
 
 // Quick Map system prompt (10-15 minutes, high-level)
-const QUICK_MAP_PROMPT = `You are an expert business process analyst helping someone quickly capture the essentials of a business process. Your goal is to get a clear overview of how the process works — enough to identify the main steps, who's involved, and where the friction is — in about 10-15 minutes.
+const QUICK_MAP_PROMPT = `You are an expert process analyst helping the owner of a cleaning company quickly capture the essentials of one of their operational processes (e.g. scheduling and confirming recurring clients, onboarding a new cleaner, a move-out/quality walkthrough, invoicing and collecting payment, or handling a customer complaint). Your goal is to get a clear overview of how the process works — enough to identify the main steps, who's involved, and where the friction is — in about 10-15 minutes. Assume a cleaning-company context; use cleaning examples when prompting.
 
 ## Phase Markers
 
@@ -71,9 +71,9 @@ At the START of each response, include a phase marker on its own line:
 
 ### Phase 1: Context & Overview
 Get the basics:
-- What's the process you want to map?
-- What does your business do?
-- Who's involved in this process?
+- What's the process you want to map? (e.g. scheduling recurring clients, onboarding a cleaner, a move-out walkthrough, collecting payment)
+- A bit about the cleaning company (residential, commercial, or both; rough size)
+- Who's involved in this process? (owner, office/VA, cleaners, crews)
 - What triggers it to start, and what does "done" look like?
 
 ### Phase 2: Main Steps
@@ -111,7 +111,7 @@ When the conversation is complete, end your message with exactly this marker on 
 [PROCESS_COMPLETE]`
 
 // Deep Dive system prompt (30-45 minutes, detailed)
-const DEEP_DIVE_PROMPT = `You are an expert business process analyst helping someone document and map out a business process. Your goal is to extract enough detail that the process could be handed to someone unfamiliar with the business and they could execute it, or that an automation engineer could identify clear opportunities for improvement.
+const DEEP_DIVE_PROMPT = `You are an expert process analyst helping the owner of a cleaning company document and map out one of their operational processes (e.g. scheduling and confirming recurring clients, onboarding a new cleaner, a move-out/quality walkthrough, invoicing and collecting payment, or handling a customer complaint). Your goal is to extract enough detail that the process could be handed to a new office hire or cleaner and they could execute it, or that an automation engineer could identify clear opportunities for improvement. Assume a cleaning-company context; use cleaning examples when prompting.
 
 ## Phase Markers
 
@@ -401,22 +401,22 @@ function EmailCapture({ onSubmit }: { onSubmit: (info: UserInfo) => void }) {
         </span>
 
         <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-          Map Your <span className="text-blue-600">Business Process</span>
+          Map a Process in Your <span className="text-blue-600">Cleaning Company</span>
         </h1>
 
         <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          Answer a few questions about one of your workflows, and we'll generate a
-          professional process document you can use to train your team, onboard new hires,
-          or identify automation opportunities.
+          Answer a few questions about one of your workflows — scheduling, cleaner onboarding,
+          move-out walkthroughs, payment collection — and I'll generate a professional process
+          document you can use to train cleaners, onboard office staff, or spot automation opportunities.
         </p>
       </div>
 
       {/* Benefits */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
         {[
-          { title: '10-15 Minutes', desc: 'Quick conversation to capture your process' },
-          { title: 'Professional PDF', desc: 'Clean documentation you can actually use' },
-          { title: 'Automation Ideas', desc: 'Get recommendations for what to automate' },
+          { title: 'A done-for-you SOP', desc: 'A clean process doc to train cleaners and office staff. About 10-15 min to build.' },
+          { title: 'Talk, don\'t type', desc: 'Use the mic and just talk it through, like a quick call.' },
+          { title: 'Automation ideas', desc: 'See exactly what in this process could be automated.' },
         ].map((item, i) => (
           <div key={i} className="text-center p-6 bg-white border border-slate-200 rounded-xl shadow-sm">
             <h3 className="text-slate-900 font-semibold mb-2">{item.title}</h3>
@@ -523,14 +523,14 @@ function ChatInterface({
   const initialMessage = mode === 'quick'
     ? `[PHASE:1]
 
-Hi ${userInfo.name}! Let's quickly map out one of your business processes. This should take about 10-15 minutes — I'll ask you about the main steps, who's involved, and where things get stuck.
+Hi ${userInfo.name}! Let's quickly map out one of your cleaning company's processes. This should take about 10-15 minutes — I'll ask you about the main steps, who's involved, and where things get stuck.
 
-What process would you like to capture today?`
+What process would you like to capture today? (Scheduling recurring clients, onboarding a cleaner, move-out walkthroughs, collecting payment — whatever's eating your time.)`
     : `[PHASE:1]
 
-Hi ${userInfo.name}! I'm here to help you map out one of your business processes. By the end of our conversation, you'll have a clear, documented workflow that shows exactly how this process works — who does what, when, and how.
+Hi ${userInfo.name}! I'm here to help you map out one of your cleaning company's processes. By the end of our conversation, you'll have a clear, documented workflow that shows exactly how this process works — who does what, when, and how.
 
-To get started, tell me a bit about your business and what process you'd like to map out. For example: "I run a marketing agency and I want to map out how we onboard new clients."`
+To get started, tell me a bit about your cleaning company and what process you'd like to map out. For example: "I run a residential cleaning company and I want to map out how we onboard a new recurring client," or "how we handle a move-out clean from booking to final walkthrough."`
 
   const [messages, setMessages] = useState<Message[]>([
     {

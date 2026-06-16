@@ -28,6 +28,25 @@ export default function Demo() {
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <DemoHeader />
 
+      {/* Orientation + operator-credibility bar */}
+      <div className="bg-blue-600">
+        <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <p className="text-sm text-blue-50 leading-snug">
+            A sample dashboard for "Coastline Cleaning Co.," a ~$800K/yr cleaning company. Every number pulls automatically from the tools you already run.{' '}
+            <span className="font-semibold text-white">Built by an operator who grew his own cleaning company to $60K/month</span> — this is what I'd build for you.
+          </p>
+          <a
+            href="https://cal.com/roy-banwell/30minaicall"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => (window as any).dataLayer?.push({ event: 'cal_booking_click', booking_source: 'demo_top_bar' })}
+            className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-blue-50 text-blue-700 text-sm font-semibold rounded-lg transition-colors text-center"
+          >
+            Book a 30-min call
+          </a>
+        </div>
+      </div>
+
       <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-8 space-y-10">
 
         {/* KPI Strip */}
@@ -50,7 +69,7 @@ export default function Demo() {
           <div className="bg-white rounded-xl border border-slate-200 p-5">
             <p className="text-xs font-medium text-slate-500 uppercase tracking-wide mb-1">Team Avg Margin</p>
             <p className="text-2xl font-bold text-slate-900">{teamAvgMargin}%</p>
-            <p className="text-sm mt-1 text-slate-400">Across 4 technicians</p>
+            <p className="text-sm mt-1 text-slate-400">Across 4 crews</p>
           </div>
         </div>
 
@@ -58,8 +77,8 @@ export default function Demo() {
         <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 flex items-start gap-3">
           <span className="text-red-500 text-base mt-0.5">⚠️</span>
           <div className="flex-1">
-            <p className="text-sm font-semibold text-red-800">Dave L. margin is 17 points below team average</p>
-            <p className="text-xs text-red-600 mt-0.5">27% margin across 46 jobs this month vs. 44% team average. Margin gap represents <span className="font-semibold">~$8,300 in recoverable profit</span> this month. Click his row below to see which jobs.</p>
+            <p className="text-sm font-semibold text-red-800">Jasmine's Crew margin is 16 points below team average</p>
+            <p className="text-xs text-red-600 mt-0.5">28% margin across 64 jobs this month vs. 44% team average. Closing that gap is <span className="font-semibold">~$2,200/month — roughly $26k/year</span> in recoverable profit. Click the row below to see which jobs.</p>
           </div>
         </div>
 
@@ -71,13 +90,13 @@ export default function Demo() {
 
         {/* Team Performance */}
         <section>
-          <SectionHeader title="Team Performance" source="ServiceTitan" />
+          <SectionHeader title="Crew Performance" source="Jobber" />
           <TechModule />
         </section>
 
         {/* Job Profitability */}
         <section>
-          <SectionHeader title="Job Profitability" source="ST + QuickBooks" />
+          <SectionHeader title="Job Profitability" source="Jobber + QuickBooks" />
           <JobProfitModule />
         </section>
 
@@ -99,16 +118,17 @@ export default function Demo() {
       <div className="border-t border-slate-200 bg-white mt-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold text-slate-900">Want this for your business?</p>
-            <p className="text-xs text-slate-500 mt-0.5">Custom dashboard builds starting at <span className="font-semibold text-slate-700">$1,500</span> · Built in 2 weeks · You own it</p>
+            <p className="text-sm font-semibold text-slate-900">Want this for your cleaning company?</p>
+            <p className="text-xs text-slate-500 mt-0.5">Free 30-min call. I'll map your tools and show you the numbers you're flying blind on. Works with whatever you already run (Jobber, Housecall Pro, BookingKoala, QuickBooks…). About 2 hours of your time to build · you own it outright, no SaaS lock-in.</p>
           </div>
           <a
             href="https://cal.com/roy-banwell/30minaicall"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => (window as any).dataLayer?.push({ event: 'cal_booking_click', booking_source: 'demo_bottom_cta' })}
             className="flex-shrink-0 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm shadow-blue-600/25"
           >
-            Book a call
+            Book my 30-min call
           </a>
         </div>
       </div>

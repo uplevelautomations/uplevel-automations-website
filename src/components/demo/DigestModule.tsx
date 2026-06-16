@@ -23,7 +23,7 @@ export default function DigestModule() {
         <div className="bg-slate-50 border-b border-slate-200 px-5 py-3">
           <div className="flex items-center gap-2 flex-wrap text-xs text-slate-500">
             <span className="font-medium text-slate-700">From:</span>
-            <span>Ridgeline OS &lt;digest@ridgelineservices.com&gt;</span>
+            <span>Coastline OS &lt;digest@coastlinecleaning.com&gt;</span>
           </div>
           <div className="flex items-center gap-2 flex-wrap text-xs text-slate-500 mt-1">
             <span className="font-medium text-slate-700">Subject:</span>
@@ -36,7 +36,7 @@ export default function DigestModule() {
           <p className="text-sm text-slate-700">
             Good morning, <span className="font-semibold">{ownerName}</span>.
           </p>
-          <p className="text-xs text-slate-500 -mt-3">Here's your Ridgeline Services snapshot for {date}.</p>
+          <p className="text-xs text-slate-500 -mt-3">Here's your Coastline Cleaning Co. snapshot for {date}.</p>
 
           {/* Stats grid */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -88,7 +88,7 @@ export default function DigestModule() {
           {/* Footer */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400">
             <span>✓ QuickBooks synced 2h ago</span>
-            <span>✓ ServiceTitan synced 1h ago</span>
+            <span>✓ Jobber synced 1h ago</span>
             <span>✓ Gmail active</span>
           </div>
         </div>

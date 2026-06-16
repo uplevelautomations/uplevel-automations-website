@@ -8,7 +8,6 @@ import CaseStudies from './pages/CaseStudies'
 import CaseStudyBlogAutomation from './pages/CaseStudyBlogAutomation'
 import CaseStudyDashboard from './pages/CaseStudyDashboard'
 import CaseStudyVACoaching from './pages/CaseStudyVACoaching'
-import CaseStudyOutboundMachine from './pages/CaseStudyOutboundMachine'
 import Proof from './pages/Proof'
 import PersonalAssistant from './pages/PersonalAssistant'
 import Demo from './pages/Demo'
@@ -21,17 +20,16 @@ declare global {
 }
 
 const pageTitles: Record<string, string> = {
-  '/': 'UpLevel Automations | AI Transformation Partner',
-  '/ai-readiness': 'AI Readiness Assessment | UpLevel Automations',
-  '/process-mapper': 'Process Mapper | UpLevel Automations',
-  '/case-studies': 'Case Studies | UpLevel Automations',
-  '/case-studies/automated-seo-blog': 'Automated SEO Blog Case Study | UpLevel Automations',
-  '/case-studies/operations-dashboard': 'Operations Dashboard Case Study | UpLevel Automations',
-  '/case-studies/va-coaching': 'VA Coaching System Case Study | UpLevel Automations',
-  '/case-studies/outbound-machine': 'Outbound Machine Case Study | UpLevel Automations',
-  '/proof': 'Proof | UpLevel Automations',
+  '/': 'AI Operations Dashboards for Cleaning Companies | UpLevel Automations',
+  '/ai-readiness': 'AI Readiness Assessment for Cleaning Companies | UpLevel Automations',
+  '/process-mapper': 'Process Mapper for Cleaning Companies | UpLevel Automations',
+  '/case-studies': 'Cleaning Company Case Studies | UpLevel Automations',
+  '/case-studies/automated-seo-blog': 'Automated SEO Blog for a Cleaning Company | UpLevel Automations',
+  '/case-studies/operations-dashboard': 'Cleaning Company Operations Dashboard | UpLevel Automations',
+  '/case-studies/va-coaching': 'AI VA Coaching for Cleaning Companies | UpLevel Automations',
+  '/proof': 'Proof: AI Systems Run in a Cleaning Company | UpLevel Automations',
   '/personal-assistant': 'AI Personal Assistant Kit | UpLevel Automations',
-  '/demo': 'Service OS Demo | UpLevel Automations',
+  '/demo': 'Cleaning Company Operations Dashboard Demo | UpLevel Automations',
 }
 
 function PageViewTracker() {
@@ -64,7 +62,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/case-studies/automated-seo-blog" element={<CaseStudyBlogAutomation />} />
         <Route path="/case-studies/operations-dashboard" element={<CaseStudyDashboard />} />
         <Route path="/case-studies/va-coaching" element={<CaseStudyVACoaching />} />
-        <Route path="/case-studies/outbound-machine" element={<CaseStudyOutboundMachine />} />
         <Route path="/proof" element={<Proof />} />
         <Route path="/personal-assistant" element={<PersonalAssistant />} />
         <Route path="/brain" element={<Navigate to="/personal-assistant" replace />} />
