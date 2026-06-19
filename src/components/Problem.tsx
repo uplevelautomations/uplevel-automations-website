@@ -22,7 +22,7 @@ export default function Problem() {
             You should be able to answer these in 30 seconds.
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Most cleaning company owners can't. Not because they're not paying attention — because the answer lives across QuickBooks, your scheduling tool (Jobber, Housecall Pro, BookingKoala), and a spreadsheet someone updates by hand.
+            Most cleaning company owners can't. Not because they're not paying attention — because the answer lives across QuickBooks, your scheduling tool (Jobber, Housecall Pro, BookingKoala), and a spreadsheet someone updates by hand. So you stay the bottleneck: the only one who can quote a job, the one the office texts at 7pm, the one who sees the whole picture.
           </p>
         </div>
 

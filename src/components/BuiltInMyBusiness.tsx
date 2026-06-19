@@ -2,16 +2,28 @@ import { Link } from 'react-router-dom'
 
 const systems = [
   {
-    title: 'Daily Briefing',
-    what: 'Every morning at 6 AM, an AI reads my calendar, email, website analytics, CRM, and revenue, then tells me exactly what to focus on.',
-    why: 'Replaces 30 minutes of context-gathering with a 2-minute read.',
-    tags: ['Claude', 'Telegram'],
+    title: 'No Lead Left Behind',
+    what: 'Every new lead gets an instant reply and a two-week follow-up sequence, and old leads get re-engaged automatically. We handle 1,000+ leads a month and none of them go dark.',
+    why: 'The cheapest growth in a cleaning company is the leads you already paid for. Most owners let them rot.',
+    tags: ['GHL', 'SMS', 'Claude'],
+  },
+  {
+    title: 'Cleaner Hiring Funnel',
+    what: 'A self-serve, trilingual hire funnel (catalinacleaning.com/join) that screens applicants, signs them up, trains and quizzes them on the real app, and collects their W-9 before they ever take a job.',
+    why: 'Cleaner supply is the #1 thing capping growth. This turns recruiting from a scramble into a pipeline.',
+    tags: ['Next.js', 'GHL', 'EN/ES/PT'],
   },
   {
     title: 'The Operations Dashboard',
-    what: 'One screen that replaced 4 logins. Revenue, refunds, lead sources, cleaner quality, market profitability, ad spend, all live, with AI-written analysis on every section.',
+    what: 'One screen that replaced 4 logins. Revenue, cash, lead sources, cleaner quality, market profitability, ad spend, all live, with AI-written analysis on every section.',
     why: 'I stopped checking Stripe, GHL, BookingKoala, and Google Ads separately. Now I just check one URL.',
     tags: ['QuickBooks', 'Stripe', 'BookingKoala'],
+  },
+  {
+    title: 'Cleaner Quality Engine',
+    what: 'Every refund, complaint, and rebooking gets attributed to a specific cleaner. The system ranks them by composite score and flags the ones losing me money.',
+    why: 'Found 19 refunds totaling $4,785 traced to specific people I would have otherwise kept booking.',
+    tags: ['Stripe', 'BookingKoala'],
   },
   {
     title: 'VA Coaching System',
@@ -20,16 +32,10 @@ const systems = [
     tags: ['Claude', 'Call transcripts'],
   },
   {
-    title: 'Blog Automator',
-    what: '3 SEO blog posts per week, written by AI, published to my site automatically. I haven\'t written one in months.',
-    why: 'Consistent content output without a content team. About 15 cents per post.',
-    tags: ['Claude', 'SEO', 'Auto-published'],
-  },
-  {
-    title: 'Cleaner Quality Engine',
-    what: 'Every refund, complaint, and rebooking gets attributed to a specific cleaner. The system ranks them by composite score and flags the ones losing me money.',
-    why: 'Found 19 refunds totaling $4,785 traced to specific people I would have otherwise kept booking.',
-    tags: ['Stripe', 'BookingKoala'],
+    title: 'Daily Briefing',
+    what: 'Every morning at 6 AM, an AI reads my calendar, email, website analytics, CRM, and revenue, then tells me exactly what to focus on.',
+    why: 'Replaces 30 minutes of context-gathering with a 2-minute read.',
+    tags: ['Claude', 'Telegram'],
   },
 ]
 
@@ -42,7 +48,7 @@ export default function BuiltInMyBusiness() {
             Built in my business first.
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Every system below runs my own cleaning company. Real customers, real money, real consequences if it breaks. One of them found <span className="font-semibold text-slate-900">19 refunds worth $4,785</span> traced to specific cleaners I'd have kept booking.
+            Every system below runs my own cleaning company. Real customers, real money, real consequences if it breaks. They handle <span className="font-semibold text-slate-900">1,000+ leads and 200+ jobs a month</span> without me adding office staff.
           </p>
         </div>
 

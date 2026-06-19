@@ -15,24 +15,33 @@ export default function Services() {
   const services: Service[] = [
     {
       title: "AI Audit",
-      description: "Know AI can help but not sure where to start? I map your cleaning operation, find your highest-impact opportunities, and hand you a prioritized plan you can actually execute.",
+      description: "Not sure where to start? I map your cleaning operation, find the highest-impact fixes, and hand you a prioritized plan you can execute.",
       price: "Starting at $500",
       cta: "Book a 30-min call",
       href: "https://cal.com/roy-banwell/30minaicall",
       isLink: false,
     },
     {
+      title: "No Lead Left Behind",
+      description: "The build cleaning owners ask me for first. Instant lead response, a two-week follow-up sequence, and reactivation of the dead leads sitting in your CRM. Booked jobs from leads you already paid for.",
+      price: "Starting at $1,000",
+      cta: "Book a 30-min call",
+      href: "https://cal.com/roy-banwell/30minaicall",
+      isLink: false,
+      highlight: true
+    },
+    {
       title: "Service OS",
-      description: "I connect your scheduling tool (Jobber, Housecall Pro, BookingKoala), QuickBooks, and one more tool into a live dashboard — job profitability, crew performance, cash position, and operational alerts. Running in my own cleaning company today. You own it outright, no SaaS lock-in. After the build, a simple monthly plan covers hosting, fixes, and a new feature each month (I'll quote it on the call).",
+      description: "Your scheduling tool, QuickBooks, and one more connected into one live dashboard: job profitability, crew performance, and cash position. You own it, no SaaS lock-in.",
+      descriptionLink: { text: "See the live demo →", href: "/demo" },
       price: "Starting at $1,500",
       cta: "See the live demo",
       href: "/demo",
       isLink: true,
-      highlight: true
     },
     {
       title: "Custom AI Build",
-      description: "Need something outside the OS? I scope, manage, and deliver. Anything I've shipped in my own cleaning company I can ship in yours.",
+      description: "Hiring funnels, invoicing and payment automation, recruiting, whatever's eating your week. Anything I've shipped in my own cleaning company I can ship in yours.",
       descriptionLink: { text: "See what I've built →", href: "/proof" },
       price: "Starting at $2,500",
       cta: "Book a 30-min call",
@@ -46,12 +55,12 @@ export default function Services() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
-            Three ways to work together.
+            Ways to work together.
           </h2>
-          <p className="text-slate-500 text-lg">Start with an audit, go straight to the OS, or bring a custom problem.</p>
+          <p className="text-slate-500 text-lg">Start with No Lead Left Behind, then add the dashboard once you see the data. Not sure where to begin? Start with the audit.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <div
               key={index}

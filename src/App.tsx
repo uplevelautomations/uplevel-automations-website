@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Problem from './components/Problem'
+import NoLeadLeftBehind from './components/NoLeadLeftBehind'
 import Services from './components/Services'
 import BuiltInMyBusiness from './components/BuiltInMyBusiness'
 import AssessmentTeaser from './components/AssessmentTeaser'
@@ -28,6 +29,7 @@ function App() {
       <main>
         <Hero />
         <Problem />
+        <NoLeadLeftBehind />
         <Services />
         <BuiltInMyBusiness />
         <About />

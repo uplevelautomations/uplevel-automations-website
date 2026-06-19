@@ -51,9 +51,19 @@ const categories: Category[] = [
     blurb: 'The systems that quietly run the business while I sleep.',
     systems: [
       {
+        title: 'No Lead Left Behind',
+        what: 'Every new lead gets an instant reply and a two-week text-and-email follow-up sequence, and dormant leads get re-engaged automatically. We handle 1,000+ leads a month and none go dark, so I grow off leads I already paid for instead of chasing new ones.',
+        tags: ['GHL', 'SMS', 'Claude'],
+      },
+      {
+        title: 'Cleaner Hiring Funnel',
+        what: 'A self-serve, trilingual hire funnel (catalinacleaning.com/join) that screens applicants, signs them up, trains and quizzes them on the real app, and collects their W-9 before they ever take a job. Turns recruiting from a scramble into a pipeline.',
+        tags: ['Next.js', 'GHL', 'EN/ES/PT'],
+      },
+      {
         title: 'VA Coaching System',
         what: 'An AI listens to my virtual assistants\' actual sales calls every night, scores each one on 6 dimensions, and writes weekly coaching reports. Tracks response time, talk time, and bookings created so I can compare VAs side by side.',
-        tags: ['Opus 4.6', 'GHL API', 'Call transcripts'],
+        tags: ['Claude', 'GHL API', 'Call transcripts'],
       },
       {
         title: 'Review Sentiment Gate',
