@@ -11,7 +11,7 @@ const points = [
   },
   {
     title: 'Wake up your dead list',
-    body: "The old leads sitting in your CRM that never booked. I re-engage them automatically — even a small rebook rate on a list that size is jobs you'd never have seen.",
+    body: "The old leads sitting in your CRM that never booked. I re-engage them automatically. Even a small rebook rate on a list that size is jobs you'd never have seen.",
   },
 ]
 
@@ -53,7 +53,7 @@ export default function NoLeadLeftBehind() {
             onClick={() => (window as any).dataLayer?.push({ event: 'cta_click', cta_text: 'No Lead Left Behind', cta_location: 'nllb_section' })}
             className="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg transition-all shadow-sm"
           >
-            Stop losing leads — book a 30-min call
+            Stop losing leads. Book a 30-min call
           </a>
           <p className="text-xs text-slate-500 mt-3">Builds start at $1,000. You own it.</p>
         </div>

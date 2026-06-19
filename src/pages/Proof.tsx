@@ -216,7 +216,7 @@ export default function Proof() {
               "Working with UpLevel Automations on my initial business assessment helped me to get a better understanding of areas where AI can improve my daily workflow. After a couple of meetings, Roy outlined my existing system and offered a prioritized approach to building out a custom AI system tailored to my business. My goal is to reduce the admin work and increase the time I can spend on engineering. UpLevel Automations gave me a great starting point on my AI journey."
             </p>
             <footer className="mt-3 text-sm text-slate-500">
-              Christopher Shaffer, Owner &amp; Principal Engineer —{' '}
+              Christopher Shaffer, Owner &amp; Principal Engineer,{' '}
               <a
                 href="https://www.associatedsolutionsllc.com"
                 target="_blank"

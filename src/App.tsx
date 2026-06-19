@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
-import Problem from './components/Problem'
+import Opener from './components/Opener'
+import DashboardPreview from './components/DashboardPreview'
 import NoLeadLeftBehind from './components/NoLeadLeftBehind'
 import Services from './components/Services'
 import BuiltInMyBusiness from './components/BuiltInMyBusiness'
@@ -28,7 +29,8 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <Problem />
+        <Opener />
+        <DashboardPreview />
         <NoLeadLeftBehind />
         <Services />
         <BuiltInMyBusiness />

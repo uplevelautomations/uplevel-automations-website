@@ -27,7 +27,7 @@ export default function DigestModule() {
           </div>
           <div className="flex items-center gap-2 flex-wrap text-xs text-slate-500 mt-1">
             <span className="font-medium text-slate-700">Subject:</span>
-            <span>Your daily briefing — {date}</span>
+            <span>Your daily briefing, {date}</span>
           </div>
         </div>
 
@@ -66,7 +66,7 @@ export default function DigestModule() {
                 Top performer ({topPerformer.label}): {topPerformer.name}
               </p>
               <p className="text-xs text-slate-500 mt-0.5">
-                {topPerformer.margin}% margin — highest on the team.
+                {topPerformer.margin}% margin, highest on the team.
               </p>
             </div>
           </div>

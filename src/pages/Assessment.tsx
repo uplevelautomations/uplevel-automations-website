@@ -40,7 +40,7 @@ const questions: Question[] = [
     id: 'q2',
     question: 'Do you have documented processes for your core operations?',
     type: 'select',
-    hint: 'SOPs, checklists, training docs — anything that explains how to do a task without asking someone.',
+    hint: 'SOPs, checklists, training docs, anything that explains how to do a task without asking someone.',
     options: [
       { label: "No, most things are in people's heads", value: 'no', score: 0 },
       { label: 'Partially — some things are written down', value: 'partial', score: 6 },
@@ -75,7 +75,7 @@ const questions: Question[] = [
     id: 'q4',
     question: 'When your team encounters a problem, what usually happens?',
     type: 'select',
-    hint: 'Think about day-to-day operational issues — a customer complaint about a clean, a cleaner calling out, a scheduling conflict, a redo.',
+    hint: 'Think about day-to-day operational issues: a customer complaint about a clean, a cleaner calling out, a scheduling conflict, a redo.',
     options: [
       { label: 'They come to me for direction', value: 'come-to-me', score: 4 },
       { label: 'They try to solve it but often need my input', value: 'need-input', score: 8 },
@@ -87,9 +87,9 @@ const questions: Question[] = [
     question: 'How aligned is your team on priorities and goals?',
     type: 'select',
     options: [
-      { label: "Not really — everyone's doing their own thing", value: 'silos', score: 4 },
-      { label: 'Somewhat — but things still slip through the cracks', value: 'gaps', score: 8 },
-      { label: 'Very aligned — office and crews know the priorities', value: 'aligned', score: 12 },
+      { label: "Not really, everyone's doing their own thing", value: 'silos', score: 4 },
+      { label: 'Somewhat, but things still slip through the cracks', value: 'gaps', score: 8 },
+      { label: 'Very aligned, office and crews know the priorities', value: 'aligned', score: 12 },
     ],
   },
   {
@@ -97,7 +97,7 @@ const questions: Question[] = [
     question: "What's your current situation with AI?",
     type: 'select',
     options: [
-      { label: "I'm skeptical — not sure AI is right for my business", value: 'skeptic', score: 0 },
+      { label: "I'm skeptical, not sure AI is right for my business", value: 'skeptic', score: 0 },
       { label: "I know AI could help but I haven't done anything yet", value: 'aware', score: 10 },
       { label: "I've tried AI tools for small things like writing or research", value: 'tried', score: 12 },
       { label: "I'm actively looking for help implementing AI in my business", value: 'looking', score: 16 },
@@ -109,11 +109,11 @@ const questions: Question[] = [
     question: 'If you found one change that clearly saved you time or made you money, how would you approach it?',
     type: 'select',
     options: [
-      { label: "Probably wouldn't act — skeptical or budget's tight", value: 'not-likely', score: 0 },
+      { label: "Probably wouldn't act, skeptical or budget's tight", value: 'not-likely', score: 0 },
       { label: "I'd want to see proof first", value: 'somewhat', score: 5 },
       { label: "I'm open if the ROI is clear", value: 'likely', score: 10 },
       { label: "I'd move on it soon", value: 'very-likely', score: 15 },
-      { label: "I'd move fast — I'm ready now", value: 'definitely', score: 20 },
+      { label: "I'd move fast, I'm ready now", value: 'definitely', score: 20 },
     ],
   },
   {
@@ -240,7 +240,7 @@ function getDQTips(answers: Answers): string[] {
   }
 
   if (answers.q6 === 'skeptic') {
-    tips.push('Try using ChatGPT for one small task this week — writing a customer follow-up text or a cleaner job checklist. See what clicks.')
+    tips.push('Try using ChatGPT for one small task this week, like writing a customer follow-up text or a cleaner job checklist. See what clicks.')
   }
 
   if (answers.q9 === 'under-500k') {

@@ -405,8 +405,8 @@ function EmailCapture({ onSubmit }: { onSubmit: (info: UserInfo) => void }) {
         </h1>
 
         <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          Answer a few questions about one of your workflows — scheduling, cleaner onboarding,
-          move-out walkthroughs, payment collection — and I'll generate a professional process
+          Answer a few questions about one of your workflows (scheduling, cleaner onboarding,
+          move-out walkthroughs, payment collection) and I'll generate a professional process
           document you can use to train cleaners, onboard office staff, or spot automation opportunities.
         </p>
       </div>
@@ -523,12 +523,12 @@ function ChatInterface({
   const initialMessage = mode === 'quick'
     ? `[PHASE:1]
 
-Hi ${userInfo.name}! Let's quickly map out one of your cleaning company's processes. This should take about 10-15 minutes — I'll ask you about the main steps, who's involved, and where things get stuck.
+Hi ${userInfo.name}! Let's quickly map out one of your cleaning company's processes. This should take about 10-15 minutes. I'll ask you about the main steps, who's involved, and where things get stuck.
 
-What process would you like to capture today? (Scheduling recurring clients, onboarding a cleaner, move-out walkthroughs, collecting payment — whatever's eating your time.)`
+What process would you like to capture today? (Scheduling recurring clients, onboarding a cleaner, move-out walkthroughs, collecting payment, whatever's eating your time.)`
     : `[PHASE:1]
 
-Hi ${userInfo.name}! I'm here to help you map out one of your cleaning company's processes. By the end of our conversation, you'll have a clear, documented workflow that shows exactly how this process works — who does what, when, and how.
+Hi ${userInfo.name}! I'm here to help you map out one of your cleaning company's processes. By the end of our conversation, you'll have a clear, documented workflow that shows exactly how this process works: who does what, when, and how.
 
 To get started, tell me a bit about your cleaning company and what process you'd like to map out. For example: "I run a residential cleaning company and I want to map out how we onboard a new recurring client," or "how we handle a move-out clean from booking to final walkthrough."`
 

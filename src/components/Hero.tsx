@@ -12,11 +12,11 @@ export default function Hero() {
 
       <div className="relative max-w-4xl mx-auto text-center">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-tight mb-6">
-          I took my cleaning company from $13K to <span className="text-blue-600">$60K a month</span> — in 12 months.
+          I took my cleaning company from $13K to <span className="text-blue-600">$60K a month</span>, in 12 months.
         </h1>
 
         <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
-          I did it with AI systems I built, not more office staff. Now I build the same systems for other cleaning companies — your profit, crews, and cash in one screen.
+          I did it with AI systems I built, not more office staff. Now I build the same systems for other cleaning companies, so you finally see your profit, crews, and cash in one screen.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
