@@ -11,9 +11,9 @@ export default function Opener() {
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
           {/* Left: the message */}
           <div>
-            <div className="text-blue-600 text-xs font-semibold uppercase tracking-widest mb-3">
-              The reality
-            </div>
+            <p className="text-blue-600 text-base md:text-lg font-semibold mb-3">
+              How do I know if I need AI automation?
+            </p>
             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight leading-tight mb-5">
               You can't step away, because you are the business.
             </h2>
