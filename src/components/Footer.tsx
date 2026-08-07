@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer id="footer" className="py-16 px-6 bg-slate-900 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
           {/* Brand */}
           <div>
             <Link to="/" className="font-semibold text-white text-lg block mb-3">
@@ -33,6 +33,33 @@ export default function Footer() {
               <li>
                 <Link to="/process-mapper" className="text-slate-400 hover:text-white transition-colors">
                   Process Mapper
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Data & answers */}
+          <div>
+            <div className="text-xs font-semibold text-slate-300 uppercase tracking-wider mb-4">Data &amp; Answers</div>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/benchmarks/cleaning-company-margins" className="text-slate-400 hover:text-white transition-colors">
+                  Margins Benchmark Report
+                </Link>
+              </li>
+              <li>
+                <Link to="/answers" className="text-slate-400 hover:text-white transition-colors">
+                  Questions Owners Can't Answer
+                </Link>
+              </li>
+              <li>
+                <Link to="/compare/fsm-job-profitability-reporting" className="text-slate-400 hover:text-white transition-colors">
+                  FSM Reporting Compared
+                </Link>
+              </li>
+              <li>
+                <Link to="/case-studies" className="text-slate-400 hover:text-white transition-colors">
+                  Case Studies
                 </Link>
               </li>
             </ul>
