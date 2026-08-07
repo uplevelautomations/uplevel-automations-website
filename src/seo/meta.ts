@@ -72,6 +72,22 @@ export const ORG_SCHEMA = {
   ],
 }
 
+function articleSchema(path: string, headline: string, description: string, datePublished: string): object[] {
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline,
+      description,
+      url: `${SITE_ORIGIN}${path}`,
+      datePublished,
+      dateModified: datePublished,
+      author: { '@id': PERSON_ID },
+      publisher: { '@id': ORG_ID },
+    },
+  ]
+}
+
 function caseStudySchema(path: string, headline: string, description: string): object[] {
   return [
     {
@@ -172,6 +188,77 @@ export const ROUTES_META: RouteMeta[] = [
     title: 'Cleaning Company Operations Dashboard Demo | UpLevel Automations',
     description:
       'A live sample of the Service OS dashboard for a ~$800K/yr cleaning company: revenue, job profitability, crew performance, and marketing in one screen.',
+  },
+  {
+    path: '/answers',
+    title: "The Questions Cleaning Company Owners Can't Answer | UpLevel Automations",
+    description:
+      'Fourteen questions every cleaning company owner should be able to answer, and why each one needs data from at least two systems. With real answers computed from a working cleaning company.',
+  },
+  {
+    path: '/answers/which-cleaner-is-most-profitable',
+    title: 'Which of My Cleaners Is Actually Making Me Money? | UpLevel Automations',
+    description:
+      'How to compute gross profit per clean by cleaner, and what 920 real cleans showed: a 3x spread between the best and worst cleaner on the same price book.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/which-cleaner-is-most-profitable',
+      'Which of My Cleaners Is Actually Making Me Money?',
+      'How to compute gross profit per clean by cleaner, with real data from 920 cleans.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/answers/one-time-to-recurring-conversion-rate',
+    title: "What's My One-Time to Recurring Conversion Rate? | UpLevel Automations",
+    description:
+      'How to compute one-time to recurring conversion for a cleaning company. Peers benchmark around 20%. Mine measured 3.7%, and this is what that gap costs.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/one-time-to-recurring-conversion-rate',
+      "What's My One-Time to Recurring Conversion Rate?",
+      'How to compute one-time to recurring conversion, with a real measured baseline of 3.7% vs the ~20% peer benchmark.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/answers/can-i-afford-to-hire-another-cleaner',
+    title: 'Can I Afford to Hire Another Cleaner Right Now? | UpLevel Automations',
+    description:
+      'A two-part test for cleaning company hiring: is the marginal work actually profitable, and can cash survive the ramp? Neither half is answerable from the booking platform alone.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/can-i-afford-to-hire-another-cleaner',
+      'Can I Afford to Hire Another Cleaner Right Now?',
+      'A two-part hiring test: marginal job profitability plus cash runway through the ramp.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/benchmarks/cleaning-company-margins',
+    title: 'Cleaning Company Margins: What 920 Real Cleans Showed | UpLevel Automations',
+    description:
+      'Benchmark data from 920 completed cleans: 45.8% average gross margin, a 22-point margin spread across cleaners on the same price book, and a 3.7% one-time to recurring conversion rate. Real booking-log data, methodology included.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/benchmarks/cleaning-company-margins',
+      'What 920 Cleans Taught Me About Cleaning Company Margins',
+      'Benchmark data from 920 completed cleans: 45.8% average gross margin and a 22-point spread across cleaners on the same price book.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/compare/fsm-job-profitability-reporting',
+    title: 'Housecall Pro vs Jobber vs ServiceTitan: Job Profitability Reporting | UpLevel Automations',
+    description:
+      'An operator compares what FSM reporting in Housecall Pro, Jobber, and ServiceTitan can and cannot tell you about job profitability, and which owner questions need accounting data joined in.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/compare/fsm-job-profitability-reporting',
+      'Housecall Pro vs Jobber vs ServiceTitan: Which Reporting Actually Answers Job Profitability?',
+      'What FSM reporting can and cannot answer about job profitability, from an operator running the stack.',
+      '2026-08-07',
+    ),
   },
 ]
 

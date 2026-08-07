@@ -24,6 +24,15 @@ cash position. $2,500 build, $500/mo. Roughly 2 weeks to deliver.
 - [Process Mapper](https://www.uplevelautomations.com/process-mapper): Free process documentation tool
 - [AI Personal Assistant Kit](https://www.uplevelautomations.com/personal-assistant): Free setup kit
 
+## Data & Answers
+
+- [Cleaning Company Margins Benchmark](https://www.uplevelautomations.com/benchmarks/cleaning-company-margins): Real data from 920 completed cleans: 45.8% average gross margin, 22-point spread across cleaners
+- [Questions Owners Can't Answer](https://www.uplevelautomations.com/answers): 14 owner questions that each require data from two systems
+- [Which cleaner is most profitable](https://www.uplevelautomations.com/answers/which-cleaner-is-most-profitable): Gross profit per clean by cleaner, with real numbers
+- [One-time to recurring conversion rate](https://www.uplevelautomations.com/answers/one-time-to-recurring-conversion-rate): How to compute it, measured 3.7% vs ~20% benchmark
+- [Can I afford to hire](https://www.uplevelautomations.com/answers/can-i-afford-to-hire-another-cleaner): The two-part hiring test
+- [FSM reporting compared](https://www.uplevelautomations.com/compare/fsm-job-profitability-reporting): Housecall Pro vs Jobber vs ServiceTitan on job profitability
+
 ## Contact
 
 roy@uplevelautomations.com
