@@ -37,6 +37,18 @@ export default function AnswerAffordToHire() {
         <li><strong>Cash, not P&L:</strong> the question is whether your bank balance plus incoming AR covers the extra payroll during the ramp. If your AR aging is long, revenue on the books doesn't pay Friday's payroll.</li>
       </ul>
 
+      <h2>A worked example with my numbers</h2>
+      <p>
+        My average gross profit per clean runs about $120. A new cleaner at full ramp doing 8
+        cleans a week earns the business roughly $960 a week in gross profit. Assume a 4-week
+        ramp at half productivity: during that month they generate around $1,900 in gross profit
+        while you carry full onboarding time, supplies, and likely one redo. If the jobs they'd
+        absorb are down at my bottom-of-roster $78 per clean instead of $120, the same ramp
+        produces about $1,250, and the payback on the hire stretches by weeks. Same hire, same
+        wage. The difference is entirely which jobs the schedule hands them, which is why the
+        demand check comes before the cash check.
+      </p>
+
       <h2>The one-line test</h2>
       <p>
         If the work you'd hand a new hire earns your median gross profit per clean or better, and

@@ -193,7 +193,35 @@ export const ROUTES_META: RouteMeta[] = [
     path: '/answers',
     title: "The Questions Cleaning Company Owners Can't Answer | UpLevel Automations",
     description:
-      'Fourteen questions every cleaning company owner should be able to answer, and why each one needs data from at least two systems. With real answers computed from a working cleaning company.',
+      'Fourteen questions every cleaning company owner should be able to answer, with real answers computed from a working cleaning company.',
+    schema: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: "The Questions Cleaning Company Owners Can't Answer",
+        url: `${SITE_ORIGIN}/answers`,
+        numberOfItems: 14,
+        itemListElement: [
+          'which-cleaner-is-most-profitable',
+          'can-i-afford-to-hire-another-cleaner',
+          'fire-or-coach-a-cleaner',
+          'which-cleaner-for-high-value-jobs',
+          'which-jobs-to-stop-taking',
+          'which-jobs-am-i-underpricing',
+          'are-recurring-customers-more-profitable',
+          'one-time-to-recurring-conversion-rate',
+          'which-lead-source-produces-customers-who-stick',
+          'real-cost-per-customer-by-channel',
+          'expand-to-new-area-or-squeeze',
+          'which-customers-should-i-fire',
+          'is-my-equipment-paying-for-itself',
+        ].map((slug, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: `${SITE_ORIGIN}/answers/${slug}`,
+        })),
+      },
+    ],
   },
   {
     path: '/answers/which-cleaner-is-most-profitable',
@@ -225,7 +253,7 @@ export const ROUTES_META: RouteMeta[] = [
     path: '/answers/can-i-afford-to-hire-another-cleaner',
     title: 'Can I Afford to Hire Another Cleaner Right Now? | UpLevel Automations',
     description:
-      'A two-part test for cleaning company hiring: is the marginal work actually profitable, and can cash survive the ramp? Neither half is answerable from the booking platform alone.',
+      'A two-part test for cleaning company hiring: is the marginal work actually profitable, and can your cash survive the ramp?',
     ogType: 'article',
     schema: articleSchema(
       '/answers/can-i-afford-to-hire-another-cleaner',
@@ -235,10 +263,140 @@ export const ROUTES_META: RouteMeta[] = [
     ),
   },
   {
+    path: '/answers/fire-or-coach-a-cleaner',
+    title: 'Should I Let This Cleaner Go or Coach Them? | UpLevel Automations',
+    description:
+      'A 90-day scoring system for the fire-or-coach call: rebooking rate, complaints, refunds traced to the cleaner, and retention. With real numbers.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/fire-or-coach-a-cleaner',
+      'Should I Let This Cleaner Go or Coach Them?',
+      'A 90-day outcome scoring system for the fire-or-coach decision.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/answers/which-cleaner-for-high-value-jobs',
+    title: 'Which Cleaner Should I Send on a High-Value Job? | UpLevel Automations',
+    description:
+      'Dispatch by margin and rebooking rank, not availability. The spread between my best and worst cleaner runs $78 to $228 gross profit per clean.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/which-cleaner-for-high-value-jobs',
+      'Which Cleaner Should I Send on a High-Value Job?',
+      'Dispatch high-value jobs by margin and quality ranking, not availability.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/answers/which-jobs-to-stop-taking',
+    title: 'Which Jobs Should I Chase, and Which Should I Stop Taking? | UpLevel Automations',
+    description:
+      'Rank job types by gross profit per actual hour, refunds included, then weight by what each job leads to. Revenue per job is the wrong ranking.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/which-jobs-to-stop-taking',
+      'Which Types of Jobs Should I Chase, and Which Should I Stop Taking?',
+      'Rank job types by gross profit per actual hour, refunds included.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/answers/which-jobs-am-i-underpricing',
+    title: 'Which Job Types Am I Underpricing? | UpLevel Automations',
+    description:
+      'Where underpricing hides: duration drift, guessed add-ons, flat rates meeting outlier homes, and redo risk. How to run the audit against real data.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/which-jobs-am-i-underpricing',
+      'Which Job Types Am I Underpricing Relative to Actual Time and Cost?',
+      'A pricing audit: gross profit per actual hour by job type.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/answers/are-recurring-customers-more-profitable',
+    title: 'Are Recurring Customers Actually More Profitable? | UpLevel Automations',
+    description:
+      'Per visit, usually no. Per customer, almost always yes. The honest comparison is gross profit per customer over 6 to 12 months, acquisition cost included.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/are-recurring-customers-more-profitable',
+      'Are Recurring Customers Actually More Profitable Than One-Time?',
+      'Per visit no, per customer yes: how to run the honest comparison.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/answers/which-lead-source-produces-customers-who-stick',
+    title: 'Which Lead Source Produces Customers Who Stick? | UpLevel Automations',
+    description:
+      'Fix attribution first: 80% of my "website leads" started as missed phone calls. Then measure repeat rate and margin per customer by source.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/which-lead-source-produces-customers-who-stick',
+      'Which Lead Source Produces Customers Who Actually Stick Around?',
+      'Honest first-touch attribution, then retention and margin by source.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/answers/real-cost-per-customer-by-channel',
+    title: 'My Real Cost Per Customer by Channel | UpLevel Automations',
+    description:
+      'Actual spend from the ad platform API divided by honestly attributed customers. My real cost per lead was $22, less than half what my reporting claimed.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/real-cost-per-customer-by-channel',
+      "What's My Real Cost Per Customer by Channel, and Is It Sustainable?",
+      'Real spend over honestly attributed customers, tested against 6-month gross profit.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/answers/expand-to-new-area-or-squeeze',
+    title: 'Expand to a New Area or Squeeze My Current One? | UpLevel Automations',
+    description:
+      'Real per-market margins from my company: home market at 47.4% across 380 cleans while my smallest market ran 22% after refunds. Density beats expansion.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/expand-to-new-area-or-squeeze',
+      'Should I Expand to a New Area or Squeeze More Out of My Current One?',
+      'Per-market gross margins from a real cleaning company, and the expansion decision rule.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/answers/which-customers-should-i-fire',
+    title: 'Which Customers Cost More Than They Generate? | UpLevel Automations',
+    description:
+      'Margin per customer with refunds, discounts, redos, and distance netted in. Reprice first, fix the operational cause second, exit deliberately last.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/which-customers-should-i-fire',
+      'Which Customers Cost More Than They Generate?',
+      'Customer-level margin: how to find net-negative customers and what to do first.',
+      '2026-08-07',
+    ),
+  },
+  {
+    path: '/answers/is-my-equipment-paying-for-itself',
+    title: 'Is My Equipment Actually Paying for Itself? | UpLevel Automations',
+    description:
+      'Revenue per asset vs full monthly cost: the three-number test for trucks, machines, and specialty gear in a service business.',
+    ogType: 'article',
+    schema: articleSchema(
+      '/answers/is-my-equipment-paying-for-itself',
+      'Is My Equipment Actually Paying for Itself?',
+      'The revenue-per-asset test: dependent gross profit against full monthly cost.',
+      '2026-08-07',
+    ),
+  },
+  {
     path: '/benchmarks/cleaning-company-margins',
     title: 'Cleaning Company Margins: What 920 Real Cleans Showed | UpLevel Automations',
     description:
-      'Benchmark data from 920 completed cleans: 45.8% average gross margin, a 22-point margin spread across cleaners on the same price book, and a 3.7% one-time to recurring conversion rate. Real booking-log data, methodology included.',
+      'Benchmark data from 920 completed cleans: 45.8% average gross margin and a 22-point margin spread across cleaners on the same price book.',
     ogType: 'article',
     schema: articleSchema(
       '/benchmarks/cleaning-company-margins',
@@ -249,9 +407,9 @@ export const ROUTES_META: RouteMeta[] = [
   },
   {
     path: '/compare/fsm-job-profitability-reporting',
-    title: 'Housecall Pro vs Jobber vs ServiceTitan: Job Profitability Reporting | UpLevel Automations',
+    title: 'Housecall Pro vs Jobber vs ServiceTitan: Profitability Reporting',
     description:
-      'An operator compares what FSM reporting in Housecall Pro, Jobber, and ServiceTitan can and cannot tell you about job profitability, and which owner questions need accounting data joined in.',
+      'What FSM reporting can and cannot tell you about job profitability, and which owner questions need accounting data joined in. By an operator.',
     ogType: 'article',
     schema: articleSchema(
       '/compare/fsm-job-profitability-reporting',

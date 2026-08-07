@@ -4,39 +4,39 @@ import Footer from '../../components/Footer'
 
 // The 14 questions, grouped as in the Service OS framing. Questions with
 // a `to` link have a published answer page; the rest publish over time.
-const groups: { name: string; questions: { q: string; to?: string }[] }[] = [
+const groups: { name: string; questions: { q: string; to: string }[] }[] = [
   {
     name: 'People',
     questions: [
       { q: 'Which of my cleaners is actually making me money?', to: '/answers/which-cleaner-is-most-profitable' },
       { q: 'Can I afford to hire another cleaner right now?', to: '/answers/can-i-afford-to-hire-another-cleaner' },
-      { q: 'Should I let this cleaner go or coach them?' },
-      { q: 'Which cleaner should I send on a high-value job?' },
+      { q: 'Should I let this cleaner go or coach them?', to: '/answers/fire-or-coach-a-cleaner' },
+      { q: 'Which cleaner should I send on a high-value job?', to: '/answers/which-cleaner-for-high-value-jobs' },
     ],
   },
   {
     name: 'Job Mix & Pricing',
     questions: [
-      { q: 'Which types of jobs should I chase, and which should I stop taking?' },
-      { q: 'Which job types am I underpricing relative to actual time and cost?' },
-      { q: 'Are recurring customers actually more profitable than one-time?' },
+      { q: 'Which types of jobs should I chase, and which should I stop taking?', to: '/answers/which-jobs-to-stop-taking' },
+      { q: 'Which job types am I underpricing relative to actual time and cost?', to: '/answers/which-jobs-am-i-underpricing' },
+      { q: 'Are recurring customers actually more profitable than one-time?', to: '/answers/are-recurring-customers-more-profitable' },
       { q: "What's my one-time to recurring conversion rate?", to: '/answers/one-time-to-recurring-conversion-rate' },
     ],
   },
   {
     name: 'Marketing',
     questions: [
-      { q: 'Which lead source produces customers who stick around?' },
-      { q: "What's my real cost per customer by channel, and is it sustainable?" },
+      { q: 'Which lead source produces customers who stick around?', to: '/answers/which-lead-source-produces-customers-who-stick' },
+      { q: "What's my real cost per customer by channel, and is it sustainable?", to: '/answers/real-cost-per-customer-by-channel' },
     ],
   },
   {
     name: 'Cash & Growth',
     questions: [
-      { q: 'Will hiring break my cash flow?' },
-      { q: 'Should I expand to a new area or squeeze more out of my current one?' },
-      { q: 'Which customers cost more than they generate?' },
-      { q: 'Is my equipment actually paying for itself?' },
+      { q: 'Will hiring break my cash flow?', to: '/answers/can-i-afford-to-hire-another-cleaner' },
+      { q: 'Should I expand to a new area or squeeze more out of my current one?', to: '/answers/expand-to-new-area-or-squeeze' },
+      { q: 'Which customers cost more than they generate?', to: '/answers/which-customers-should-i-fire' },
+      { q: 'Is my equipment actually paying for itself?', to: '/answers/is-my-equipment-paying-for-itself' },
     ],
   },
 ]
@@ -69,19 +69,12 @@ export default function Answers() {
               <ul className="space-y-3">
                 {g.questions.map((item) => (
                   <li key={item.q} className="bg-white rounded-lg shadow-sm px-5 py-4">
-                    {item.to ? (
-                      <Link to={item.to} className="flex items-center justify-between group">
-                        <span className="text-slate-900 font-medium group-hover:text-blue-600 transition-colors">
-                          {item.q}
-                        </span>
-                        <span className="text-blue-600 font-semibold text-sm shrink-0 ml-4">Read the answer →</span>
-                      </Link>
-                    ) : (
-                      <span className="flex items-center justify-between">
-                        <span className="text-slate-600">{item.q}</span>
-                        <span className="text-slate-400 text-sm shrink-0 ml-4">Answer coming</span>
-                      </span>
-                    )}
+                    <Link to={item.to} className="flex items-center justify-between group">
+                      <h3 className="text-slate-900 font-medium text-base group-hover:text-blue-600 transition-colors">
+                        {item.q}
+                      </h3>
+                      <span className="text-blue-600 font-semibold text-sm shrink-0 ml-4">Read the answer →</span>
+                    </Link>
                   </li>
                 ))}
               </ul>

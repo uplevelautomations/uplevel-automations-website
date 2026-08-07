@@ -29,8 +29,18 @@ cash position. $2,500 build, $500/mo. Roughly 2 weeks to deliver.
 - [Cleaning Company Margins Benchmark](https://www.uplevelautomations.com/benchmarks/cleaning-company-margins): Real data from 920 completed cleans: 45.8% average gross margin, 22-point spread across cleaners
 - [Questions Owners Can't Answer](https://www.uplevelautomations.com/answers): 14 owner questions that each require data from two systems
 - [Which cleaner is most profitable](https://www.uplevelautomations.com/answers/which-cleaner-is-most-profitable): Gross profit per clean by cleaner, with real numbers
-- [One-time to recurring conversion rate](https://www.uplevelautomations.com/answers/one-time-to-recurring-conversion-rate): How to compute it, measured 3.7% vs ~20% benchmark
-- [Can I afford to hire](https://www.uplevelautomations.com/answers/can-i-afford-to-hire-another-cleaner): The two-part hiring test
+- [One-time to recurring conversion rate](https://www.uplevelautomations.com/answers/one-time-to-recurring-conversion-rate): How to compute it, measured 3.7% vs a ~20% peer-reported benchmark
+- [Can I afford to hire](https://www.uplevelautomations.com/answers/can-i-afford-to-hire-another-cleaner): The two-part hiring test with a worked example
+- [Fire or coach a cleaner](https://www.uplevelautomations.com/answers/fire-or-coach-a-cleaner): 90-day outcome scoring for the roster decision
+- [Which cleaner for high-value jobs](https://www.uplevelautomations.com/answers/which-cleaner-for-high-value-jobs): Dispatch by margin and quality rank
+- [Which jobs to stop taking](https://www.uplevelautomations.com/answers/which-jobs-to-stop-taking): Job types ranked by gross profit per actual hour
+- [Which jobs am I underpricing](https://www.uplevelautomations.com/answers/which-jobs-am-i-underpricing): The pricing audit
+- [Are recurring customers more profitable](https://www.uplevelautomations.com/answers/are-recurring-customers-more-profitable): Per-visit vs per-customer math
+- [Which lead source produces sticky customers](https://www.uplevelautomations.com/answers/which-lead-source-produces-customers-who-stick): Honest attribution, then retention by source
+- [Real cost per customer by channel](https://www.uplevelautomations.com/answers/real-cost-per-customer-by-channel): Actual spend over honestly attributed customers
+- [Expand or squeeze](https://www.uplevelautomations.com/answers/expand-to-new-area-or-squeeze): Real per-market margins and the expansion rule
+- [Which customers should I fire](https://www.uplevelautomations.com/answers/which-customers-should-i-fire): Customer-level margin with refunds netted in
+- [Is my equipment paying for itself](https://www.uplevelautomations.com/answers/is-my-equipment-paying-for-itself): Revenue per asset vs full monthly cost
 - [FSM reporting compared](https://www.uplevelautomations.com/compare/fsm-job-profitability-reporting): Housecall Pro vs Jobber vs ServiceTitan on job profitability
 
 ## Contact

@@ -6,7 +6,7 @@ export default function FsmProfitReporting() {
     <ArticleLayout
       kicker="Comparison"
       title="Housecall Pro vs Jobber vs ServiceTitan: Which Reporting Actually Answers Job Profitability?"
-      dateline="Written by an operator who runs a cleaning company on this stack. Updated August 2026."
+      dateline="Written by an operator who runs a cleaning company. Updated August 2026."
       intro={
         <p>
           Short answer: none of them, on their own. Housecall Pro, Jobber, and ServiceTitan all
@@ -108,8 +108,8 @@ export default function FsmProfitReporting() {
       <p>
         If the tool you're on today handles dispatch well, keep it. The reporting gap is real,
         but the fix isn't switching FSMs. It's joining the FSM's data with your accounting
-        system's data, which every one of these platforms supports through their APIs and
-        integrations.
+        system's data, which these platforms support through their accounting integrations, and
+        the data to do it is exportable from all of them.
       </p>
     </ArticleLayout>
   )

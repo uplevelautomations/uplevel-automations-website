@@ -5,11 +5,7 @@ import AppRoutes from './routes'
 import { META_BY_PATH, NOT_FOUND_META, SITE_ORIGIN } from './seo/meta'
 import './index.css'
 
-declare global {
-  interface Window {
-    dataLayer: Record<string, unknown>[]
-  }
-}
+// (window.dataLayer is declared globally in src/pages/Assessment.tsx)
 
 // Keeps the document head in sync during client-side navigation.
 // Initial-load head tags are baked into each page's static HTML by

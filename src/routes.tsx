@@ -18,6 +18,16 @@ import Answers from './pages/content/Answers'
 import AnswerCleanerProfitability from './pages/content/AnswerCleanerProfitability'
 import AnswerRecurringConversion from './pages/content/AnswerRecurringConversion'
 import AnswerAffordToHire from './pages/content/AnswerAffordToHire'
+import AnswerFireOrCoach from './pages/content/AnswerFireOrCoach'
+import AnswerHighValueDispatch from './pages/content/AnswerHighValueDispatch'
+import AnswerJobsToStop from './pages/content/AnswerJobsToStop'
+import AnswerUnderpricing from './pages/content/AnswerUnderpricing'
+import AnswerRecurringProfitability from './pages/content/AnswerRecurringProfitability'
+import AnswerLeadSourceStick from './pages/content/AnswerLeadSourceStick'
+import AnswerRealCac from './pages/content/AnswerRealCac'
+import AnswerExpandOrSqueeze from './pages/content/AnswerExpandOrSqueeze'
+import AnswerFireCustomers from './pages/content/AnswerFireCustomers'
+import AnswerEquipmentRoi from './pages/content/AnswerEquipmentRoi'
 import CleaningMarginsBenchmark from './pages/content/CleaningMarginsBenchmark'
 import FsmProfitReporting from './pages/content/FsmProfitReporting'
 import NotFound from './pages/NotFound'
@@ -42,6 +52,16 @@ export default function AppRoutes() {
       <Route path="/answers/which-cleaner-is-most-profitable" element={<AnswerCleanerProfitability />} />
       <Route path="/answers/one-time-to-recurring-conversion-rate" element={<AnswerRecurringConversion />} />
       <Route path="/answers/can-i-afford-to-hire-another-cleaner" element={<AnswerAffordToHire />} />
+      <Route path="/answers/fire-or-coach-a-cleaner" element={<AnswerFireOrCoach />} />
+      <Route path="/answers/which-cleaner-for-high-value-jobs" element={<AnswerHighValueDispatch />} />
+      <Route path="/answers/which-jobs-to-stop-taking" element={<AnswerJobsToStop />} />
+      <Route path="/answers/which-jobs-am-i-underpricing" element={<AnswerUnderpricing />} />
+      <Route path="/answers/are-recurring-customers-more-profitable" element={<AnswerRecurringProfitability />} />
+      <Route path="/answers/which-lead-source-produces-customers-who-stick" element={<AnswerLeadSourceStick />} />
+      <Route path="/answers/real-cost-per-customer-by-channel" element={<AnswerRealCac />} />
+      <Route path="/answers/expand-to-new-area-or-squeeze" element={<AnswerExpandOrSqueeze />} />
+      <Route path="/answers/which-customers-should-i-fire" element={<AnswerFireCustomers />} />
+      <Route path="/answers/is-my-equipment-paying-for-itself" element={<AnswerEquipmentRoi />} />
       <Route path="/benchmarks/cleaning-company-margins" element={<CleaningMarginsBenchmark />} />
       <Route path="/compare/fsm-job-profitability-reporting" element={<FsmProfitReporting />} />
       <Route path="*" element={<NotFound />} />

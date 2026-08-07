@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom'
 import ArticleLayout from '../../layouts/ArticleLayout'
+import EmailCapture from '../../components/EmailCapture'
 
 // All figures computed from the Catalina Cleaning booking log
 // (completed cleans, Feb 1 – Aug 1, 2026). Cleaners anonymized.
@@ -22,14 +24,14 @@ export default function CleaningMarginsBenchmark() {
     <ArticleLayout
       kicker="Benchmark Report"
       title="What 920 Cleans Taught Me About Cleaning Company Margins"
-      dateline="Data: 920 completed cleans, February through July 2026. Updated August 2026."
+      dateline="Data: 920 completed cleans, February 1 through July 31, 2026. Updated August 2026."
       intro={
         <p>
           Over six months my cleaning company completed 920 cleans, collected $240,513, and paid
           cleaners $130,296. That's a 45.8% average gross margin. But the average hides the real
           story: across cleaners working the same price book, gross margin ranged from 36.3% to
-          58.7%, and gross profit per clean ranged from $78 to $228. Who does the work matters
-          almost 3x more than what you charge for it.
+          58.7%, and gross profit per clean ranged from $78 to $228. The spread between my best
+          and worst cleaner was almost 3x, per clean, on the same price book.
         </p>
       }
     >
@@ -91,7 +93,9 @@ export default function CleaningMarginsBenchmark() {
         Rank these cleaners by cleans completed and you get one list. Rank them by gross profit
         per clean and you get a different list. Most owners only ever see the first list, because
         that's what the schedule shows. The second list is where the money is, and it only exists
-        if you join payout data against revenue per job.
+        if you join payout data against revenue per job. How to build that ranking for your own
+        roster is in <Link to="/answers/which-cleaner-is-most-profitable">the cleaner
+        profitability answer</Link>.
       </p>
       <h3>3. The spread is 22 points wide</h3>
       <p>
@@ -100,6 +104,12 @@ export default function CleaningMarginsBenchmark() {
         difference is job mix, payout structure, and who gets sent where. Those are dispatch
         decisions, and every one of them is invisible without per-clean margin data.
       </p>
+
+      <EmailCapture
+        source="benchmark_report_optin"
+        heading="Get the next data drop"
+        blurb="This report updates as more cleans complete. One email when new numbers publish. No sequence, no pitch."
+      />
 
       <h2>The number that embarrassed me: 3.7%</h2>
       <p>
@@ -113,6 +123,13 @@ export default function CleaningMarginsBenchmark() {
         fifth of the peer benchmark. Every point of that gap is a customer I already paid to
         acquire, already served, and then let walk away. I would never have known this number
         without asking the question against real data, and I run the company.
+      </p>
+      <p>
+        Priced out: closing the gap to 20% on those same 295 customers would have meant roughly
+        48 more recurring customers. If even half of them landed on a monthly cadence, that's
+        about $34,000 a year in gross profit at my average margin per clean, from customers I
+        had already acquired. How to compute your own rate is in{' '}
+        <Link to="/answers/one-time-to-recurring-conversion-rate">the conversion answer</Link>.
       </p>
 
       <h2>What a cleaning company owner should take from this</h2>
@@ -133,13 +150,16 @@ export default function CleaningMarginsBenchmark() {
         <li>
           <strong>None of this requires new software you don't already have.</strong> The data
           lives in your booking platform and your accounting system. It just lives in two places,
-          which is why nobody joins it.
+          which is why nobody joins it. Whether your FSM's own reporting can close that gap is
+          covered in <Link to="/compare/fsm-job-profitability-reporting">the FSM reporting
+          comparison</Link>, and the full list of owner questions this data answers is at{' '}
+          <Link to="/answers">the answers hub</Link>.
         </li>
       </ul>
 
       <h2>Methodology</h2>
       <p>
-        Data covers completed cleans from February 1 through August 1, 2026, logged by webhook
+        Data covers completed cleans from February 1 through July 31, 2026, logged by webhook
         from the booking platform at completion time. Gross margin is collected revenue minus
         cleaner payout, before lead costs, refunds, and overhead. The per-cleaner table includes
         only cleaners with 20 or more completed cleans and excludes multi-cleaner jobs and jobs
