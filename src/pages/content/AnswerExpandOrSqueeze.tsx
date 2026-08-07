@@ -20,8 +20,8 @@ export default function AnswerExpandOrSqueeze() {
         <p>
           Compute gross margin per clean for every market you serve, and only expand when your
           home market is holding margin at capacity. In my company's last three months, my home
-          market ran 47.4% gross margin across 380 cleans while my smallest expansion market ran
-          36% gross, and only 22% after refunds. Growth that loses ten points of margin isn't
+          market ran 47.4% gross margin across 380 cleans while one of my smallest expansion
+          markets ran 36% gross, and only 22% after refunds. Growth that loses ten points of margin isn't
           growth. It's buying revenue with profit.
         </p>
       }

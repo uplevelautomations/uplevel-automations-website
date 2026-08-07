@@ -200,7 +200,9 @@ export const ROUTES_META: RouteMeta[] = [
         '@type': 'ItemList',
         name: "The Questions Cleaning Company Owners Can't Answer",
         url: `${SITE_ORIGIN}/answers`,
-        numberOfItems: 14,
+        // 14 questions on the page, but two share one answer URL — an
+        // ItemList counts pages, so 13.
+        numberOfItems: 13,
         itemListElement: [
           'which-cleaner-is-most-profitable',
           'can-i-afford-to-hire-another-cleaner',
