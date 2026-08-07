@@ -1,0 +1,35 @@
+// Route table shared by the browser entry (src/main.tsx) and the
+// prerender entry (src/entry-server.tsx). Add new pages here and in
+// src/seo/meta.ts — the prerenderer builds one static HTML file per
+// meta entry.
+import { Routes, Route, Navigate } from 'react-router-dom'
+import App from './App'
+import Assessment from './pages/Assessment'
+import ProcessMapper from './pages/ProcessMapper'
+import CaseStudies from './pages/CaseStudies'
+import CaseStudyBlogAutomation from './pages/CaseStudyBlogAutomation'
+import CaseStudyDashboard from './pages/CaseStudyDashboard'
+import CaseStudyVACoaching from './pages/CaseStudyVACoaching'
+import Proof from './pages/Proof'
+import PersonalAssistant from './pages/PersonalAssistant'
+import Demo from './pages/Demo'
+import NotFound from './pages/NotFound'
+
+export default function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="/ai-readiness" element={<Assessment />} />
+      <Route path="/process-mapper" element={<ProcessMapper />} />
+      <Route path="/case-studies" element={<CaseStudies />} />
+      <Route path="/case-studies/automated-seo-blog" element={<CaseStudyBlogAutomation />} />
+      <Route path="/case-studies/operations-dashboard" element={<CaseStudyDashboard />} />
+      <Route path="/case-studies/va-coaching" element={<CaseStudyVACoaching />} />
+      <Route path="/proof" element={<Proof />} />
+      <Route path="/personal-assistant" element={<PersonalAssistant />} />
+      <Route path="/brain" element={<Navigate to="/personal-assistant" replace />} />
+      <Route path="/demo" element={<Demo />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  )
+}
