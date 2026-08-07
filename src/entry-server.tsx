@@ -7,7 +7,7 @@ import AppRoutes from './routes'
 
 // Re-exported so scripts/prerender.mjs can read route metadata from the
 // compiled SSR bundle without needing a TypeScript loader.
-export { ROUTES_META, NOT_FOUND_META, ORG_SCHEMA, SITE_ORIGIN } from './seo/meta'
+export { ROUTES_META, NOT_FOUND_META, ORG_SCHEMA, SITE_ORIGIN, REDIRECTS } from './seo/meta'
 
 export function render(url: string): string {
   return renderToString(

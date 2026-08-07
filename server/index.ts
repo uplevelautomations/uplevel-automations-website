@@ -33,6 +33,11 @@ let manifest: { routes: string[]; redirects: Record<string, string> } = {
 try {
   manifest = JSON.parse(fs.readFileSync(path.join(distPath, 'routes-manifest.json'), 'utf-8'))
 } catch {
+  // In production a missing manifest means every marketing route would
+  // 404 — fail the boot loudly instead of serving a broken site.
+  if (process.env.NODE_ENV === 'production' || process.env.RAILWAY_ENVIRONMENT) {
+    throw new Error('routes-manifest.json missing from dist/ — did the build run scripts/prerender.mjs?')
+  }
   console.warn('routes-manifest.json not found — run the full build for prerendered pages')
 }
 
@@ -41,6 +46,7 @@ try {
 // subpaths, killing any inbound link or AI citation to an apex URL.
 const CANONICAL_HOST = 'www.uplevelautomations.com'
 app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next()
   const host = req.headers.host?.toLowerCase()
   if (host === 'uplevelautomations.com') {
     return res.redirect(301, `https://${CANONICAL_HOST}${req.originalUrl}`)
@@ -49,11 +55,15 @@ app.use((req, res, next) => {
 })
 
 // Trailing-slash URLs 301 to the canonical slash-less form so the same
-// page never lives at two URLs.
+// page never lives at two URLs. Leading double-slashes are collapsed
+// first: redirecting to a path like `//evil.com` would be treated by
+// browsers as a protocol-relative URL to another host (open redirect).
 app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next()
   if (req.path.length > 1 && req.path.endsWith('/')) {
     const query = req.originalUrl.slice(req.path.length)
-    return res.redirect(301, req.path.slice(0, -1) + query)
+    const target = req.path.slice(0, -1).replace(/^\/{2,}/, '/')
+    return res.redirect(301, target + query)
   }
   next()
 })
@@ -80,6 +90,22 @@ for (const [from, to] of Object.entries(manifest.redirects)) {
   app.get(from, (_req, res) => res.redirect(301, to))
 }
 
+function sendNotFound(res: express.Response) {
+  const notFoundPage = path.join(distPath, '404.html')
+  if (fs.existsSync(notFoundPage)) {
+    return res.status(404).sendFile(notFoundPage)
+  }
+  res.status(404).send('Not Found')
+}
+
+// Direct requests for prerendered .html files (e.g. /proof/index.html,
+// /404.html) would be duplicate-content URLs answering 200 — 404 them;
+// the canonical route URLs below are the only way to reach page HTML.
+app.use((req, res, next) => {
+  if (req.path.endsWith('.html')) return sendNotFound(res)
+  next()
+})
+
 // Static assets (JS/CSS/images). `index: false` + `redirect: false` so
 // route HTML is served only by the explicit handlers below —
 // express.static's defaults would serve directory indexes and add
@@ -102,11 +128,7 @@ app.use((req, res) => {
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     return res.status(405).set('Allow', 'GET, HEAD').send('Method Not Allowed')
   }
-  const notFoundPage = path.join(distPath, '404.html')
-  if (fs.existsSync(notFoundPage)) {
-    return res.status(404).sendFile(notFoundPage)
-  }
-  res.status(404).send('Not Found')
+  sendNotFound(res)
 })
 
 app.listen(PORT, () => {

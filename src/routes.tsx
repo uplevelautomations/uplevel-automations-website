@@ -3,6 +3,7 @@
 // src/seo/meta.ts — the prerenderer builds one static HTML file per
 // meta entry.
 import { Routes, Route, Navigate } from 'react-router-dom'
+import { REDIRECTS } from './seo/meta'
 import App from './App'
 import Assessment from './pages/Assessment'
 import ProcessMapper from './pages/ProcessMapper'
@@ -27,7 +28,9 @@ export default function AppRoutes() {
       <Route path="/case-studies/va-coaching" element={<CaseStudyVACoaching />} />
       <Route path="/proof" element={<Proof />} />
       <Route path="/personal-assistant" element={<PersonalAssistant />} />
-      <Route path="/brain" element={<Navigate to="/personal-assistant" replace />} />
+      {Object.entries(REDIRECTS).map(([from, to]) => (
+        <Route key={from} path={from} element={<Navigate to={to} replace />} />
+      ))}
       <Route path="/demo" element={<Demo />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

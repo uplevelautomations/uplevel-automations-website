@@ -18,14 +18,19 @@ function HeadSync() {
   const location = useLocation()
 
   useEffect(() => {
-    const meta = META_BY_PATH[location.pathname] ?? NOT_FOUND_META
+    const known = META_BY_PATH[location.pathname]
+    const meta = known ?? NOT_FOUND_META
     document.title = meta.title
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute('content', meta.description)
-    document
-      .querySelector('link[rel="canonical"]')
-      ?.setAttribute('href', `${SITE_ORIGIN}${location.pathname === '/' ? '/' : location.pathname}`)
+    // Only point the canonical at URLs that actually exist — an unmatched
+    // client-side route must not canonicalize to itself.
+    if (known && !known.noindex) {
+      document
+        .querySelector('link[rel="canonical"]')
+        ?.setAttribute('href', `${SITE_ORIGIN}${location.pathname === '/' ? '/' : location.pathname}`)
+    }
 
     window.dataLayer = window.dataLayer || []
     window.dataLayer.push({

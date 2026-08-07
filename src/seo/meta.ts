@@ -16,6 +16,15 @@ export interface RouteMeta {
   schema?: object[]
   /** Exclude from sitemap.xml (still prerendered). */
   noSitemap?: boolean
+  /** Emit <meta name="robots" content="noindex"> and omit canonical/og:url. */
+  noindex?: boolean
+  /** Open Graph type; defaults to "website". */
+  ogType?: 'website' | 'article'
+}
+
+/** Server-side 301s, also mirrored as <Navigate> routes in src/routes.tsx. */
+export const REDIRECTS: Record<string, string> = {
+  '/brain': '/personal-assistant',
 }
 
 const ORG_ID = `${SITE_ORIGIN}/#organization`
@@ -115,6 +124,7 @@ export const ROUTES_META: RouteMeta[] = [
     title: 'Automated SEO Blog for a Cleaning Company | UpLevel Automations',
     description:
       'How an automated blog publishes three SEO posts a week for a cleaning company, and what it did to organic traffic. Full build write-up.',
+    ogType: 'article',
     schema: caseStudySchema(
       '/case-studies/automated-seo-blog',
       'Automated SEO Blog for a Cleaning Company',
@@ -126,6 +136,7 @@ export const ROUTES_META: RouteMeta[] = [
     title: 'Cleaning Company Operations Dashboard | UpLevel Automations',
     description:
       'One screen for job profitability, crew performance, and cash position, replacing four platforms. Built for a real cleaning company doing 200+ cleans a month.',
+    ogType: 'article',
     schema: caseStudySchema(
       '/case-studies/operations-dashboard',
       'Cleaning Company Operations Dashboard',
@@ -137,6 +148,7 @@ export const ROUTES_META: RouteMeta[] = [
     title: 'AI VA Coaching for Cleaning Companies | UpLevel Automations',
     description:
       'An AI system that scores VA call transcripts and produces weekly coaching reports for a cleaning company sales team. Full build write-up.',
+    ogType: 'article',
     schema: caseStudySchema(
       '/case-studies/va-coaching',
       'AI VA Coaching for Cleaning Companies',
@@ -168,6 +180,7 @@ export const NOT_FOUND_META: RouteMeta = {
   title: 'Page Not Found | UpLevel Automations',
   description: 'That page does not exist. Head back to the homepage.',
   noSitemap: true,
+  noindex: true,
 }
 
 /** Lookup used by the client-side navigation updater. */

@@ -1,7 +1,7 @@
 # uplevelautomations.com
 # Permissive by design: the goal is citation, so every answer-engine
-# crawler is welcomed. None of these execute JavaScript except
-# Google-Extended, which is why this site is prerendered to static HTML.
+# crawler is welcomed. AI crawlers don't execute JavaScript, which is
+# why this site is prerendered to static HTML.
 
 User-agent: *
 Allow: /

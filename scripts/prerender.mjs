@@ -23,7 +23,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = resolve(root, 'dist')
 const ssrEntry = resolve(root, 'dist-ssr', 'entry-server.js')
 
-const { render, ROUTES_META, NOT_FOUND_META, ORG_SCHEMA, SITE_ORIGIN } = await import(
+const { render, ROUTES_META, NOT_FOUND_META, ORG_SCHEMA, SITE_ORIGIN, REDIRECTS } = await import(
   pathToFileURL(ssrEntry).href
 )
 
@@ -46,10 +46,12 @@ function headBlock(meta) {
   return [
     `<title>${escapeAttr(meta.title)}</title>`,
     `<meta name="description" content="${escapeAttr(meta.description)}">`,
-    `<link rel="canonical" href="${canonical}">`,
-    `<meta property="og:type" content="website">`,
+    // A 404 page must not canonicalize anywhere or invite indexing.
+    ...(meta.noindex
+      ? [`<meta name="robots" content="noindex">`]
+      : [`<link rel="canonical" href="${canonical}">`, `<meta property="og:url" content="${canonical}">`]),
+    `<meta property="og:type" content="${meta.ogType ?? 'website'}">`,
     `<meta property="og:site_name" content="UpLevel Automations">`,
-    `<meta property="og:url" content="${canonical}">`,
     `<meta property="og:title" content="${escapeAttr(meta.title)}">`,
     `<meta property="og:description" content="${escapeAttr(meta.description)}">`,
     `<meta property="og:image" content="${SITE_ORIGIN}/roy-headshot.png">`,
@@ -69,9 +71,12 @@ function writePage(meta, outFile) {
         `a component is probably not SSR-safe. Refusing to ship a thin page.`,
     )
   }
+  // Replacer functions, not replacement strings: rendered content can
+  // legitimately contain `$&` sequences (dollar amounts before entities),
+  // which String.replace would otherwise expand into the matched text.
   const page = template
-    .replace(HEAD_RE, headBlock(meta))
-    .replace(APP_RE, `<div id="root">${appHtml}</div>`)
+    .replace(HEAD_RE, () => headBlock(meta))
+    .replace(APP_RE, () => `<div id="root">${appHtml}</div>`)
   mkdirSync(dirname(outFile), { recursive: true })
   writeFileSync(outFile, page)
   console.log(`  ${meta.path.padEnd(40)} → ${outFile.replace(root + '/', '')} (${appHtml.length} chars)`)
@@ -88,14 +93,14 @@ for (const meta of ROUTES_META) {
 writePage(NOT_FOUND_META, resolve(distDir, '404.html'))
 
 // sitemap.xml — same route list, so it can never drift from reality.
-const today = new Date().toISOString().slice(0, 10)
+// No <lastmod>: stamping the build date on every URL every deploy would
+// teach crawlers to ignore it.
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${ROUTES_META.filter((m) => !m.noSitemap)
   .map(
     (m) => `  <url>
     <loc>${SITE_ORIGIN}${m.path === '/' ? '/' : m.path}</loc>
-    <lastmod>${today}</lastmod>
   </url>`,
   )
   .join('\n')}
@@ -107,6 +112,6 @@ console.log('  sitemap.xml written')
 // Known-route manifest for the Express server's 404 handling.
 writeFileSync(
   resolve(distDir, 'routes-manifest.json'),
-  JSON.stringify({ routes: ROUTES_META.map((m) => m.path), redirects: { '/brain': '/personal-assistant' } }, null, 2),
+  JSON.stringify({ routes: ROUTES_META.map((m) => m.path), redirects: REDIRECTS }, null, 2),
 )
 console.log('  routes-manifest.json written')
