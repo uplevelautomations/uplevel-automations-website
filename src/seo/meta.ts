@@ -420,6 +420,18 @@ export const ROUTES_META: RouteMeta[] = [
       '2026-08-07',
     ),
   },
+  {
+    path: '/privacy',
+    title: 'Privacy Policy | UpLevel Automations',
+    description:
+      'What uplevelautomations.com collects, why, and which third parties receive it, including how the Process Mapper sends what you type to an AI provider.',
+  },
+  {
+    path: '/terms',
+    title: 'Terms of Service | UpLevel Automations',
+    description:
+      'The rules for using uplevelautomations.com and its free tools, how they relate to paid engagements, and the governing law.',
+  },
 ]
 
 export const NOT_FOUND_META: RouteMeta = {

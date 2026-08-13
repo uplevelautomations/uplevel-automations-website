@@ -470,6 +470,19 @@ function EmailCapture({ onSubmit }: { onSubmit: (info: UserInfo) => void }) {
         <p className="text-center text-sm text-slate-500 mt-4">
           We'll email you the completed process document. No spam, ever.
         </p>
+        <p className="text-center text-xs text-slate-400 mt-3 max-w-md mx-auto leading-relaxed">
+          This tool is powered by AI, so what you type is sent to our AI provider to generate
+          your map. Describe your process, not your customer data. See our{' '}
+          <a
+            href="/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-slate-600"
+          >
+            Privacy Policy
+          </a>
+          .
+        </p>
       </div>
     </div>
   )
@@ -1221,7 +1234,25 @@ export default function ProcessMapper() {
       <footer className="py-8 px-6 border-t border-slate-200">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-sm text-slate-500">
-            © 2025 UpLevel Automations. Built for ROI.
+            © 2026 UpLevel Automations. Built for ROI.
+          </p>
+          <p className="text-sm text-slate-500 mt-2 flex items-center justify-center gap-4">
+            <a
+              href="/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-slate-700 transition-colors"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-slate-700 transition-colors"
+            >
+              Terms of Service
+            </a>
           </p>
         </div>
       </footer>

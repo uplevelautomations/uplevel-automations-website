@@ -109,8 +109,16 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-slate-700 text-center text-sm text-slate-500">
-          &copy; 2026 UpLevel Automations. All rights reserved.
+        <div className="mt-12 pt-8 border-t border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+          <div>&copy; 2026 UpLevel Automations. All rights reserved.</div>
+          <div className="flex items-center gap-5">
+            <Link to="/privacy" className="hover:text-slate-300 transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:text-slate-300 transition-colors">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

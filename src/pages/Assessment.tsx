@@ -472,6 +472,17 @@ export default function Assessment() {
             </div>
           </div>
         </main>
+
+        <footer className="relative z-10 py-8 px-6 text-center text-sm text-slate-500">
+          <span className="inline-flex items-center gap-4">
+            <a href="/privacy" className="hover:text-slate-700 transition-colors">
+              Privacy Policy
+            </a>
+            <a href="/terms" className="hover:text-slate-700 transition-colors">
+              Terms of Service
+            </a>
+          </span>
+        </footer>
       </div>
     )
   }
@@ -1004,7 +1015,16 @@ export default function Assessment() {
               </div>
 
               <p className="text-xs text-slate-500 mt-4">
-                By submitting, you agree to receive your results and occasional emails from UpLevel Automations. You can unsubscribe anytime.
+                By submitting, you agree to receive your results and occasional emails from UpLevel Automations. If you give us your phone number, we may also call or text you. You can unsubscribe anytime. See our{' '}
+                <a
+                  href="/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-slate-700"
+                >
+                  Privacy Policy
+                </a>
+                .
               </p>
             </div>
           ) : (

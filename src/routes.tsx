@@ -30,6 +30,8 @@ import AnswerFireCustomers from './pages/content/AnswerFireCustomers'
 import AnswerEquipmentRoi from './pages/content/AnswerEquipmentRoi'
 import CleaningMarginsBenchmark from './pages/content/CleaningMarginsBenchmark'
 import FsmProfitReporting from './pages/content/FsmProfitReporting'
+import Privacy from './pages/Privacy'
+import Terms from './pages/Terms'
 import NotFound from './pages/NotFound'
 
 export default function AppRoutes() {
@@ -64,6 +66,8 @@ export default function AppRoutes() {
       <Route path="/answers/is-my-equipment-paying-for-itself" element={<AnswerEquipmentRoi />} />
       <Route path="/benchmarks/cleaning-company-margins" element={<CleaningMarginsBenchmark />} />
       <Route path="/compare/fsm-job-profitability-reporting" element={<FsmProfitReporting />} />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/terms" element={<Terms />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )
