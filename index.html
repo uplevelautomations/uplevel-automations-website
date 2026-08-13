@@ -10,38 +10,15 @@
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--head-meta-start-->
+  <!-- Default head for dev mode. scripts/prerender.mjs replaces this
+       whole block with per-route title/description/canonical/OG/JSON-LD
+       at build time — edit src/seo/meta.ts, not this block. -->
   <title>UpLevel Automations | AI Operations Dashboards for Cleaning Companies</title>
   <meta name="description" content="I built an AI operations dashboard for my own cleaning company. Now I build it for other cleaning companies. See job profitability, crew performance, recurring vs one-time margin, and cash position in one place.">
-  <link rel="canonical" href="https://uplevelautomations.com/">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="UpLevel Automations">
-  <meta property="og:url" content="https://uplevelautomations.com/">
-  <meta property="og:title" content="AI Operations Dashboards for Cleaning Companies">
-  <meta property="og:description" content="Built by an operator who runs a cleaning company. One screen for job profitability, crew performance, recurring vs one-time margin, and cash position.">
-  <meta property="og:image" content="https://uplevelautomations.com/roy-headshot.png">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Operations Dashboards for Cleaning Companies">
-  <meta name="twitter:description" content="Built by an operator who runs a cleaning company. One screen for job profitability, crew performance, and cash position.">
-  <meta name="twitter:image" content="https://uplevelautomations.com/roy-headshot.png">
-
-  <!-- Structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "UpLevel Automations",
-    "url": "https://uplevelautomations.com/",
-    "description": "AI operations dashboards and automation for cleaning companies. Built by an operator who runs a cleaning company.",
-    "founder": { "@type": "Person", "name": "Roy Banwell" },
-    "areaServed": "United States",
-    "audience": { "@type": "Audience", "audienceType": "Cleaning companies (residential and commercial)" },
-    "knowsAbout": ["Cleaning company operations", "Job profitability", "Crew performance", "AI automation", "Operations dashboards"]
-  }
-  </script>
+  <link rel="canonical" href="https://www.uplevelautomations.com/">
+  <!--head-meta-end-->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +29,7 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6WHFZP3"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <div id="root"></div>
+  <div id="root"><!--app-html--></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

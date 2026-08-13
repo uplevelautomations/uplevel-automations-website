@@ -1,0 +1,48 @@
+# UpLevel Automations
+
+> AI operations dashboards for cleaning companies. Built and run by Roy Banwell,
+> who operates a cleaning company doing 200+ cleans a month and built these
+> systems for his own business before selling them.
+
+## What we do
+
+Service OS connects a cleaning company's existing tools (QuickBooks or Xero,
+plus a field service platform such as Housecall Pro, Jobber, ServiceTitan, or
+BookingKoala) into one live view of job profitability, crew performance, and
+cash position. $2,500 build, $500/mo. Roughly 2 weeks to deliver.
+
+## Pages
+
+- [Home](https://www.uplevelautomations.com/): The offer and who it's for
+- [Proof](https://www.uplevelautomations.com/proof): Systems running in a real cleaning company
+- [Case Studies](https://www.uplevelautomations.com/case-studies): Detailed build write-ups
+- [Operations Dashboard case study](https://www.uplevelautomations.com/case-studies/operations-dashboard): Four platforms consolidated into one screen
+- [Automated SEO Blog case study](https://www.uplevelautomations.com/case-studies/automated-seo-blog): Three posts a week, hands-off
+- [AI VA Coaching case study](https://www.uplevelautomations.com/case-studies/va-coaching): Call transcript scoring and weekly coaching reports
+- [Live Demo](https://www.uplevelautomations.com/demo): Sample Service OS dashboard
+- [AI Readiness Assessment](https://www.uplevelautomations.com/ai-readiness): Free qualification quiz
+- [Process Mapper](https://www.uplevelautomations.com/process-mapper): Free process documentation tool
+- [AI Personal Assistant Kit](https://www.uplevelautomations.com/personal-assistant): Free setup kit
+
+## Data & Answers
+
+- [Cleaning Company Margins Benchmark](https://www.uplevelautomations.com/benchmarks/cleaning-company-margins): Real data from 920 completed cleans: 45.8% average gross margin, 22-point spread across cleaners
+- [Questions Owners Can't Answer](https://www.uplevelautomations.com/answers): 14 owner questions that each require data from two systems
+- [Which cleaner is most profitable](https://www.uplevelautomations.com/answers/which-cleaner-is-most-profitable): Gross profit per clean by cleaner, with real numbers
+- [One-time to recurring conversion rate](https://www.uplevelautomations.com/answers/one-time-to-recurring-conversion-rate): How to compute it, measured 3.7% vs a ~20% peer-reported benchmark
+- [Can I afford to hire](https://www.uplevelautomations.com/answers/can-i-afford-to-hire-another-cleaner): The two-part hiring test with a worked example
+- [Fire or coach a cleaner](https://www.uplevelautomations.com/answers/fire-or-coach-a-cleaner): 90-day outcome scoring for the roster decision
+- [Which cleaner for high-value jobs](https://www.uplevelautomations.com/answers/which-cleaner-for-high-value-jobs): Dispatch by margin and quality rank
+- [Which jobs to stop taking](https://www.uplevelautomations.com/answers/which-jobs-to-stop-taking): Job types ranked by gross profit per actual hour
+- [Which jobs am I underpricing](https://www.uplevelautomations.com/answers/which-jobs-am-i-underpricing): The pricing audit
+- [Are recurring customers more profitable](https://www.uplevelautomations.com/answers/are-recurring-customers-more-profitable): Per-visit vs per-customer math
+- [Which lead source produces sticky customers](https://www.uplevelautomations.com/answers/which-lead-source-produces-customers-who-stick): Honest attribution, then retention by source
+- [Real cost per customer by channel](https://www.uplevelautomations.com/answers/real-cost-per-customer-by-channel): Actual spend over honestly attributed customers
+- [Expand or squeeze](https://www.uplevelautomations.com/answers/expand-to-new-area-or-squeeze): Real per-market margins and the expansion rule
+- [Which customers should I fire](https://www.uplevelautomations.com/answers/which-customers-should-i-fire): Customer-level margin with refunds netted in
+- [Is my equipment paying for itself](https://www.uplevelautomations.com/answers/is-my-equipment-paying-for-itself): Revenue per asset vs full monthly cost
+- [FSM reporting compared](https://www.uplevelautomations.com/compare/fsm-job-profitability-reporting): Housecall Pro vs Jobber vs ServiceTitan on job profitability
+
+## Contact
+
+roy@uplevelautomations.com

@@ -5,6 +5,7 @@ interface AssessmentEmailRequest {
   to: string
   toName: string
   phone?: string
+  heardFrom?: string
   score: number
   qualified: boolean
   answers: {
@@ -30,6 +31,7 @@ export async function sendAssessmentEmailHandler(req: Request, res: Response) {
       to,
       toName,
       phone,
+      heardFrom,
       score,
       qualified,
       answers,
@@ -57,7 +59,7 @@ export async function sendAssessmentEmailHandler(req: Request, res: Response) {
       from: 'UpLevel Automations <noreply@uplevelautomations.com>',
       to: 'roy@uplevelautomations.com',
       subject: `${qualified ? '🟢' : '🔴'} New Assessment: ${toName} - Score ${score}/100`,
-      html: generateRoyEmail(toName, to, phone, score, qualified, answers)
+      html: generateRoyEmail(toName, to, phone, heardFrom, score, qualified, answers)
     })
 
     return res.json({
@@ -174,6 +176,7 @@ function generateRoyEmail(
   name: string,
   email: string,
   phone: string | undefined,
+  heardFrom: string | undefined,
   score: number,
   qualified: boolean,
   answers: AssessmentEmailRequest['answers']
@@ -203,6 +206,7 @@ function generateRoyEmail(
         <p style="color: #475569; margin: 4px 0;"><strong>Name:</strong> ${name}</p>
         <p style="color: #475569; margin: 4px 0;"><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
         ${phone ? `<p style="color: #475569; margin: 4px 0;"><strong>Phone:</strong> ${phone}</p>` : ''}
+        ${heardFrom ? `<p style="color: #475569; margin: 4px 0;"><strong>Heard about us via:</strong> ${heardFrom}</p>` : ''}
         <p style="color: #475569; margin: 4px 0;"><strong>Score:</strong> ${score}/100</p>
         <p style="color: #475569; margin: 4px 0;"><strong>Qualified:</strong> ${qualified ? 'Yes' : 'No'}</p>
       </div>

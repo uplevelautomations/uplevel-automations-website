@@ -258,7 +258,7 @@ export default function Assessment() {
   const [hasStarted, setHasStarted] = useState(false)
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Answers>({})
-  const [contactInfo, setContactInfo] = useState({ name: '', email: '', phone: '' })
+  const [contactInfo, setContactInfo] = useState({ name: '', email: '', phone: '', heardFrom: '' })
   const [showResults, setShowResults] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -324,6 +324,10 @@ export default function Assessment() {
       name: contactInfo.name,
       email: contactInfo.email,
       phone: contactInfo.phone,
+      // Attribution: 35-70% of AI-assistant referrals arrive with no
+      // referrer header, so self-reported source is the only signal
+      // that survives. Keep this field even if analytics improve.
+      heard_from: contactInfo.heardFrom,
       score,
       qualified,
       q1: answers.q1 || '',
@@ -360,6 +364,7 @@ export default function Assessment() {
         to: contactInfo.email,
         toName: contactInfo.name,
         phone: contactInfo.phone,
+        heardFrom: contactInfo.heardFrom,
         score,
         qualified,
         answers: {
@@ -972,6 +977,29 @@ export default function Assessment() {
                     className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow"
                     placeholder="(555) 123-4567"
                   />
+                </div>
+
+                <div>
+                  <label htmlFor="heardFrom" className="block text-sm font-medium text-slate-700 mb-1">
+                    How did you hear about us? <span className="text-slate-400">(optional)</span>
+                  </label>
+                  <select
+                    id="heardFrom"
+                    value={contactInfo.heardFrom}
+                    onChange={(e) => setContactInfo((prev) => ({ ...prev, heardFrom: e.target.value }))}
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow text-slate-700"
+                  >
+                    <option value="">Select one</option>
+                    <option value="google">Google search</option>
+                    <option value="chatgpt">ChatGPT</option>
+                    <option value="perplexity">Perplexity</option>
+                    <option value="other_ai">Another AI assistant (Claude, Gemini, Copilot)</option>
+                    <option value="x_twitter">X / Twitter</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="referral">Referral from another owner</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
               </div>
 
