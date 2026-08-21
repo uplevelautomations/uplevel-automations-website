@@ -793,24 +793,23 @@ export default function Assessment() {
                   </div>
                 </div>
 
-                {/* Testimonials - Easy to add later */}
-                {/*
+                {/* Testimonial — Alex Ray, approved in writing 2026-08-21. Verbatim, do not edit. */}
                 <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 mb-8">
-                  <h3 className="text-lg font-bold text-slate-900 mb-6">What others are saying</h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-slate-50 rounded-xl p-6">
-                      <p className="text-slate-600 italic mb-4">"Quote here..."</p>
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-slate-200 rounded-full"></div>
-                        <div>
-                          <p className="font-medium text-slate-900">Name</p>
-                          <p className="text-sm text-slate-500">Title, Company</p>
-                        </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-6">What happened after someone else's call</h3>
+                  <figure className="bg-slate-50 rounded-xl p-6">
+                    <blockquote className="text-slate-600 leading-relaxed">
+                      "He did a free audit of my processes and gave me a report on where I could add automation. I started with a lead follow up automation which has{' '}
+                      <span className="font-semibold text-slate-900">already generated 12 new bookings in just the first month</span>{' '}
+                      and I plan on automating more processes in my business very soon."
+                    </blockquote>
+                    <figcaption className="flex items-center gap-3 mt-5 pt-5 border-t border-slate-200">
+                      <div>
+                        <p className="font-medium text-slate-900">Alex Ray</p>
+                        <p className="text-sm text-slate-500">Owner, CBUS Cleaning Company — Columbus, OH</p>
                       </div>
-                    </div>
-                  </div>
+                    </figcaption>
+                  </figure>
                 </div>
-                */}
 
                 {/* Book the call */}
                 <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">

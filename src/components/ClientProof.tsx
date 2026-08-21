@@ -5,16 +5,21 @@ type Deployment = {
   statusLabel: string
   headline: string
   body: string
+  /** Only set where the client has given written permission to be named and quoted. */
+  quote?: string
+  attribution?: string
 }
 
 const deployments: Deployment[] = [
   {
-    location: 'Ohio',
-    profile: 'Residential · about $50K/month',
+    location: 'Alex Ray, CBUS Cleaning Company',
+    profile: 'Columbus, OH · residential',
     status: 'live',
     statusLabel: 'Live since July',
-    headline: '1,430 leads pulled out of a spreadsheet',
-    body: 'Years of leads had piled up in a Google Sheet that nobody ever worked. They are now in a paced follow-up sequence that runs every day. New website and Facebook leads get captured and answered without him touching anything.',
+    headline: '12 new bookings in the first month',
+    body: '1,430 leads had piled up in a Google Sheet that nobody ever worked. They are now in a paced follow-up sequence that runs every day, and new website and Facebook leads get captured and answered without him touching anything. Twelve of those turned into booked jobs in the first month.',
+    quote: 'I started with a lead follow up automation which has already generated 12 new bookings in just the first month.',
+    attribution: 'Alex Ray, Owner',
   },
   {
     location: 'Arizona',
@@ -54,7 +59,7 @@ export default function ClientProof() {
             Four cleaning companies hired me. Two of their systems are live right now.
           </h2>
           <p className="text-lg text-slate-600 leading-relaxed">
-            Three of them bought No Lead Left Behind. The fourth bought something else entirely. I am not naming them here, because I would not put your lead numbers on my website either. What I will show you is exactly what got built and where each one stands today.
+            Three of them bought No Lead Left Behind. The fourth bought something else entirely. One of them said I could use his name and his numbers. The other three have not been asked, so they stay anonymous, because I would not put your lead numbers on my website either. What I will show you is exactly what got built and where each one stands today.
           </p>
         </div>
 
@@ -87,6 +92,15 @@ export default function ClientProof() {
 
               <h3 className="text-lg font-semibold text-slate-900 mb-2">{d.headline}</h3>
               <p className="text-slate-600 leading-relaxed text-sm flex-grow">{d.body}</p>
+
+              {d.quote && (
+                <blockquote className="mt-4 pt-4 border-t border-slate-100">
+                  <p className="text-slate-700 text-sm italic leading-relaxed">"{d.quote}"</p>
+                  {d.attribution && (
+                    <footer className="mt-2 text-xs text-slate-500">{d.attribution}</footer>
+                  )}
+                </blockquote>
+              )}
             </div>
           ))}
         </div>

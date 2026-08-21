@@ -6,6 +6,7 @@ import About from './components/About'
 import Opener from './components/Opener'
 import DashboardPreview from './components/DashboardPreview'
 import NoLeadLeftBehind from './components/NoLeadLeftBehind'
+import Testimonial from './components/Testimonial'
 import ClientProof from './components/ClientProof'
 import Services from './components/Services'
 import BuiltInMyBusiness from './components/BuiltInMyBusiness'
@@ -33,6 +34,7 @@ function App() {
         <Opener />
         <DashboardPreview />
         <NoLeadLeftBehind />
+        <Testimonial />
         <ClientProof />
         <Services />
         <BuiltInMyBusiness />
