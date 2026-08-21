@@ -208,9 +208,20 @@ export default function Proof() {
         </div>
       </section>
 
-      {/* Testimonial */}
+      {/* Testimonials — Alex leads (cleaning, named, with a number). */}
       <section className="pb-16 px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto space-y-10">
+          <blockquote className="bg-slate-50 border border-slate-200 rounded-2xl p-8">
+            <p className="text-lg text-slate-700 leading-relaxed">
+              "My cleaning business was growing but it was taking over my life. Every call, every problem, every decision, all ran through me and everything was manual. I started with a lead follow up automation which has{' '}
+              <span className="font-semibold text-slate-900">already generated 12 new bookings in just the first month</span>."
+            </p>
+            <footer className="mt-5 pt-5 border-t border-slate-200">
+              <div className="font-semibold text-slate-900">Alex Ray</div>
+              <div className="text-sm text-slate-500">Owner, CBUS Cleaning Company — Columbus, OH</div>
+            </footer>
+          </blockquote>
+
           <blockquote className="border-l-2 border-slate-200 pl-6 py-1">
             <p className="text-slate-600 leading-relaxed italic">
               "Working with UpLevel Automations on my initial business assessment helped me to get a better understanding of areas where AI can improve my daily workflow. After a couple of meetings, Roy outlined my existing system and offered a prioritized approach to building out a custom AI system tailored to my business. My goal is to reduce the admin work and increase the time I can spend on engineering. UpLevel Automations gave me a great starting point on my AI journey."
