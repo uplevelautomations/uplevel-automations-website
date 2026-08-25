@@ -32,18 +32,20 @@ const deployments: Deployment[] = [
   {
     location: 'New York',
     profile: 'Residential + commercial · about 20 cleaners',
-    status: 'building',
-    statusLabel: 'In build',
+    status: 'live',
+    statusLabel: 'Live since July',
     headline: 'Same system, wired into Booking Koala',
     body: 'Lead capture off his existing booking software and lead forms, then the same follow-up and reactivation engine on top. Invoicing automation is the next build after it.',
   },
   {
-    location: 'Arkansas',
-    profile: 'Commercial cleaning',
-    status: 'building',
-    statusLabel: 'In build',
-    headline: 'A different problem entirely',
-    body: 'Supply requests get read straight out of his cleaning software and turned into a ready-to-send vendor order, split correctly between what he eats as cost and what he bills back to the client.',
+    location: 'Nick Beyer, NEAT Commercial Cleaning',
+    profile: 'Northwest Arkansas · commercial',
+    status: 'live',
+    statusLabel: 'Live since June',
+    headline: 'Five hours a week back for his Director of Operations',
+    body: 'A different problem entirely. Supply requests get read straight out of his cleaning software and turned into a ready-to-send vendor order, split correctly between what he eats as cost and what he bills back to the client. It also stopped the ordering mistakes that used to cost him money.',
+    quote: 'It has been a huge unlock for my business, saving my Director of Operations roughly 5 hours of work per week.',
+    attribution: 'Nick Beyer, Owner',
   },
 ]
 
@@ -56,10 +58,10 @@ export default function ClientProof() {
             Not just my own company
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
-            Four cleaning companies hired me. Two of their systems are live right now.
+            Four cleaning companies hired me. All four systems are live and running.
           </h2>
           <p className="text-lg text-slate-600 leading-relaxed">
-            Three of them bought No Lead Left Behind. The fourth bought something else entirely. One of them said I could use his name and his numbers. The other three have not been asked, so they stay anonymous, because I would not put your lead numbers on my website either. What I will show you is exactly what got built and where each one stands today.
+            Three of them bought No Lead Left Behind. The fourth bought something else entirely. Two of them said I could use their names and their numbers. The other two have not been asked, so they stay anonymous, because I would not put your numbers on my website either. What I will show you is exactly what got built and where each one stands today.
           </p>
         </div>
 

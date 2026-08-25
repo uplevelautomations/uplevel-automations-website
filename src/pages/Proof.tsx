@@ -208,7 +208,10 @@ export default function Proof() {
         </div>
       </section>
 
-      {/* Testimonials — Alex leads (cleaning, named, with a number). */}
+      {/* Testimonials — two named cleaning clients: residential/revenue, then
+          commercial/cost. The off-vertical Associated Solutions quote (an
+          engineering firm) was removed once both of these existed, per
+          CLEANING-REWRITE-SCOPE.md. */}
       <section className="pb-16 px-6">
         <div className="max-w-4xl mx-auto space-y-10">
           <blockquote className="bg-slate-50 border border-slate-200 rounded-2xl p-8">
@@ -222,20 +225,14 @@ export default function Proof() {
             </footer>
           </blockquote>
 
-          <blockquote className="border-l-2 border-slate-200 pl-6 py-1">
-            <p className="text-slate-600 leading-relaxed italic">
-              "Working with UpLevel Automations on my initial business assessment helped me to get a better understanding of areas where AI can improve my daily workflow. After a couple of meetings, Roy outlined my existing system and offered a prioritized approach to building out a custom AI system tailored to my business. My goal is to reduce the admin work and increase the time I can spend on engineering. UpLevel Automations gave me a great starting point on my AI journey."
+          <blockquote className="bg-slate-50 border border-slate-200 rounded-2xl p-8">
+            <p className="text-lg text-slate-700 leading-relaxed">
+              "Roy audited my business by meeting with me, the owner, and Rick, our Director of Operations. After the audit, he presented the short-term and long-term automations he could implement. It has been a huge unlock for my business,{' '}
+              <span className="font-semibold text-slate-900">saving my Director of Operations roughly 5 hours of work per week</span>. It's not only cut out hours of work, but also improved accuracy and reduced typos, which previously cost us money."
             </p>
-            <footer className="mt-3 text-sm text-slate-500">
-              Christopher Shaffer, Owner &amp; Principal Engineer,{' '}
-              <a
-                href="https://www.associatedsolutionsllc.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-slate-700 underline underline-offset-2"
-              >
-                Associated Solutions LLC
-              </a>
+            <footer className="mt-5 pt-5 border-t border-slate-200">
+              <div className="font-semibold text-slate-900">Nick Beyer</div>
+              <div className="text-sm text-slate-500">Owner, NEAT Commercial Cleaning — Northwest Arkansas</div>
             </footer>
           </blockquote>
         </div>
