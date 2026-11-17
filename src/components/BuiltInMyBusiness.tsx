@@ -14,12 +14,6 @@ const systems = [
     tags: ['Next.js', 'GHL', 'EN/ES/PT'],
   },
   {
-    title: 'The Operations Dashboard',
-    what: 'One screen that replaced 4 logins. Revenue, cash, lead sources, cleaner quality, market profitability, ad spend, all live, with AI-written analysis on every section.',
-    why: 'I stopped checking Stripe, GHL, BookingKoala, and Google Ads separately. Now I just check one URL.',
-    tags: ['QuickBooks', 'Stripe', 'BookingKoala'],
-  },
-  {
     title: 'Cleaner Quality Engine',
     what: 'Every refund, complaint, and rebooking gets attributed to a specific cleaner. The system ranks them by composite score and flags the ones losing me money.',
     why: 'Found 19 refunds totaling $4,785 traced to specific people I would have otherwise kept booking.',
@@ -32,10 +26,10 @@ const systems = [
     tags: ['Claude', 'Call transcripts'],
   },
   {
-    title: 'Daily Briefing',
-    what: 'Every morning at 6 AM, an AI reads my calendar, email, website analytics, CRM, and revenue, then tells me exactly what to focus on.',
-    why: 'Replaces 30 minutes of context-gathering with a 2-minute read.',
-    tags: ['Claude', 'Telegram'],
+    title: 'The Operations Dashboard',
+    what: 'One screen that replaced 4 logins. Revenue, cash, lead sources, cleaner quality, market profitability, ad spend, all live, with AI-written analysis on every section.',
+    why: 'I stopped checking Stripe, GHL, BookingKoala, and Google Ads separately. Now I just check one URL.',
+    tags: ['QuickBooks', 'Stripe', 'BookingKoala'],
   },
 ]
 

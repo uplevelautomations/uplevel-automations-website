@@ -4,7 +4,6 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Opener from './components/Opener'
-import DashboardPreview from './components/DashboardPreview'
 import NoLeadLeftBehind from './components/NoLeadLeftBehind'
 import Testimonial from './components/Testimonial'
 import ClientProof from './components/ClientProof'
@@ -32,7 +31,6 @@ function App() {
       <main>
         <Hero />
         <Opener />
-        <DashboardPreview />
         <NoLeadLeftBehind />
         <Testimonial />
         <ClientProof />

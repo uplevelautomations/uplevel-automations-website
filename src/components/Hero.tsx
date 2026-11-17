@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import GrowthChart from './GrowthChart'
 
 export default function Hero() {
@@ -19,25 +18,25 @@ export default function Hero() {
           </h1>
 
           <p className="text-lg text-slate-600 mb-10 max-w-xl mx-auto lg:mx-0">
-            I did it with AI systems I built, not more office staff. Now I build the same systems for other cleaning companies, so you finally see your profit, crews, and cash in one screen.
+            I did it with AI systems I built, not more office staff. Now I build the same systems for other cleaning companies, so more of the leads you already get turn into booked jobs.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <Link
-              to="/demo"
-              onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'See the live demo', cta_location: 'hero' })}
-              className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all text-center shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 hover:-translate-y-0.5"
-            >
-              See the live demo →
-            </Link>
             <a
               href="https://cal.com/roy-banwell/30minaicall"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'Book a 30-min Call', cta_location: 'hero' })}
+              className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all text-center shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 hover:-translate-y-0.5"
+            >
+              Book a 30-min call →
+            </a>
+            <a
+              href="#services"
+              onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'See pricing', cta_location: 'hero' })}
               className="px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 font-medium rounded-lg border border-slate-200 transition-all hover:border-slate-300 text-center"
             >
-              Book a 30-min call
+              See pricing
             </a>
           </div>
         </div>

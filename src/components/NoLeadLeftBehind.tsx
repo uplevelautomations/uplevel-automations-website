@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-
 const points = [
   {
     title: 'Reply in seconds, not hours',
@@ -55,7 +53,7 @@ export default function NoLeadLeftBehind() {
           >
             Stop losing leads. Book a 30-min call
           </a>
-          <p className="text-xs text-slate-500 mt-3">Builds start at $1,000. You own it.</p>
+          <p className="text-sm text-slate-400 mt-3">$500 to set it up yourself. $1,500 and I build it for you, with a 30-day money-back guarantee. You own it either way.</p>
         </div>
       </div>
     </section>
