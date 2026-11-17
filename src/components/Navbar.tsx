@@ -34,19 +34,13 @@ export default function Navbar() {
             onClick={() => scrollToSection('services')}
             className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
           >
-            Services
+            Pricing
           </button>
           <Link
             to="/proof"
             className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
           >
             Proof
-          </Link>
-          <Link
-            to="/demo"
-            className="text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium"
-          >
-            Demo
           </Link>
           <Link
             to="/answers"
@@ -103,12 +97,15 @@ export default function Navbar() {
           >
             Contact
           </button>
-          <Link
-            to="/ai-readiness"
+          <a
+            href="https://cal.com/roy-banwell/30minaicall"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'Book a call', cta_location: 'navbar' })}
             className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-all shadow-sm hover:shadow-md"
           >
-            Free AI Assessment
-          </Link>
+            Book a call
+          </a>
         </div>
 
         {/* Mobile menu button */}
@@ -132,19 +129,18 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-slate-200">
           <div className="px-6 py-4 space-y-4">
+            <button
+              onClick={() => { setMobileMenuOpen(false); scrollToSection('services') }}
+              className="block py-2 text-slate-700 hover:text-blue-600 font-medium"
+            >
+              Pricing
+            </button>
             <Link
               to="/proof"
               onClick={() => setMobileMenuOpen(false)}
               className="block py-2 text-slate-700 hover:text-blue-600 font-medium"
             >
               Proof
-            </Link>
-            <Link
-              to="/demo"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-slate-700 hover:text-blue-600 font-medium"
-            >
-              Demo
             </Link>
             <Link
               to="/answers"
@@ -169,13 +165,15 @@ export default function Navbar() {
               Process Mapper
             </Link>
             <div className="pt-4 border-t border-slate-200">
-              <Link
-                to="/ai-readiness"
+              <a
+                href="https://cal.com/roy-banwell/30minaicall"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block w-full text-center px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
               >
-                Free AI Assessment
-              </Link>
+                Book a call
+              </a>
             </div>
           </div>
         </div>

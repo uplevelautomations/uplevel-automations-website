@@ -113,9 +113,9 @@ function caseStudySchema(path: string, headline: string, description: string): o
 export const ROUTES_META: RouteMeta[] = [
   {
     path: '/',
-    title: 'UpLevel Automations | AI Operations Dashboards for Cleaning Companies',
+    title: 'UpLevel | AI Lead Follow-Up and Automations for Cleaning Companies',
     description:
-      'I built an AI operations dashboard for my own cleaning company. Now I build it for other cleaning companies. See job profitability, crew performance, recurring vs one-time margin, and cash position in one place.',
+      'I took my cleaning company from $13K to $60K a month with AI systems I built. Now I build them for other cleaning companies: instant lead follow-up, re-engaging old leads, and back-office automations. Money-back guarantee.',
   },
   {
     path: '/ai-readiness',

@@ -47,6 +47,14 @@ const deployments: Deployment[] = [
     quote: 'It has been a huge unlock for my business, saving my Director of Operations roughly 5 hours of work per week.',
     attribution: 'Nick Beyer, Owner',
   },
+  {
+    location: 'Multi-location',
+    profile: 'Residential · 3 locations · about $35K/month',
+    status: 'live',
+    statusLabel: 'Live since October',
+    headline: 'Two builds in, a third on the way',
+    body: 'Lead follow-up and review requests running across all three locations, then a bot that nudges the team on every open lead so nothing sits. He came back for the second build within weeks. A scheduling optimizer is next.',
+  },
 ]
 
 export default function ClientProof() {
@@ -58,10 +66,10 @@ export default function ClientProof() {
             Not just my own company
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
-            Four cleaning companies hired me. All four systems are live and running.
+            Five cleaning companies hired me. All five systems are live and running.
           </h2>
           <p className="text-lg text-slate-600 leading-relaxed">
-            Three of them bought No Lead Left Behind. The fourth bought something else entirely. Two of them said I could use their names and their numbers. The other two have not been asked, so they stay anonymous, because I would not put your numbers on my website either. What I will show you is exactly what got built and where each one stands today.
+            Most started with No Lead Left Behind. One bought something else entirely. Two of them said I could use their names and their numbers. The others stay anonymous, because I would not put your numbers on my website either. What I will show you is exactly what got built and where each one stands today.
           </p>
         </div>
 

@@ -87,12 +87,12 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/in/roybanwell/"
+                  href="https://x.com/Roy_Banwell"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-slate-400 hover:text-white transition-colors"
                 >
-                  LinkedIn
+                  X (@Roy_Banwell)
                 </a>
               </li>
               <li>
