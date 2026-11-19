@@ -48,6 +48,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/blog" className="text-slate-400 hover:text-white transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
                 <Link to="/answers" className="text-slate-400 hover:text-white transition-colors">
                   Questions Owners Can't Answer
                 </Link>

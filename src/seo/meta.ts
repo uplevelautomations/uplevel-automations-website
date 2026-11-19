@@ -1,3 +1,4 @@
+import { POSTS, extractFaqs, type BlogPost } from '../lib/blog'
 // Single source of truth for per-route SEO metadata.
 // Consumed by:
 //   - scripts/prerender.mjs  (build-time head injection + sitemap.xml)
@@ -108,6 +109,54 @@ function caseStudySchema(path: string, headline: string, description: string): o
       ],
     },
   ]
+}
+
+// ---- Blog (posts live in src/content/blog/*.json, see src/lib/blog.ts) ----
+const BLOG_INDEX_META: RouteMeta = {
+  path: '/blog',
+  title: 'Blog: Lead Follow-Up and Automation for Cleaning Companies | UpLevel',
+  description:
+    'Real numbers and playbooks on lead follow-up, re-engaging old leads, and AI automation for cleaning companies, from an operator who runs one.',
+}
+
+function blogPostMeta(post: BlogPost): RouteMeta {
+  const path = `/blog/${post.slug}`
+  const url = `${SITE_ORIGIN}${path}`
+  const faqs = extractFaqs(post.content)
+  const schema: object[] = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.description,
+      url,
+      mainEntityOfPage: url,
+      datePublished: post.date,
+      dateModified: post.dateModified ?? post.date,
+      author: { '@id': PERSON_ID },
+      publisher: { '@id': ORG_ID },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Blog', item: `${SITE_ORIGIN}/blog` },
+        { '@type': 'ListItem', position: 2, name: post.title, item: url },
+      ],
+    },
+  ]
+  if (faqs.length > 0) {
+    schema.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer },
+      })),
+    })
+  }
+  return { path, title: `${post.title} | UpLevel Automations`, description: post.description, ogType: 'article', schema }
 }
 
 export const ROUTES_META: RouteMeta[] = [
@@ -432,6 +481,8 @@ export const ROUTES_META: RouteMeta[] = [
     description:
       'The rules for using uplevelautomations.com and its free tools, how they relate to paid engagements, and the governing law.',
   },
+  BLOG_INDEX_META,
+  ...POSTS.map(blogPostMeta),
 ]
 
 export const NOT_FOUND_META: RouteMeta = {
