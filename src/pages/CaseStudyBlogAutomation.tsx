@@ -388,7 +388,7 @@ readingTime, and content (full HTML).`}</pre>
                 Book a Strategy Call
               </a>
               <p className="text-xs text-slate-500 mt-3">
-                Free, 30 minutes. No pitch deck, just a conversation about your business.
+                Free, 50 minutes. No pitch deck, just a conversation about your business.
               </p>
             </div>
           </section>

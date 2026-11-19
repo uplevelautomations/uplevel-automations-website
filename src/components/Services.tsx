@@ -33,7 +33,7 @@ const tiers: Tier[] = [
       'Optional support after launch: $300/mo',
     ],
     guarantee: "If the system isn't working your leads end to end in 30 days, you get your money back.",
-    cta: 'Book a 30-min call',
+    cta: 'Book a call',
     highlight: true,
   },
   {

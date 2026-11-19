@@ -69,7 +69,7 @@ export default function Testimonial() {
             }
             className="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg transition-all shadow-sm"
           >
-            Book a 30-min call to schedule your free process audit
+            Book a call to schedule your free process audit
           </a>
           <p className="text-xs text-slate-500 mt-3">
             That's the same audit Alex and Nick both started with. Free, and there's no obligation after it.

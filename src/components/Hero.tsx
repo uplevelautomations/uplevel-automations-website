@@ -26,10 +26,10 @@ export default function Hero() {
               href="https://cal.com/roy-banwell/30minaicall"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'Book a 30-min Call', cta_location: 'hero' })}
+              onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'Book a call', cta_location: 'hero' })}
               className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all text-center shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 hover:-translate-y-0.5"
             >
-              Book a 30-min call →
+              Book a call →
             </a>
             <a
               href="#services"

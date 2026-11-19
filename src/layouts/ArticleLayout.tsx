@@ -62,7 +62,7 @@ export default function ArticleLayout({ kicker, title, intro, dateline, children
                 rel="noopener noreferrer"
                 className="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
               >
-                Book a 30-min call
+                Book a call
               </a>
             </div>
           </div>
