@@ -51,7 +51,7 @@ export default function NoLeadLeftBehind() {
             onClick={() => (window as any).dataLayer?.push({ event: 'cta_click', cta_text: 'No Lead Left Behind', cta_location: 'nllb_section' })}
             className="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg transition-all shadow-sm"
           >
-            Stop losing leads. Book a 30-min call
+            Stop losing leads. Book a call
           </a>
           <p className="text-sm text-slate-400 mt-3">$500 to set it up yourself. $1,500 and I build it for you, with a 30-day money-back guarantee. You own it either way.</p>
         </div>

@@ -16,10 +16,10 @@ export default function AssessmentTeaser() {
           href="https://cal.com/roy-banwell/30minaicall"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'Book a 30-min call', cta_location: 'bottom_cta' })}
+          onClick={() => window.dataLayer?.push({ event: 'cta_click', cta_text: 'Book a call', cta_location: 'bottom_cta' })}
           className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-all shadow-lg shadow-blue-600/25"
         >
-          Book a 30-min call →
+          Book a call →
         </a>
         <p className="text-sm text-slate-500 mt-4">Free, no obligation.</p>
       </div>

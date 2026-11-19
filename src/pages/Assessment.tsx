@@ -712,7 +712,7 @@ export default function Assessment() {
                 {/* What happens on the call */}
                 <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 mb-8">
                   <h3 className="text-lg font-bold text-slate-900 mb-2">What happens on the call</h3>
-                  <p className="text-slate-600 mb-6">30 minutes. No fluff. Here's exactly what we'll cover:</p>
+                  <p className="text-slate-600 mb-6">50 minutes. No fluff. Here's exactly what we'll cover:</p>
 
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">

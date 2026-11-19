@@ -270,7 +270,7 @@ export default function CaseStudyOutboundMachine() {
                 Book a Strategy Call
               </a>
               <p className="text-xs text-slate-500 mt-3">
-                Free, 30 minutes. No pitch deck.
+                Free, 50 minutes. No pitch deck.
               </p>
             </div>
           </section>

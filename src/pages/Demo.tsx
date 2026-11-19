@@ -42,7 +42,7 @@ export default function Demo() {
             onClick={() => (window as any).dataLayer?.push({ event: 'cal_booking_click', booking_source: 'demo_top_bar' })}
             className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-blue-50 text-blue-700 text-sm font-semibold rounded-lg transition-colors text-center"
           >
-            Book a 30-min call
+            Book a call
           </a>
         </div>
       </div>
@@ -119,7 +119,7 @@ export default function Demo() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <p className="text-sm font-semibold text-slate-900">Want this for your cleaning company?</p>
-            <p className="text-xs text-slate-500 mt-0.5">Free 30-min call. I'll map your tools and show you the numbers you're flying blind on. Works with whatever you already run (Jobber, Housecall Pro, BookingKoala, QuickBooks…). About 2 hours of your time to build · you own it outright, no SaaS lock-in.</p>
+            <p className="text-xs text-slate-500 mt-0.5">Free call. I'll map your tools and show you the numbers you're flying blind on. Works with whatever you already run (Jobber, Housecall Pro, BookingKoala, QuickBooks…). About 2 hours of your time to build · you own it outright, no SaaS lock-in.</p>
           </div>
           <a
             href="https://cal.com/roy-banwell/30minaicall"
@@ -128,7 +128,7 @@ export default function Demo() {
             onClick={() => (window as any).dataLayer?.push({ event: 'cal_booking_click', booking_source: 'demo_bottom_cta' })}
             className="flex-shrink-0 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm shadow-blue-600/25"
           >
-            Book my 30-min call
+            Book my call
           </a>
         </div>
       </div>
