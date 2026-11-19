@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import OfferCta from '../components/OfferCta'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -19,6 +20,7 @@ interface ArticleLayoutProps {
  * plain <table> elements styled here.
  */
 export default function ArticleLayout({ kicker, title, intro, dateline, children }: ArticleLayoutProps) {
+  const { pathname } = useLocation()
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -41,31 +43,7 @@ export default function ArticleLayout({ kicker, title, intro, dateline, children
             {children}
           </div>
 
-          {/* Standing CTA */}
-          <div className="mt-16 bg-slate-900 rounded-2xl p-8 text-center">
-            <h2 className="text-2xl font-bold text-white mb-3">Want these numbers for your company?</h2>
-            <p className="text-slate-300 mb-6 max-w-xl mx-auto">
-              Service OS pulls your booking platform and QuickBooks into one screen, so you can answer
-              these questions about your own operation in real time. Built by an operator who runs a
-              cleaning company, not an agency.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                to="/demo"
-                className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-              >
-                See the live demo
-              </Link>
-              <a
-                href="https://cal.com/roy-banwell/30minaicall"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-              >
-                Book a call
-              </a>
-            </div>
-          </div>
+          <OfferCta source={`article:${pathname}`} />
         </article>
       </main>
       <Footer />
