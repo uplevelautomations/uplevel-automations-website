@@ -22,12 +22,14 @@ const deployments: Deployment[] = [
     attribution: 'Alex Ray, Owner',
   },
   {
-    location: 'Arizona',
-    profile: 'Residential · about $40K/month',
+    location: 'Luke Lovelady, Sixth Sense Cleaning',
+    profile: 'Arizona · residential · about $40K/month',
     status: 'live',
     statusLabel: 'Live since July',
-    headline: 'Every inbound lead finally caught',
-    body: 'Website form, Google Local Services calls, phone, and email quote requests all land in one place and get followed up automatically. Before this he did all of it by hand, from his phone, wherever he happened to be.',
+    headline: '1-2 hours a day back, and 3x the cost in revenue',
+    body: 'Website form, Google Local Services calls, phone, and email quote requests all land in one place and get followed up automatically. Before this he did all of it by hand, from his phone, wherever he happened to be. Hundreds of past customers now get nurtured every month.',
+    quote: "Before we implemented Roy's systems we were spending 1-2 hours every day manually following up with leads, no real structure, no organization, and with no way to track anything. Now we have automated sequences take care of the follow ups, all structure in one system, and we have hundreds of customers being nurtured monthly without us lifting a finger. We've already tripled what we spent to get the system up and running from the revenue we've brought in!",
+    attribution: 'Luke Lovelady, Owner',
   },
   {
     location: 'New York',
@@ -69,7 +71,7 @@ export default function ClientProof() {
             Five cleaning companies hired me. All five systems are live and running.
           </h2>
           <p className="text-lg text-slate-600 leading-relaxed">
-            Most started with No Lead Left Behind. One bought something else entirely. Two of them said I could use their names and their numbers. The others stay anonymous, because I would not put your numbers on my website either. What I will show you is exactly what got built and where each one stands today.
+            Most started with No Lead Left Behind. One bought something else entirely. Three of them said I could use their names and their numbers. The others stay anonymous, because I would not put your numbers on my website either. What I will show you is exactly what got built and where each one stands today.
           </p>
         </div>
 

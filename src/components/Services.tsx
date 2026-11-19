@@ -125,7 +125,7 @@ export default function Services() {
         </div>
 
         <p className="text-center text-slate-500 mt-10">
-          Proof it works: CBUS Cleaning booked 12 new jobs in month one from 1,430 old leads. NEAT saves its ops director about 5 hours a week.
+          Proof it works: CBUS Cleaning booked 12 new jobs in month one from 1,430 old leads. Sixth Sense got 1-2 hours a day back and has made 3x the cost. NEAT saves its ops director about 5 hours a week.
         </p>
       </div>
     </section>
