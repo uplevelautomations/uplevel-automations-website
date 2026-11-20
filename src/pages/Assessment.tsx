@@ -404,8 +404,9 @@ export default function Assessment() {
         {/* Navbar */}
         <nav className="relative z-50 bg-transparent">
           <div className="max-w-5xl mx-auto px-6 py-4">
-            <Link to="/" className="font-semibold text-slate-900 text-lg">
-              UpLevel Automations
+            <Link to="/" className="font-serif text-[28px] leading-none text-slate-900 inline-flex items-center gap-1" aria-label="UpLevel">
+              UpLevel
+              <span className="inline-block w-[10px] h-[22px] bg-blue-600 ml-1" aria-hidden="true" />
             </Link>
           </div>
         </nav>
@@ -503,8 +504,9 @@ export default function Assessment() {
         {/* Navbar */}
         <nav className="relative z-50 bg-transparent">
           <div className="max-w-5xl mx-auto px-6 py-4">
-            <Link to="/" className="font-semibold text-slate-900 text-lg">
-              UpLevel Automations
+            <Link to="/" className="font-serif text-[28px] leading-none text-slate-900 inline-flex items-center gap-1" aria-label="UpLevel">
+              UpLevel
+              <span className="inline-block w-[10px] h-[22px] bg-blue-600 ml-1" aria-hidden="true" />
             </Link>
           </div>
         </nav>
@@ -551,10 +553,11 @@ export default function Assessment() {
         <div className="absolute bottom-20 left-[5%] w-80 h-80 bg-blue-100/40 rounded-full blur-3xl" />
 
         {/* Navbar */}
-        <nav className="relative z-50 border-b border-slate-200/50 bg-white/60 backdrop-blur-md">
+        <nav className="relative z-50 border-b border-slate-200/50 bg-[#f7f2e9]/80 backdrop-blur-md">
           <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <Link to="/" className="font-semibold text-slate-900 text-lg">
-              UpLevel Automations
+            <Link to="/" className="font-serif text-[28px] leading-none text-slate-900 inline-flex items-center gap-1" aria-label="UpLevel">
+              UpLevel
+              <span className="inline-block w-[10px] h-[22px] bg-blue-600 ml-1" aria-hidden="true" />
             </Link>
           </div>
         </nav>
@@ -654,7 +657,7 @@ export default function Assessment() {
                   </p>
                 </div>
 
-                {/* Your Next Step: AI Audit */}
+                {/* Your next step: the free call */}
                 <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 mb-8">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
@@ -664,15 +667,15 @@ export default function Assessment() {
                     </div>
                     <div>
                       <p className="text-sm text-blue-600 font-medium">Your Next Step</p>
-                      <h3 className="text-xl font-bold text-slate-900">The AI Audit</h3>
+                      <h3 className="text-xl font-bold text-slate-900">A free 50-minute call</h3>
                     </div>
                   </div>
 
                   <p className="text-slate-600 mb-4">
-                    In 1-2 weeks, I'll map your cleaning operation, identify your highest-ROI automation opportunities, and deliver a prioritized action plan you can execute immediately.
+                    We'll go through your results, look at how your company runs today, and I'll show you the systems I run in my own cleaning company. You'll leave with one clear recommendation and its price.
                   </p>
                   <p className="text-sm text-slate-500 mb-6">
-                    The strategy call is free. If the Audit's a fit, I'll quote it then — no obligation.
+                    The call is free. Builds start at $1,500, with a 30-day money-back guarantee. No obligation.
                   </p>
 
                   <div className="grid sm:grid-cols-2 gap-4 mb-6">
@@ -680,31 +683,31 @@ export default function Assessment() {
                       <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-slate-600 text-sm">Deep-dive into your specific processes</p>
+                      <p className="text-slate-600 text-sm">A look at how leads and jobs flow today</p>
                     </div>
                     <div className="flex items-start gap-3">
                       <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-slate-600 text-sm">Prioritized list of automation opportunities</p>
+                      <p className="text-slate-600 text-sm">Where AI would save you the most time</p>
                     </div>
                     <div className="flex items-start gap-3">
                       <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-slate-600 text-sm">ROI projections for top opportunities</p>
+                      <p className="text-slate-600 text-sm">What it would be worth in jobs and hours</p>
                     </div>
                     <div className="flex items-start gap-3">
                       <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-slate-600 text-sm">Clear action plan you can execute</p>
+                      <p className="text-slate-600 text-sm">One recommendation, with a price</p>
                     </div>
                   </div>
 
                   <div className="p-4 bg-blue-50 border border-blue-100 rounded-xl">
                     <p className="text-blue-800 text-sm">
-                      <span className="font-semibold">Book a call to get started.</span> We'll review your assessment, talk through your cleaning operation, and see if an AI Audit is right for you.
+                      <span className="font-semibold">Book a call to get started.</span> We'll review your assessment, talk through your cleaning operation, and figure out the one build that would help most.
                     </p>
                   </div>
                 </div>
@@ -738,7 +741,7 @@ export default function Assessment() {
                         3
                       </div>
                       <div>
-                        <p className="font-medium text-slate-900">See if an AI Audit is right for you</p>
+                        <p className="font-medium text-slate-900">Get one recommendation and a price</p>
                         <p className="text-sm text-slate-500">If it's a fit, we'll map out next steps. If not, you'll still leave with clarity.</p>
                       </div>
                     </div>
@@ -909,10 +912,11 @@ export default function Assessment() {
       <div className="absolute bottom-20 left-[5%] w-80 h-80 bg-blue-100/40 rounded-full blur-3xl" />
 
       {/* Navbar */}
-      <nav className="relative z-50 border-b border-slate-200/50 bg-white/60 backdrop-blur-md">
+      <nav className="relative z-50 border-b border-slate-200/50 bg-[#f7f2e9]/80 backdrop-blur-md">
         <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link to="/" className="font-semibold text-slate-900 text-lg">
-            UpLevel Automations
+          <Link to="/" className="font-serif text-[28px] leading-none text-slate-900 inline-flex items-center gap-1" aria-label="UpLevel">
+            UpLevel
+            <span className="inline-block w-[10px] h-[22px] bg-blue-600 ml-1" aria-hidden="true" />
           </Link>
           <span className="text-sm text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
             {currentStep + 1} of {totalSteps}

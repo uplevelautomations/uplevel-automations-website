@@ -17,10 +17,11 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#f7f2e9]/85 backdrop-blur-md border-b border-slate-200/50">
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <Link to="/" className="font-semibold text-slate-900 text-lg">
-          UpLevel Automations
+        <Link to="/" className="font-serif text-[28px] leading-none text-slate-900 inline-flex items-center gap-1" aria-label="UpLevel">
+          UpLevel
+          <span className="inline-block w-[10px] h-[22px] bg-blue-600 ml-1" aria-hidden="true" />
         </Link>
 
         <div className="hidden md:flex items-center gap-8">

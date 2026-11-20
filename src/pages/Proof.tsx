@@ -73,23 +73,28 @@ const categories: Category[] = [
       {
         title: 'Blog Automator',
         what: '3 SEO blog posts per week, written by AI, published to my live site automatically. I haven\'t written one in months. About 15 cents per post.',
-        tags: ['n8n', 'Claude', 'Railway'],
+        tags: ['Python', 'Claude', 'Railway'],
       },
     ],
   },
   {
-    name: 'Operating System',
-    blurb: 'The infrastructure that lets me run the whole company from one chat.',
+    name: 'Running the Day',
+    blurb: 'The systems that catch problems before I hear about them.',
     systems: [
       {
-        title: 'Daily Briefing',
-        what: 'Every morning at 6 AM, an AI reads my calendar, email, website analytics, CRM, and revenue, then tells me exactly what to focus on. Replaces 30 minutes of context-gathering with a 2-minute read.',
-        tags: ['launchd', 'Claude', 'Telegram'],
+        title: 'Schedule Planner',
+        what: 'Spots schedule conflicts, works out the fix, and posts it for the team to approve. Nobody rebuilds the schedule by hand.',
+        tags: ['Claude', 'Railway', 'Slack'],
       },
       {
-        title: 'Telegram Bot',
-        what: 'Always-on AI assistant with full access to every system in this list. I run the business from a chat on my phone. No laptop required.',
-        tags: ['Claude Code', 'MCP'],
+        title: 'Job Offers',
+        what: 'When a job opens up, it texts the cleaners who are free and close by. The first yes gets it, and the team is told.',
+        tags: ['Claude', 'Railway', 'SMS'],
+      },
+      {
+        title: 'Client Issue Watcher',
+        what: 'Reads client conversations through the day. Anything urgent that the team has not answered in 15 minutes gets flagged, so problems never sit.',
+        tags: ['Claude', 'GHL', 'Slack'],
       },
     ],
   },
