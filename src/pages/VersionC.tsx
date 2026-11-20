@@ -1,7 +1,7 @@
 // Version C of the homepage, served at /versionc. Same offer and proof as
 // "/" and /versionb; an AI-forward look that avoids the SaaS template.
 // Offer source of truth: RELAUNCH-OFFER-2026-11.md in the roy-hq repo.
-import type { CSSProperties } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import '../versionc/versionc.css'
 import { Arrow } from '../versionb/parts'
@@ -77,9 +77,17 @@ const FAQ = [
   ],
 ]
 
+const THEMES = ['clay', 'blue', 'gold']
+
 export default function VersionC() {
+  // Optional colour preview: /versionc?t=clay | blue | gold. No param = dark.
+  const [theme, setTheme] = useState('')
+  useEffect(() => {
+    const t = new URLSearchParams(window.location.search).get('t') || ''
+    if (THEMES.includes(t)) setTheme(t)
+  }, [])
   return (
-    <div className="vc">
+    <div className={`vc ${theme ? `vc--light vc--${theme}` : ''}`}>
       <div className="vc-ambient" aria-hidden="true" />
       <div className="vc-glow" style={{ top: -260, right: -200 }} aria-hidden="true" />
 
@@ -436,7 +444,7 @@ export default function VersionC() {
                 <CallButton location="final" label="Open the calendar" />
               </Reveal>
               <Reveal delay={1}>
-                <InlineBooking />
+                <InlineBooking key={theme} dark={!theme} />
               </Reveal>
             </div>
             <footer className="vc-foot">

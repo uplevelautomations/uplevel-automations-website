@@ -441,7 +441,7 @@ export function Calculator() {
   )
 }
 
-export function InlineBooking() {
+export function InlineBooking({ dark = true }: { dark?: boolean }) {
   const [ref, inView] = useInView<HTMLDivElement>(0.05)
   return (
     <div ref={ref} className="vc-cal">
@@ -449,7 +449,7 @@ export function InlineBooking() {
         <Cal
           calLink="roy-banwell/30minaicall"
           style={{ width: '100%', height: '100%', minHeight: 520, overflow: 'auto' }}
-          config={{ layout: 'month_view', theme: 'dark' }}
+          config={{ layout: 'month_view', theme: dark ? 'dark' : 'light' }}
         />
       ) : (
         <div className="vc-cal__ph vc-mono">Loading calendar…</div>
