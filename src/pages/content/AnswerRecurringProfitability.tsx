@@ -37,10 +37,9 @@ export default function AnswerRecurringProfitability() {
       <h2>What this means for strategy</h2>
       <p>
         If recurring wins on the per-customer view, and in my experience it does, then one-time
-        jobs are best understood as paid auditions for recurring relationships. That reframe is
-        why my own 3.7% one-time-to-recurring conversion rate, against a peer-reported benchmark
-        around 20%, was such an expensive discovery: I was winning auditions and never making the
-        offer. The full story and the dollar math are in{' '}
+        jobs are best understood as paid auditions for recurring relationships. The expensive
+        mistake is winning the audition and never making the offer. How to measure it and price
+        the gap is in{' '}
         <Link to="/answers/one-time-to-recurring-conversion-rate">the conversion answer</Link>{' '}
         and <Link to="/benchmarks/cleaning-company-margins">the benchmark report</Link>.
       </p>

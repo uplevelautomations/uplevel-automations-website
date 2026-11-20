@@ -8,6 +8,8 @@ import ArticleLayout from '../../layouts/ArticleLayout'
 // (sections "Speed to lead", "Why leads don't book", "The same reasons, per
 // lead source", "Close rate by rep", 2026-10-27 to 2026-11-16).
 // Each table states its own window and sample size. No people are named.
+// Roy, 2026-11-20: never publish our own booking or close rates (only
+// relative comparisons). Owners who close 40% would read ours as failure.
 
 const lostReasons = [
   { reason: 'Never reached', share: '29%' },
@@ -31,25 +33,25 @@ export default function CleaningLeadResponseBenchmark() {
   return (
     <ArticleLayout
       kicker="Benchmark Report"
-      title="What 935 Cleaning Leads Showed About Who Books"
+      title="What 935 Cleaning Leads Showed About Why Leads Don’t Book"
       dateline="Data: real leads to my cleaning company, September 1 through November 1, 2026. Each table lists its own window. Published November 2026."
       intro={
         <p>
-          Of 935 real leads, 12% booked within 14 days. Leads that got a real phone conversation
-          booked about 20% of the time. The 59% who never got one booked about 7%. Who answered
-          barely mattered: the owner and the team closed about the same once someone got the
-          customer on the phone. The biggest losses were leads we never reached, leads who went
-          quiet after talking to us, and price.
+          Across 935 real leads, the ones that got a real phone conversation were about three
+          times as likely to book as the ones that never did. Who answered barely mattered: the
+          owner and the team closed about the same once someone got the customer on the phone. The
+          biggest losses were leads we never reached, leads who went quiet after talking to us, and
+          price.
         </p>
       }
     >
       <h2>The headline numbers</h2>
       <ul>
         <li><strong>935</strong> real leads (September 1 to November 1, 2026), one per person, vendors, job applicants, wrong numbers and existing customers removed</li>
-        <li><strong>12.0%</strong> booked within 14 days (112 of 935)</li>
-        <li><strong>19.6%</strong> booked when the lead had a real phone conversation with us (75 of 382)</li>
-        <li><strong>6.7%</strong> booked when they never did (37 of 553)</li>
-        <li><strong>59%</strong> of leads never had a real phone conversation</li>
+        <li><strong>About 3×</strong> as likely to book when the lead had a real phone conversation with us</li>
+        <li><strong>2 minutes</strong> median wait for a first reply across all leads</li>
+        <li><strong>79%</strong> of lost leads came down to three reasons: never reached, went silent, or price</li>
+        <li><strong>41%</strong> of website quote forms arrived outside working hours</li>
       </ul>
       <p>
         Every number here comes from my own company's records: the lead log, every call and
@@ -71,15 +73,14 @@ export default function CleaningLeadResponseBenchmark() {
       <h2>Who answers matters less than whether anyone does</h2>
       <p>
         I expected the owner to close far better than the team. On the same kind of lead, once
-        someone had the customer on the phone, about 1 in 5 booked whoever it was. The owner
-        closed 24% of 29 phone conversations; the team closed about 20%. That gap is about one
-        booking in 29 calls, which is noise. The owner looked better overall mostly because he
-        worked fewer, warmer leads.
+        someone had the customer on the phone, the owner and the team closed at about the same
+        rate. The gap came to about one booking in 29 calls, which is noise. The owner looked
+        better overall mostly because he worked fewer, warmer leads.
       </p>
       <p>
-        The one real difference was recurring plans: the owner started half his bookings on a
-        plan, the team about one in eleven. The sample is small, but it is the one place the
-        owner sold differently.
+        The one real difference was recurring plans: the owner started far more of his bookings
+        on a recurring plan. The sample is small, but it is the one place the owner sold
+        differently.
       </p>
 
       <h2>Why leads don't book</h2>
@@ -149,15 +150,14 @@ export default function CleaningLeadResponseBenchmark() {
       <h2>The leads who never respond</h2>
       <p>
         Of 481 leads from late September to late October 2026, 28% never responded to anything:
-        not a call, not a text. They booked 4% of the time (6 of 135). Leads we talked to in any
-        way booked 14% (48 of 346).
+        not a call, not a text. Leads we talked to in any way were more than three times as
+        likely to book as the ones who never responded.
       </p>
       <p>
-        Close rates also vary a lot by where the lead came from. In the same window, Google Local
-        Services Ads leads booked 7% (12 of 184), Google Ads search leads 15% (22 of 150), and
-        Google Business Profile leads 14% (4 of 29). Local Services leads mostly do talk to us
-        (81% of them) and still book at under half the rate of search leads, so for that channel the
-        problem is the conversation after contact, not reach.
+        How often leads book also varies a lot by where they came from. In the same window,
+        Google Local Services Ads leads mostly did talk to us (81% of them) and still booked at
+        under half the rate of Google Ads search leads. For that channel the problem is the
+        conversation after contact, not reach.
       </p>
 
       <h2>What I would do with this</h2>
@@ -166,7 +166,7 @@ export default function CleaningLeadResponseBenchmark() {
         <li>Make several attempts on day one, including at least one call.</li>
         <li>Follow up after the first conversation, especially after sending a price.</li>
         <li>Keep following up with leads who never answered, for months, not days.</li>
-        <li>Measure close rate by lead source, not just overall. Each source fails for a different reason.</li>
+        <li>Measure results by lead source, not just overall. Each source fails for a different reason.</li>
       </ol>
       <p>
         That is the system I now build for other cleaning companies. If you want to see where
@@ -184,19 +184,14 @@ export default function CleaningLeadResponseBenchmark() {
         <li><strong>A real phone conversation</strong> means a call of 60 seconds or more.</li>
         <li><strong>Who worked a lead</strong> is the person with the most talk time on calls of 60 seconds or more, read from call records and, where those were missing, from the call transcript. Leads with no such call go to whoever sent the most texts and calls. 146 answered inbound calls had no name in either place, and those leads went to whoever texted them most.</li>
         <li><strong>Each table has its own window,</strong> stated above it. They come from separate reads of the same lead log, so totals differ slightly between sections.</li>
-        <li><strong>Known gap:</strong> some Local Services Ads bookings are made under a different phone number and cannot be matched to the lead, so Local Services close rates are a floor.</li>
+        <li><strong>Known gap:</strong> some Local Services Ads bookings are made under a different phone number and cannot be matched to the lead, so Local Services results are undercounted.</li>
       </ul>
 
       <h2>Frequently Asked Questions</h2>
-      <h3>What percentage of cleaning leads book?</h3>
-      <p>
-        In my company, 12% of real leads booked within 14 days (112 of 935, September to November
-        2026). By source it varied a lot: in late September to late October (481 leads), the two biggest sources booked 7% (Google Local Services Ads) and 15% (Google Ads search).
-      </p>
       <h3>How much does reaching a lead by phone matter?</h3>
       <p>
-        A lot. Leads that had a real phone conversation booked about 20% of the time; leads that
-        never did booked about 7%. That is correlation, since people who pick up are often warmer,
+        A lot. Leads that had a real phone conversation were about three times as likely to book
+        as leads that never did. That is correlation, since people who pick up are often warmer,
         but you cannot book a lead you never reach.
       </p>
       <h3>Why do most cleaning leads not book?</h3>
@@ -206,8 +201,8 @@ export default function CleaningLeadResponseBenchmark() {
       </p>
       <h3>Does the owner close better than the team?</h3>
       <p>
-        Not by much. On the same kind of lead, once someone had the customer on the phone, about 1
-        in 5 booked whoever it was. The owner closed 24% of 29 calls and the team about 20%.
+        Not by much. On the same kind of lead, once someone had the customer on the phone, the
+        owner and the team closed at about the same rate.
       </p>
       <h3>How fast should a cleaning company reply to a lead?</h3>
       <p>

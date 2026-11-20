@@ -344,7 +344,8 @@ export function Trace() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Study bars: figures from the 935-lead benchmark page.               */
+/* Study bars: figures from the 935-lead benchmark page. Relative only:  */
+/* Roy, 2026-11-20, never show our own booking or close rates.         */
 /* ------------------------------------------------------------------ */
 export function StudyBars() {
   const [ref, inView] = useInView<HTMLDivElement>(0.4)
@@ -352,8 +353,8 @@ export function StudyBars() {
     <div ref={ref} className="vc-bars">
       <div className="vc-bar">
         <div className="vc-bar__top">
-          <span>Booked, when someone reached them by phone</span>
-          <b>20%</b>
+          <span>Chance of booking, when someone reached them by phone</span>
+          <b>3×</b>
         </div>
         <div className="vc-bar__track">
           <div className="vc-bar__fill" style={{ width: inView ? '100%' : 0 }} />
@@ -361,17 +362,17 @@ export function StudyBars() {
       </div>
       <div className="vc-bar vc-bar--low">
         <div className="vc-bar__top">
-          <span>Booked, when nobody did</span>
-          <b>7%</b>
+          <span>When nobody did</span>
+          <b>1×</b>
         </div>
         <div className="vc-bar__track">
-          <div className="vc-bar__fill" style={{ width: inView ? '35%' : 0 }} />
+          <div className="vc-bar__fill" style={{ width: inView ? '34%' : 0 }} />
         </div>
       </div>
       <div className="vc-bars__pair">
         <div>
-          <b>59%</b>
-          <span>of leads never got a real conversation</span>
+          <b>2 min</b>
+          <span>median first reply to a new lead, on shift</span>
         </div>
         <div>
           <b>41%</b>

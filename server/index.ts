@@ -14,6 +14,7 @@ import { generatePdfHandler } from './api/generate-pdf'
 import { sendEmailHandler } from './api/send-email'
 import { sendAssessmentEmailHandler } from './api/send-assessment-email'
 import { sendAbandonAlertHandler } from './api/send-abandon-alert'
+import { playbookDownloadHandler } from './api/playbook-download'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -78,6 +79,7 @@ app.post('/api/generate-pdf', generatePdfHandler)
 app.post('/api/send-email', sendEmailHandler)
 app.post('/api/send-assessment-email', sendAssessmentEmailHandler)
 app.post('/api/send-abandon-alert', sendAbandonAlertHandler)
+app.post('/api/playbook-download', playbookDownloadHandler)
 
 // Health check
 app.get('/api/health', (_req, res) => {
@@ -110,6 +112,11 @@ app.use((req, res, next) => {
 // route HTML is served only by the explicit handlers below —
 // express.static's defaults would serve directory indexes and add
 // trailing-slash 301s that conflict with the canonical URLs.
+// Playbook PDFs sit at unlisted paths; keep them out of search results.
+app.use('/playbooks/files', (_req, res, next) => {
+  res.set('X-Robots-Tag', 'noindex')
+  next()
+})
 app.use(express.static(distPath, { index: false, redirect: false }))
 
 // Prerendered pages. Express serves HEAD for app.get routes automatically.

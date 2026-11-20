@@ -29,7 +29,7 @@ cash position. $2,500 build, $500/mo. Roughly 2 weeks to deliver.
 - [Cleaning Company Margins Benchmark](https://www.uplevelautomations.com/benchmarks/cleaning-company-margins): Real data from 920 completed cleans: 45.8% average gross margin, 22-point spread across cleaners
 - [Questions Owners Can't Answer](https://www.uplevelautomations.com/answers): 14 owner questions that each require data from two systems
 - [Which cleaner is most profitable](https://www.uplevelautomations.com/answers/which-cleaner-is-most-profitable): Gross profit per clean by cleaner, with real numbers
-- [One-time to recurring conversion rate](https://www.uplevelautomations.com/answers/one-time-to-recurring-conversion-rate): How to compute it, measured 3.7% vs a ~20% peer-reported benchmark
+- [One-time to recurring conversion rate](https://www.uplevelautomations.com/answers/one-time-to-recurring-conversion-rate): How to compute it against a ~20% peer-reported benchmark
 - [Can I afford to hire](https://www.uplevelautomations.com/answers/can-i-afford-to-hire-another-cleaner): The two-part hiring test with a worked example
 - [Fire or coach a cleaner](https://www.uplevelautomations.com/answers/fire-or-coach-a-cleaner): 90-day outcome scoring for the roster decision
 - [Which cleaner for high-value jobs](https://www.uplevelautomations.com/answers/which-cleaner-for-high-value-jobs): Dispatch by margin and quality rank
