@@ -32,12 +32,14 @@ const deployments: Deployment[] = [
     attribution: 'Luke Lovelady, Owner',
   },
   {
-    location: 'New York',
-    profile: 'Residential + commercial · about 20 cleaners',
+    location: 'Dan Ponto, City of Good Maids',
+    profile: 'Buffalo, NY · residential + commercial · about 20 cleaners',
     status: 'live',
     statusLabel: 'Live since July',
-    headline: 'Same system, wired into Booking Koala',
-    body: 'Lead capture off his existing booking software and lead forms, then the same follow-up and reactivation engine on top. Invoicing automation is the next build after it.',
+    headline: 'Enough new business to pause paid ads',
+    body: 'Lead capture off his existing booking software and quote form, then the same follow-up and reactivation engine on top. It woke up customers they had not heard from in years and booked leads who filled out the quote form but never booked.',
+    quote: "Roy setup automations that helped us win back cleaning customers we hadn't heard from in years and book jobs with leads who'd filled out our quote form but never booked. The automated texts and emails brought in enough business that we were able to pause paid ads for the first time in nearly a year. Roy was great to work with from start to finish, and I'd recommend him to any service business owner looking to get more out of the leads they already have.",
+    attribution: 'Dan Ponto, Owner',
   },
   {
     location: 'Nick Beyer, NEAT Commercial Cleaning',
@@ -71,7 +73,7 @@ export default function ClientProof() {
             Five cleaning companies hired me. All five systems are live and running.
           </h2>
           <p className="text-lg text-slate-600 leading-relaxed">
-            Most started with No Lead Left Behind. One bought something else entirely. Three of them said I could use their names and their numbers. The others stay anonymous, because I would not put your numbers on my website either. What I will show you is exactly what got built and where each one stands today.
+            Most started with No Lead Left Behind. One bought something else entirely. Four of them said I could use their names and their numbers. The others stay anonymous, because I would not put your numbers on my website either. What I will show you is exactly what got built and where each one stands today.
           </p>
         </div>
 
