@@ -457,6 +457,67 @@ export const ROUTES_META: RouteMeta[] = [
     ),
   },
   {
+    path: '/benchmarks/cleaning-lead-response',
+    title: 'Cleaning Lead Response Benchmark: What 935 Leads Showed | UpLevel Automations',
+    description:
+      'Real data from 935 cleaning-company leads: 12% booked, about 20% when reached by phone versus 7% when not, and why the rest were lost.',
+    ogType: 'article',
+    schema: [
+      ...articleSchema(
+        '/benchmarks/cleaning-lead-response',
+        'What 935 Cleaning Leads Showed About Who Books',
+        'Real data from 935 cleaning-company leads: who books, why the rest are lost, and how fast each lead source gets reached.',
+        '2026-11-20',
+      ),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            "@type": "Question",
+            "name": "What percentage of cleaning leads book?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In my company, 12% of real leads booked within 14 days (112 of 935, September to November 2026). By source it varied a lot: in late September to late October (481 leads), the two biggest sources booked 7% (Google Local Services Ads) and 15% (Google Ads search)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does reaching a lead by phone matter?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A lot. Leads that had a real phone conversation booked about 20% of the time; leads that never did booked about 7%. That is correlation, since people who pick up are often warmer, but you cannot book a lead you never reach."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why do most cleaning leads not book?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In 432 lost leads, the top reasons were never being reached (29%), going silent after talking to us (26%) and price (24%). Together that is 79% of losses."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the owner close better than the team?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not by much. On the same kind of lead, once someone had the customer on the phone, about 1 in 5 booked whoever it was. The owner closed 24% of 29 calls and the team about 20%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How fast should a cleaning company reply to a lead?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Within minutes. Calls, texts and Local Services leads were reached in a median of 1 to 2 minutes, but website forms took 11 minutes and 41% arrived outside working hours. An automatic reply covers the hours nobody is working."
+            }
+          }
+        ],
+      },
+    ],
+  },
+  {
     path: '/compare/fsm-job-profitability-reporting',
     title: 'Housecall Pro vs Jobber vs ServiceTitan: Profitability Reporting',
     description:
