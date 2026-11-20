@@ -48,6 +48,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/benchmarks/cleaning-lead-response" className="text-slate-400 hover:text-white transition-colors">
+                  Lead Response Benchmark
+                </Link>
+              </li>
+              <li>
                 <Link to="/blog" className="text-slate-400 hover:text-white transition-colors">
                   Blog
                 </Link>
