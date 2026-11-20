@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { PLAYBOOKS } from '../content/playbooks'
+import { LIVE_PLAYBOOKS as PLAYBOOKS } from '../content/playbooks'
 
 export default function Playbooks() {
   return (

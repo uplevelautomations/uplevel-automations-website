@@ -227,18 +227,6 @@ export const ROUTES_META: RouteMeta[] = [
       'Every system we sell runs first inside a real cleaning company doing 200+ cleans a month. The dashboard, the daily briefing, the hiring bot, the blog automator — all live.',
   },
   {
-    path: '/playbooks',
-    title: 'Free AI Automation Playbooks for Cleaning Companies | UpLevel',
-    description:
-      'Free playbooks on the AI automations I run in my own cleaning company: what each one does, the rules that make it work, and the real numbers.',
-  },
-  {
-    path: '/playbooks/ai-lead-follow-up',
-    title: 'The AI Lead Follow-Up Playbook for Cleaning Companies (Free) | UpLevel',
-    description:
-      'Seven AI automations that make sure no cleaning lead gets dropped, in build order: instant replies, a junk filter, the 15-minute nudge, an AI reader, and more. Free, 13 pages.',
-  },
-  {
     path: '/personal-assistant',
     title: 'AI Personal Assistant Kit | UpLevel Automations',
     description:

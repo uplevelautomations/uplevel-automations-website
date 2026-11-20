@@ -37,7 +37,7 @@ import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import Playbooks from './pages/Playbooks'
 import Playbook from './pages/Playbook'
-import { PLAYBOOKS } from './content/playbooks'
+import { LIVE_PLAYBOOKS } from './content/playbooks'
 import NotFound from './pages/NotFound'
 
 export default function AppRoutes() {
@@ -75,8 +75,8 @@ export default function AppRoutes() {
       <Route path="/compare/fsm-job-profitability-reporting" element={<FsmProfitReporting />} />
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/terms" element={<Terms />} />
-      <Route path="/playbooks" element={<Playbooks />} />
-      {PLAYBOOKS.map((p) => (
+      {LIVE_PLAYBOOKS.length > 0 && <Route path="/playbooks" element={<Playbooks />} />}
+      {LIVE_PLAYBOOKS.map((p) => (
         <Route key={p.slug} path={`/playbooks/${p.slug}`} element={<Playbook playbook={p} />} />
       ))}
       <Route path="/blog" element={<Blog />} />
