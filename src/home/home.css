@@ -375,7 +375,7 @@
 }
 .vc-console__body {
   padding: 16px 16px 8px;
-  height: 392px;
+  height: 486px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -383,12 +383,12 @@
   overflow: hidden;
   font-size: 12.5px;
   line-height: 1.45;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 22%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 8%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 8%);
 }
 .vc-log {
   display: grid;
-  grid-template-columns: 62px 96px 1fr;
+  grid-template-columns: 72px 112px 1fr;
   gap: 10px;
   animation: vc-logline 0.4s ease both;
 }
@@ -456,7 +456,7 @@
 }
 @media (max-width: 520px) {
   .vc-log {
-    grid-template-columns: 50px 1fr;
+    grid-template-columns: 66px 1fr;
   }
   .vc-log b {
     display: none;
