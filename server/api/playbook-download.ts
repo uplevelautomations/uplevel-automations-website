@@ -3,7 +3,7 @@
 // email Roy the lead. The page shows the download once this returns 200.
 import { Request, Response } from 'express'
 import { Resend } from 'resend'
-import { PLAYBOOKS } from '../../src/content/playbooks'
+import { LIVE_PLAYBOOKS as PLAYBOOKS } from '../../src/content/playbooks'
 
 const SITE = 'https://www.uplevelautomations.com'
 const CALL_URL = 'https://cal.com/roy-banwell/30minaicall'

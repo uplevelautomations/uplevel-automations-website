@@ -9,6 +9,8 @@
 // public/playbooks/files/, and a meta entry in src/seo/meta.ts.
 
 export interface Playbook {
+  /** Only live playbooks get a page, a sitemap entry and nav links. Roy launches them. */
+  live: boolean
   slug: string
   title: string
   forWho: string
@@ -24,6 +26,7 @@ export interface Playbook {
 
 export const PLAYBOOKS: Playbook[] = [
   {
+    live: false, // taken down 2026-11-20 (Roy: "the point is that I launch these things")
     slug: 'ai-lead-follow-up',
     title: 'The AI Lead Follow-Up Playbook',
     forWho: 'for cleaning companies',
@@ -53,5 +56,7 @@ export const PLAYBOOKS: Playbook[] = [
     ],
   },
 ]
+
+export const LIVE_PLAYBOOKS = PLAYBOOKS.filter((p) => p.live)
 
 export const playbookBySlug = (slug: string) => PLAYBOOKS.find((p) => p.slug === slug)
