@@ -177,6 +177,15 @@ export const ROUTES_META: RouteMeta[] = [
     noindex: true,
   },
   {
+    // Second design variant of the homepage (AI-forward). noindex, like /versionb.
+    path: '/versionc',
+    title: 'UpLevel | AI That Works Your Leads While You Sleep',
+    description:
+      'AI lead follow-up and automations for cleaning companies, built by an operator who took his own from $13K to $60K a month. Builds from $1,500 with a 30-day money-back guarantee.',
+    noSitemap: true,
+    noindex: true,
+  },
+  {
     path: '/ai-readiness',
     title: 'AI Readiness Assessment for Cleaning Companies | UpLevel Automations',
     description:
