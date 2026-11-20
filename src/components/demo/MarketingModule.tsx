@@ -24,7 +24,7 @@ const statusStyle = (s: Status) => {
 }
 
 const channelColors = {
-  googleAds: '#2563eb',
+  googleAds: '#c4532f',
   gbp: '#10b981',
   angi: '#f59e0b',
   website: '#8b5cf6',
@@ -117,10 +117,10 @@ export default function MarketingModule() {
         <p className="text-xs text-slate-400 mb-4">Source: Ads + GBP + Angi + GA4</p>
         <ResponsiveContainer width="100%" height={220}>
           <LineChart data={weeklyLeadsByChannel} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
-            <CartesianGrid stroke="#f1f5f9" vertical={false} />
-            <XAxis dataKey="week" tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-            <YAxis tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} width={28} />
-            <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: 12 }} />
+            <CartesianGrid stroke="#f3ede3" vertical={false} />
+            <XAxis dataKey="week" tick={{ fontSize: 11, fill: '#a99c8a' }} axisLine={false} tickLine={false} />
+            <YAxis tick={{ fontSize: 11, fill: '#a99c8a' }} axisLine={false} tickLine={false} width={28} />
+            <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #e6dccd', fontSize: 12 }} />
             <Legend wrapperStyle={{ fontSize: 11, paddingTop: 8 }} iconType="circle" iconSize={8} />
             <Line type="monotone" dataKey="googleAds" name="Google Ads" stroke={channelColors.googleAds} strokeWidth={2} dot={{ r: 3 }} isAnimationActive={false} />
             <Line type="monotone" dataKey="gbp" name="GBP" stroke={channelColors.gbp} strokeWidth={2} dot={{ r: 3 }} isAnimationActive={false} />

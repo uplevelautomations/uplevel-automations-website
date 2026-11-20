@@ -64,12 +64,12 @@ export default function RevenueModule() {
           <BarChart data={weeklyRevenue} barSize={28}>
             <XAxis
               dataKey="week"
-              tick={{ fontSize: 11, fill: '#94a3b8' }}
+              tick={{ fontSize: 11, fill: '#a99c8a' }}
               axisLine={false}
               tickLine={false}
             />
             <YAxis
-              tick={{ fontSize: 11, fill: '#94a3b8' }}
+              tick={{ fontSize: 11, fill: '#a99c8a' }}
               axisLine={false}
               tickLine={false}
               tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`}
@@ -77,9 +77,9 @@ export default function RevenueModule() {
             />
             <Tooltip
               formatter={(value: number) => [fmt(value), 'Revenue']}
-              contentStyle={{ borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: 12 }}
+              contentStyle={{ borderRadius: '8px', border: '1px solid #e6dccd', fontSize: 12 }}
             />
-            <Bar dataKey="revenue" fill="#2563eb" radius={[4, 4, 0, 0]} isAnimationActive={false} />
+            <Bar dataKey="revenue" fill="#c4532f" radius={[4, 4, 0, 0]} isAnimationActive={false} />
           </BarChart>
         </ResponsiveContainer>
       </div>

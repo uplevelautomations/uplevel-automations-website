@@ -7,7 +7,17 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background-color: #FAFAF8;
-  color: #1e293b;
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  background-color: #f7f2e9;
+  color: #221d17;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Page headlines use the homepage's serif. Instrument Serif has one weight,
+   so the bold utility classes on h1/h2 are neutralised here. */
+h1,
+h2 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em;
 }

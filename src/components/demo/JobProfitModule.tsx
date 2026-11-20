@@ -8,7 +8,7 @@ const fmt = (n: number) =>
 
 const marginColor = (margin: number) => {
   if (margin >= 55) return '#10b981' // emerald
-  if (margin >= 40) return '#2563eb' // blue
+  if (margin >= 40) return '#c4532f' // blue
   if (margin >= 30) return '#f59e0b' // amber
   return '#ef4444' // red
 }
@@ -48,12 +48,12 @@ export default function JobProfitModule() {
           >
             <XAxis
               dataKey="type"
-              tick={{ fontSize: 11, fill: '#94a3b8' }}
+              tick={{ fontSize: 11, fill: '#a99c8a' }}
               axisLine={false}
               tickLine={false}
             />
             <YAxis
-              tick={{ fontSize: 11, fill: '#94a3b8' }}
+              tick={{ fontSize: 11, fill: '#a99c8a' }}
               axisLine={false}
               tickLine={false}
               tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`}
@@ -61,7 +61,7 @@ export default function JobProfitModule() {
             />
             <Tooltip
               formatter={(value: number) => [fmt(value), 'Revenue']}
-              contentStyle={{ borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: 12 }}
+              contentStyle={{ borderRadius: '8px', border: '1px solid #e6dccd', fontSize: 12 }}
             />
             <Bar dataKey="revenue" isAnimationActive={false}>
               {jobTypes.map((entry) => (
