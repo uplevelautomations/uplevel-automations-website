@@ -4,6 +4,7 @@
 import { useEffect, type CSSProperties } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './home/home.css'
+import Logo from './components/Logo'
 import {
   Arrow,
   CallButton,
@@ -115,8 +116,7 @@ export default function App() {
       <header className="vc-nav">
         <div className="vc-wrap vc-nav__in">
           <a href="#top" className="vc-brand" aria-label="UpLevel">
-            UpLevel
-            <span className="vc-cursor" aria-hidden="true" />
+            <Logo size={30} />
           </a>
           <nav className="vc-nav__links" aria-label="Sections">
             <a href="#start">Where to start</a>

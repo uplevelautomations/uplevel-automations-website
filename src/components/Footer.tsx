@@ -27,7 +27,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/ai-readiness" className="text-slate-400 hover:text-white transition-colors">
-                  AI Readiness Assessment
+                  Where to start quiz
+                </Link>
+              </li>
+              <li>
+                <Link to="/personal-assistant" className="text-slate-400 hover:text-white transition-colors">
+                  AI Assistant Kit (free)
                 </Link>
               </li>
               <li>
