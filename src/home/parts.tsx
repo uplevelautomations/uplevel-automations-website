@@ -1,10 +1,45 @@
 import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from 'react'
 import Cal from '@calcom/embed-react'
-import { Arrow, CALL_URL, useInView } from '../versionb/parts'
+
+export const CALL_URL = 'https://cal.com/roy-banwell/30minaicall'
+
+/** True once the element has scrolled into view (stays true). */
+export function useInView<T extends Element>(threshold = 0.25) {
+  const ref = useRef<T>(null)
+  const [inView, setInView] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    if (typeof IntersectionObserver === 'undefined') {
+      setInView(true)
+      return
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          io.disconnect()
+        }
+      },
+      { threshold },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [threshold])
+  return [ref, inView] as const
+}
+
+export function Arrow() {
+  return (
+    <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+      <path d="M0 7h17M11 1l6 6-6 6" stroke="currentColor" strokeWidth="2.4" />
+    </svg>
+  )
+}
 
 export function track(text: string, location: string) {
   if (typeof window !== 'undefined') {
-    window.dataLayer?.push({ event: 'cta_click', cta_text: text, cta_location: `vc_${location}` })
+    window.dataLayer?.push({ event: 'cta_click', cta_text: text, cta_location: `home_${location}` })
   }
 }
 
@@ -80,6 +115,18 @@ const LOG: Line[] = [
   { t: '14:42', k: 'review.ask', v: 'Google review link sent', tone: 'win' },
 ]
 
+const LABELS: Record<string, string> = {
+  'lead.new': 'New lead',
+  'reply.sent': 'Replied',
+  thinking: 'Thinking',
+  followup: 'Follow-up',
+  'thread.read': 'Read reply',
+  booked: 'Booked',
+  reactivate: 'Old leads',
+  'clean.done': 'Clean done',
+  'review.ask': 'Review ask',
+}
+
 export function Console() {
   const [ref, inView] = useInView<HTMLDivElement>(0.3)
   const [n, setN] = useState(0)
@@ -117,7 +164,7 @@ export function Console() {
       <div className="vc-console" aria-label="Example activity log">
         <div className="vc-console__bar">
           <span>
-            <i /> uplevel · activity
+            <i /> Activity
           </span>
           <span>example day</span>
         </div>
@@ -128,7 +175,7 @@ export function Console() {
             ) : (
               <div key={i} className={`vc-log ${l.tone ? `vc-log--${l.tone}` : ''}`}>
                 <time>{l.t}</time>
-                <b>{l.k}</b>
+                <b>{LABELS[l.k] ?? l.k}</b>
                 <span>{l.v}</span>
               </div>
             ),
@@ -441,7 +488,7 @@ export function Calculator() {
   )
 }
 
-export function InlineBooking({ dark = true }: { dark?: boolean }) {
+export function InlineBooking({ dark = false }: { dark?: boolean }) {
   const [ref, inView] = useInView<HTMLDivElement>(0.05)
   return (
     <div ref={ref} className="vc-cal">

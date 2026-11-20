@@ -52,7 +52,7 @@ export const ORG_SCHEMA = {
   name: 'UpLevel Automations',
   url: `${SITE_ORIGIN}/`,
   description:
-    'AI operations dashboards and automation for cleaning companies. Built by an operator who runs a cleaning company.',
+    'AI systems for cleaning companies: lead follow-up, back-office automation and an AI foundation the owner controls. Built by an operator who runs a cleaning company.',
   founder: PERSON_SCHEMA,
   sameAs: [
     'https://x.com/Roy_Banwell',
@@ -69,7 +69,7 @@ export const ORG_SCHEMA = {
     'Job profitability',
     'Crew performance',
     'AI automation',
-    'Operations dashboards',
+    'Lead follow-up automation',
   ],
 }
 
@@ -162,28 +162,9 @@ function blogPostMeta(post: BlogPost): RouteMeta {
 export const ROUTES_META: RouteMeta[] = [
   {
     path: '/',
-    title: 'UpLevel | AI Lead Follow-Up and Automations for Cleaning Companies',
+    title: 'UpLevel | AI Systems for Cleaning Companies, Built by an Operator',
     description:
-      'I took my cleaning company from $13K to $60K a month with AI systems I built. Now I build them for other cleaning companies: instant lead follow-up, re-engaging old leads, and back-office automations. Money-back guarantee.',
-  },
-  {
-    // Design variant of the homepage, for comparison. Kept out of search
-    // (noindex) and the sitemap so it never competes with "/".
-    path: '/versionb',
-    title: 'UpLevel | AI Lead Follow-Up and Automations for Cleaning Companies',
-    description:
-      'I took my cleaning company from $13K to $60K a month with AI systems I built. Now I build them for other cleaning companies. Builds from $1,500 with a 30-day money-back guarantee.',
-    noSitemap: true,
-    noindex: true,
-  },
-  {
-    // Second design variant of the homepage (AI-forward). noindex, like /versionb.
-    path: '/versionc',
-    title: 'UpLevel | AI That Works Your Leads While You Sleep',
-    description:
-      'AI lead follow-up and automations for cleaning companies, built by an operator who took his own from $13K to $60K a month. Builds from $1,500 with a 30-day money-back guarantee.',
-    noSitemap: true,
-    noindex: true,
+      'Run your cleaning company on AI, not more office staff. I took mine from $13K to $60K a month with AI systems I built. Now I build them for other cleaning companies: lead follow-up, back office, and an AI foundation you own. Builds from $1,500, 30-day money-back guarantee.',
   },
   {
     path: '/ai-readiness',
