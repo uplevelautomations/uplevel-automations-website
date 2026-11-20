@@ -167,6 +167,16 @@ export const ROUTES_META: RouteMeta[] = [
       'I took my cleaning company from $13K to $60K a month with AI systems I built. Now I build them for other cleaning companies: instant lead follow-up, re-engaging old leads, and back-office automations. Money-back guarantee.',
   },
   {
+    // Design variant of the homepage, for comparison. Kept out of search
+    // (noindex) and the sitemap so it never competes with "/".
+    path: '/versionb',
+    title: 'UpLevel | AI Lead Follow-Up and Automations for Cleaning Companies',
+    description:
+      'I took my cleaning company from $13K to $60K a month with AI systems I built. Now I build them for other cleaning companies. Builds from $1,500 with a 30-day money-back guarantee.',
+    noSitemap: true,
+    noindex: true,
+  },
+  {
     path: '/ai-readiness',
     title: 'AI Readiness Assessment for Cleaning Companies | UpLevel Automations',
     description:
