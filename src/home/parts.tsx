@@ -96,36 +96,36 @@ export function CallButton({
 /* Console: an example day of the system at work, streamed line by     */
 /* line. Illustrative, and labelled that way on the page.              */
 /* ------------------------------------------------------------------ */
-type Line = { t: string; k: string; v: string; tone?: 'think' | 'win' } | 'gap'
+// One example day at a cleaning company. Every situation is something the
+// systems handle for real (in Roy's company or a client's); names are made up.
+// tone: 'think' = what the AI decided, 'win' = the problem solved.
+// stat: counted in the footer.
+type Line =
+  | { t: string; k: string; v: string; tone?: 'think' | 'win'; stat?: 'problem' | 'job' }
+  | 'gap'
 
 const LOG: Line[] = [
-  { t: '23:47', k: 'lead.new', v: 'Maria G. · website quote form' },
-  { t: '23:47', k: 'reply.sent', v: '“Hi Maria, got your request…” · 7s' },
-  { t: '23:47', k: 'thinking', v: 'After hours. Nobody on shift. Start follow-up.', tone: 'think' },
+  { t: '7:02 AM', k: 'Running late', v: 'Ana is 25 min behind for the Garcias', stat: 'problem' },
+  { t: '7:02 AM', k: 'AI decided', v: 'Text the client before she has to ask.', tone: 'think' },
+  { t: '7:03 AM', k: 'Fixed', v: 'Mrs. Garcia says no problem.', tone: 'win' },
   'gap',
-  { t: '08:15', k: 'followup', v: 'Day 1 text sent' },
-  { t: '10:02', k: 'thread.read', v: 'She replied: “Thursday works”' },
-  { t: '10:02', k: 'thinking', v: 'Ready to book. Alert the team.', tone: 'think' },
-  { t: '10:03', k: 'booked', v: 'Thu 9:00 AM · first clean', tone: 'win' },
+  { t: '9:40 AM', k: 'Unhappy client', v: '“They missed the baseboards again”', stat: 'problem' },
+  { t: '9:40 AM', k: 'AI decided', v: 'Alert the office. No review ask.', tone: 'think' },
+  { t: '9:52 AM', k: 'Fixed', v: 'Re-clean booked. Mr. Lee is happy.', tone: 'win' },
   'gap',
-  { t: '11:30', k: 'reactivate', v: '50 old leads texted today' },
-  { t: '14:30', k: 'clean.done', v: 'Check-in sent to the Parkers' },
-  { t: '14:41', k: 'thread.read', v: '“Everything looked great, thank you!”' },
-  { t: '14:41', k: 'thinking', v: 'Happy customer. Ask for a review.', tone: 'think' },
-  { t: '14:42', k: 'review.ask', v: 'Google review link sent', tone: 'win' },
+  { t: '11:15 AM', k: 'Cancellation', v: 'Thursday 9 AM just opened up', stat: 'problem' },
+  { t: '11:15 AM', k: 'AI decided', v: 'Offer it to the closest free cleaner.', tone: 'think' },
+  { t: '11:31 AM', k: 'Filled', v: 'Maria took it. Schedule updated.', tone: 'win', stat: 'job' },
+  'gap',
+  { t: '1:00 PM', k: 'Old leads', v: '20 never-booked leads get a check-in' },
+  { t: '2:18 PM', k: 'Booked', v: 'One books a deep clean next week', tone: 'win', stat: 'job' },
+  'gap',
+  { t: '3:45 PM', k: 'Happy client', v: '“Everything looked amazing!”' },
+  { t: '3:45 PM', k: 'AI decided', v: 'Send the Google review link.', tone: 'think' },
+  'gap',
+  { t: '11:47 PM', k: 'New lead', v: 'Website quote. Office is closed.' },
+  { t: '11:47 PM', k: 'Answered', v: 'Texted back in seconds.', tone: 'win' },
 ]
-
-const LABELS: Record<string, string> = {
-  'lead.new': 'New lead',
-  'reply.sent': 'Replied',
-  thinking: 'Thinking',
-  followup: 'Follow-up',
-  'thread.read': 'Read reply',
-  booked: 'Booked',
-  reactivate: 'Old leads',
-  'clean.done': 'Clean done',
-  'review.ask': 'Review ask',
-}
 
 export function Console() {
   const [ref, inView] = useInView<HTMLDivElement>(0.3)
@@ -149,7 +149,7 @@ export function Console() {
       }
       setN(i)
       const next = LOG[i]
-      const wait = i === LOG.length ? 5200 : next === 'gap' ? 250 : typeof next === 'object' && next.tone === 'think' ? 1100 : 750
+      const wait = i === LOG.length ? 7000 : next === 'gap' ? 250 : typeof next === 'object' && next.tone === 'think' ? 1100 : 750
       timer = setTimeout(step, wait)
     }
     timer = setTimeout(step, 700)
@@ -157,16 +157,16 @@ export function Console() {
   }, [inView])
 
   const shown = LOG.slice(0, n)
-  const count = (k: string) => shown.filter((l) => l !== 'gap' && l.k === k).length
+  const count = (s: 'problem' | 'job') => shown.filter((l) => l !== 'gap' && l.stat === s).length
 
   return (
     <div ref={ref}>
       <div className="vc-console" aria-label="Example activity log">
         <div className="vc-console__bar">
           <span>
-            <i /> Activity
+            <i /> Today at a cleaning company
           </span>
-          <span>example day</span>
+          <span>example</span>
         </div>
         <div className="vc-console__body" aria-hidden="true">
           {shown.map((l, i) =>
@@ -175,7 +175,7 @@ export function Console() {
             ) : (
               <div key={i} className={`vc-log ${l.tone ? `vc-log--${l.tone}` : ''}`}>
                 <time>{l.t}</time>
-                <b>{LABELS[l.k] ?? l.k}</b>
+                <b>{l.k}</b>
                 <span>{l.v}</span>
               </div>
             ),
@@ -183,12 +183,12 @@ export function Console() {
         </div>
         <div className="vc-console__foot">
           <div>
-            <b>{count('reply.sent') + count('followup') + count('review.ask') + (count('reactivate') ? 50 : 0)}</b>
-            messages sent
+            <b>{count('problem')}</b>
+            problems handled
           </div>
           <div>
-            <b>{count('booked')}</b>
-            job booked
+            <b>{count('job')}</b>
+            jobs filled or booked
           </div>
           <div>
             <b>0</b>
@@ -196,7 +196,7 @@ export function Console() {
           </div>
         </div>
       </div>
-      <p className="vc-console__cap">An example day. Names and times are illustrative.</p>
+      <p className="vc-console__cap">An example day. Names are made up; every situation is one these systems handle.</p>
     </div>
   )
 }
