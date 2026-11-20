@@ -78,6 +78,12 @@ const sections: LegalSection[] = [
               and finished, and which recommendation it gave.
             </>,
             <>
+              <strong>Free playbooks.</strong> To download a playbook you give your name, email,
+              phone, company name and roughly how many leads you get a month. We email you the
+              download link and send your details to Roy, who may contact you once to see if it
+              helped. You are not added to a mailing list.
+            </>,
+            <>
               <strong>Process Mapper.</strong> Your name and email, plus everything you write
               in the conversation. That typically includes your business name, business type,
               team size, the tools you use, and a description of how one of your processes

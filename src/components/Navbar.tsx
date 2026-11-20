@@ -74,6 +74,13 @@ export default function Navbar() {
               <div className="absolute top-full left-0 pt-2 w-56">
                 <div className="bg-white rounded-lg shadow-lg border border-slate-200 py-2">
                 <Link
+                  to="/playbooks/ai-lead-follow-up"
+                  className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                >
+                  <div className="font-medium">Free playbooks</div>
+                  <div className="text-xs text-slate-500 mt-0.5">The AI lead follow-up playbook</div>
+                </Link>
+                <Link
                   to="/ai-readiness"
                   className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900"
                 >
@@ -158,6 +165,13 @@ export default function Navbar() {
               Answers
             </Link>
             <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider pt-2">Tools</div>
+            <Link
+              to="/playbooks/ai-lead-follow-up"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-slate-700 hover:text-blue-600 font-medium"
+            >
+              Free playbooks
+            </Link>
             <Link
               to="/ai-readiness"
               onClick={() => setMobileMenuOpen(false)}

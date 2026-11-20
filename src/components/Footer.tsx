@@ -26,6 +26,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/playbooks" className="text-slate-400 hover:text-white transition-colors">
+                  Free playbooks
+                </Link>
+              </li>
+              <li>
                 <Link to="/ai-readiness" className="text-slate-400 hover:text-white transition-colors">
                   Where to start quiz
                 </Link>

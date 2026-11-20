@@ -227,6 +227,18 @@ export const ROUTES_META: RouteMeta[] = [
       'Every system we sell runs first inside a real cleaning company doing 200+ cleans a month. The dashboard, the daily briefing, the hiring bot, the blog automator — all live.',
   },
   {
+    path: '/playbooks',
+    title: 'Free AI Automation Playbooks for Cleaning Companies | UpLevel',
+    description:
+      'Free playbooks on the AI automations I run in my own cleaning company: what each one does, the rules that make it work, and the real numbers.',
+  },
+  {
+    path: '/playbooks/ai-lead-follow-up',
+    title: 'The AI Lead Follow-Up Playbook for Cleaning Companies (Free) | UpLevel',
+    description:
+      'Seven AI automations that make sure no cleaning lead gets dropped, in build order: instant replies, a junk filter, the 15-minute nudge, an AI reader, and more. Free, 13 pages.',
+  },
+  {
     path: '/personal-assistant',
     title: 'AI Personal Assistant Kit | UpLevel Automations',
     description:
@@ -291,12 +303,12 @@ export const ROUTES_META: RouteMeta[] = [
     path: '/answers/one-time-to-recurring-conversion-rate',
     title: "What's My One-Time to Recurring Conversion Rate? | UpLevel Automations",
     description:
-      'How to compute one-time to recurring conversion for a cleaning company. Peers benchmark around 20%. Mine measured 3.7%, and this is what that gap costs.',
+      'How to compute one-time to recurring conversion for a cleaning company, what peers call healthy (around 20%), and how to price the gap.',
     ogType: 'article',
     schema: articleSchema(
       '/answers/one-time-to-recurring-conversion-rate',
       "What's My One-Time to Recurring Conversion Rate?",
-      'How to compute one-time to recurring conversion, with a real measured baseline of 3.7% vs the ~20% peer benchmark.',
+      'How to compute one-time to recurring conversion against the ~20% peer benchmark, and how to price the gap.',
       '2026-08-07',
     ),
   },
@@ -460,12 +472,12 @@ export const ROUTES_META: RouteMeta[] = [
     path: '/benchmarks/cleaning-lead-response',
     title: 'Cleaning Lead Response Benchmark: What 935 Leads Showed | UpLevel Automations',
     description:
-      'Real data from 935 cleaning-company leads: 12% booked, about 20% when reached by phone versus 7% when not, and why the rest were lost.',
+      'Real data from 935 cleaning-company leads: reached leads were about 3x as likely to book, the three reasons behind 79% of lost leads, and how fast each source gets a reply.',
     ogType: 'article',
     schema: [
       ...articleSchema(
         '/benchmarks/cleaning-lead-response',
-        'What 935 Cleaning Leads Showed About Who Books',
+        'What 935 Cleaning Leads Showed About Why Leads Don’t Book',
         'Real data from 935 cleaning-company leads: who books, why the rest are lost, and how fast each lead source gets reached.',
         '2026-11-20',
       ),
@@ -475,18 +487,10 @@ export const ROUTES_META: RouteMeta[] = [
         mainEntity: [
           {
             "@type": "Question",
-            "name": "What percentage of cleaning leads book?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "In my company, 12% of real leads booked within 14 days (112 of 935, September to November 2026). By source it varied a lot: in late September to late October (481 leads), the two biggest sources booked 7% (Google Local Services Ads) and 15% (Google Ads search)."
-            }
-          },
-          {
-            "@type": "Question",
             "name": "How much does reaching a lead by phone matter?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A lot. Leads that had a real phone conversation booked about 20% of the time; leads that never did booked about 7%. That is correlation, since people who pick up are often warmer, but you cannot book a lead you never reach."
+              "text": "A lot. Leads that had a real phone conversation were about three times as likely to book as leads that never did. That is correlation, since people who pick up are often warmer, but you cannot book a lead you never reach."
             }
           },
           {
@@ -502,7 +506,7 @@ export const ROUTES_META: RouteMeta[] = [
             "name": "Does the owner close better than the team?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Not by much. On the same kind of lead, once someone had the customer on the phone, about 1 in 5 booked whoever it was. The owner closed 24% of 29 calls and the team about 20%."
+              "text": "Not by much. On the same kind of lead, once someone had the customer on the phone, the owner and the team closed at about the same rate."
             }
           },
           {

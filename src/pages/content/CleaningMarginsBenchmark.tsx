@@ -111,24 +111,17 @@ export default function CleaningMarginsBenchmark() {
         blurb="This report updates as more cleans complete. One email when new numbers publish. No sequence, no pitch."
       />
 
-      <h2>The number that embarrassed me: 3.7%</h2>
+      <h2>The number to measure next: one-time to recurring</h2>
       <p>
         A cleaning company owner in a peer group asked me my one-time-to-recurring conversion
         rate. He said it should be around 20%. I didn't know mine. The data was sitting in my
-        booking log, so I wrote the query.
+        booking log, so I wrote the query that day.
       </p>
       <p>
-        Out of 295 one-time customers (excluding move-in/move-out cleans, which are inherently
-        one-off), 11 later booked a recurring cadence. That's <strong>3.7%</strong>, roughly a
-        fifth of the peer benchmark. Every point of that gap is a customer I already paid to
-        acquire, already served, and then let walk away. I would never have known this number
-        without asking the question against real data, and I run the company.
-      </p>
-      <p>
-        Priced out: closing the gap to 20% on those same 295 customers would have meant roughly
-        48 more recurring customers. If even half of them landed on a monthly cadence, that's
-        about $34,000 a year in gross profit at my average margin per clean, from customers I
-        had already acquired. How to compute your own rate is in{' '}
+        Every one-time customer who never comes back is a customer you already paid to acquire,
+        already served, and then let walk away. At about $120 gross profit per clean, each one who
+        moves to a monthly or biweekly plan is worth well over a thousand dollars a year. How to
+        compute your own rate is in{' '}
         <Link to="/answers/one-time-to-recurring-conversion-rate">the conversion answer</Link>.
       </p>
 
@@ -145,7 +138,7 @@ export default function CleaningMarginsBenchmark() {
         </li>
         <li>
           <strong>Measure conversion from one-time to recurring.</strong> If you don't know
-          yours, it's probably worse than you think. Mine was.
+          yours, it's probably worse than you think.
         </li>
         <li>
           <strong>None of this requires new software you don't already have.</strong> The data

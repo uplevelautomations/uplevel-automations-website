@@ -247,7 +247,7 @@ export default function App() {
             <Reveal>
               <p className="vc-label">I measured it</p>
               <h2 className="vc-h vc-h2">
-                Leads that got reached booked at <em>three times</em> the rate.
+                Leads that got reached were <em>three times</em> as likely to book.
               </h2>
               <p className="vc-lede">
                 I went through 935 real leads in my own company: every call, every text, every booking. The biggest
