@@ -168,9 +168,9 @@ export const ROUTES_META: RouteMeta[] = [
   },
   {
     path: '/ai-readiness',
-    title: 'AI Readiness Assessment for Cleaning Companies | UpLevel Automations',
+    title: 'Where Should Your Cleaning Company Start With AI? Free 60-Second Quiz | UpLevel',
     description:
-      'A free 2-minute assessment for cleaning company owners. Find out where AI and automation can actually help your operation, and what to fix first.',
+      'Eight quick questions for cleaning and home service owners. Get one clear recommendation: what to build first, why, what it costs, and what your old leads might be worth.',
   },
   {
     path: '/process-mapper',

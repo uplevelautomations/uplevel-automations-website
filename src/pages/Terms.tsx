@@ -32,7 +32,7 @@ const sections: LegalSection[] = [
               systems we have built.
             </>,
             <>
-              <strong>Free tools.</strong> The AI Readiness Assessment and the Process Mapper.
+              <strong>Free tools.</strong> The "where to start" quiz, the AI Assistant Kit and the Process Mapper.
             </>,
             <>
               <strong>A way to start a conversation.</strong> Booking a call about paid work.

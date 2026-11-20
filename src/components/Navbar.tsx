@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Logo from './Logo'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 export default function Navbar() {
@@ -19,9 +20,8 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#f7f2e9]/85 backdrop-blur-md border-b border-slate-200/50">
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <Link to="/" className="font-serif text-[28px] leading-none text-slate-900 inline-flex items-center gap-1" aria-label="UpLevel">
-          UpLevel
-          <span className="inline-block w-[10px] h-[22px] bg-blue-600 ml-1" aria-hidden="true" />
+        <Link to="/" className="text-slate-900 inline-flex items-center" aria-label="UpLevel">
+            <Logo size={30} />
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
@@ -77,8 +77,15 @@ export default function Navbar() {
                   to="/ai-readiness"
                   className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900"
                 >
-                  <div className="font-medium">AI Readiness Assessment</div>
-                  <div className="text-xs text-slate-500 mt-0.5">See if your business is ready for AI</div>
+                  <div className="font-medium">Where to start quiz</div>
+                  <div className="text-xs text-slate-500 mt-0.5">60 seconds, one recommendation</div>
+                </Link>
+                <Link
+                  to="/personal-assistant"
+                  className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                >
+                  <div className="font-medium">AI Assistant Kit</div>
+                  <div className="text-xs text-slate-500 mt-0.5">Free: set up your own AI assistant</div>
                 </Link>
                 <Link
                   to="/process-mapper"
@@ -156,7 +163,14 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               className="block py-2 text-slate-700 hover:text-blue-600 font-medium"
             >
-              AI Readiness Assessment
+              Where to start quiz
+            </Link>
+            <Link
+              to="/personal-assistant"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-slate-700 hover:text-blue-600 font-medium"
+            >
+              AI Assistant Kit (free)
             </Link>
             <Link
               to="/process-mapper"

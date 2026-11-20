@@ -71,9 +71,11 @@ const sections: LegalSection[] = [
         <LegalList
           items={[
             <>
-              <strong>AI Readiness Assessment.</strong> Your name and email, your phone number
-              and how you heard about us if you provide them, and your answers to the ten
-              questions. We also record the score the assessment calculates.
+              <strong>The "where to start" quiz.</strong> Your answers stay in your browser unless
+              you choose to email yourself the plan. If you do, we receive your answers, your name
+              and email, your phone number and how you heard about us if you provide them, and the
+              recommendation the quiz gave you. We also record anonymously that a quiz was started
+              and finished, and which recommendation it gave.
             </>,
             <>
               <strong>Process Mapper.</strong> Your name and email, plus everything you write

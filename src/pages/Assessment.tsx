@@ -1,6 +1,13 @@
+// "Where should you start?" quiz, served at /ai-readiness (the old URL, so
+// existing links keep working). Rebuilt 2026-11-20: replaces the old
+// readiness score with one recommendation that matches the offer
+// (RELAUNCH-OFFER-2026-11.md, CURRENT OFFER): start with leads ($1,500),
+// start with the foundation ($2,500), or one back-office build ($1,500).
+// Results show right away; email is optional and only sends the plan.
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Cal from '@calcom/embed-react'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 declare global {
   interface Window {
@@ -8,1122 +15,513 @@ declare global {
   }
 }
 
-// Types
-interface Question {
-  id: string
-  question: string
-  type: 'select' | 'text'
-  hint?: string
-  options?: { label: string; value: string; score?: number }[]
-  conditional?: { questionId: string; values: string[] }
-}
+const CALL_URL = 'https://cal.com/roy-banwell/30minaicall'
+const SHEET_URL =
+  'https://script.google.com/macros/s/AKfycbzs806_T0UUwSAMwZa_ppjAobgf4STx_85d3pGjGCc28fr4GTRnG6RkBAm-BhMVBy-XaA/exec'
 
-interface Answers {
-  [key: string]: string
-}
+type Option = { value: string; label: string }
+type Question = { id: string; q: string; options: Option[] }
 
-// Questions data based on spec
-const questions: Question[] = [
+const QUESTIONS: Question[] = [
   {
-    id: 'q1',
-    question: 'How much time do you and your team spend each week on repetitive, manual tasks?',
-    type: 'select',
-    hint: 'Add up hours across your whole team. Think: confirming and rescheduling appointments, chasing payments, copying info between your scheduling tool and QuickBooks, answering the same customer texts, building cleaner schedules.',
+    id: 'business',
+    q: 'What kind of business do you run?',
     options: [
-      { label: 'Less than 10 hours', value: 'less-10', score: 5 },
-      { label: '10-25 hours', value: '10-25', score: 10 },
-      { label: '25-50 hours', value: '25-50', score: 15 },
-      { label: 'More than 50 hours', value: 'more-50', score: 20 },
+      { value: 'residential', label: 'Residential cleaning' },
+      { value: 'commercial', label: 'Commercial cleaning' },
+      { value: 'home-service', label: 'Another home service (lawn, pest, HVAC...)' },
+      { value: 'other', label: 'Something else' },
     ],
   },
   {
-    id: 'q2',
-    question: 'Do you have documented processes for your core operations?',
-    type: 'select',
-    hint: 'SOPs, checklists, training docs, anything that explains how to do a task without asking someone.',
+    id: 'leads',
+    q: 'Roughly how many new leads do you get a month?',
     options: [
-      { label: "No, most things are in people's heads", value: 'no', score: 0 },
-      { label: 'Partially — some things are written down', value: 'partial', score: 6 },
-      { label: 'Yes, we have SOPs for most key processes', value: 'yes', score: 12 },
+      { value: 'lt25', label: 'Under 25' },
+      { value: '25-100', label: '25 to 100' },
+      { value: '100-300', label: '100 to 300' },
+      { value: '300+', label: '300 or more' },
     ],
   },
   {
-    id: 'q2a',
-    question: 'Where are your processes documented?',
-    type: 'select',
-    conditional: { questionId: 'q2', values: ['partial', 'yes'] },
+    id: 'followup',
+    q: 'What happens to a lead who doesn’t book on day one?',
     options: [
-      { label: 'In our scheduling software (Jobber, Housecall Pro, BookingKoala)', value: 'fsm' },
-      { label: 'Google Docs, Notion, or shared drives', value: 'docs' },
-      { label: 'A binder, whiteboard, or printed checklists', value: 'physical' },
-      { label: "Mostly in people's heads / group texts", value: 'heads' },
+      { value: 'manual', label: 'Someone follows up by hand, when they can' },
+      { value: 'nothing', label: 'Usually nothing' },
+      { value: 'automated', label: 'We have automatic follow-up' },
+      { value: 'unsure', label: 'Honestly, not sure' },
     ],
   },
   {
-    id: 'q3',
-    question: "What's the biggest bottleneck to growing your business right now?",
-    type: 'select',
+    id: 'oldLeads',
+    q: 'How many old leads and past customers are sitting in your CRM?',
     options: [
-      { label: 'Finding and keeping good cleaners', value: 'people' },
-      { label: 'My own time and bandwidth', value: 'time' },
-      { label: 'Generating enough leads or bookings', value: 'leads' },
-      { label: 'Cash flow or capital', value: 'cashflow' },
-      { label: 'Something else', value: 'other' },
+      { value: 'lt250', label: 'Under 250' },
+      { value: '250-1000', label: '250 to 1,000' },
+      { value: '1000-3000', label: '1,000 to 3,000' },
+      { value: '3000+', label: 'More than 3,000' },
+      { value: 'unknown', label: 'No idea' },
     ],
   },
   {
-    id: 'q4',
-    question: 'When your team encounters a problem, what usually happens?',
-    type: 'select',
-    hint: 'Think about day-to-day operational issues: a customer complaint about a clean, a cleaner calling out, a scheduling conflict, a redo.',
+    id: 'jobValue',
+    q: 'What’s a typical first job worth to you?',
     options: [
-      { label: 'They come to me for direction', value: 'come-to-me', score: 4 },
-      { label: 'They try to solve it but often need my input', value: 'need-input', score: 8 },
-      { label: 'They handle most issues independently', value: 'independent', score: 12 },
+      { value: 'lt150', label: 'Under $150' },
+      { value: '150-250', label: '$150 to $250' },
+      { value: '250-400', label: '$250 to $400' },
+      { value: '400+', label: '$400 or more' },
     ],
   },
   {
-    id: 'q5',
-    question: 'How aligned is your team on priorities and goals?',
-    type: 'select',
+    id: 'weekEater',
+    q: 'What eats most of your week?',
     options: [
-      { label: "Not really, everyone's doing their own thing", value: 'silos', score: 4 },
-      { label: 'Somewhat, but things still slip through the cracks', value: 'gaps', score: 8 },
-      { label: 'Very aligned, office and crews know the priorities', value: 'aligned', score: 12 },
+      { value: 'leads', label: 'Answering and chasing leads' },
+      { value: 'schedule', label: 'Scheduling, reschedules and cancellations' },
+      { value: 'issues', label: 'Client complaints and fixing problems' },
+      { value: 'team', label: 'Hiring and managing the team' },
+      { value: 'admin', label: 'Admin: invoices, supplies, payroll' },
     ],
   },
   {
-    id: 'q6',
-    question: "What's your current situation with AI?",
-    type: 'select',
+    id: 'goal',
+    q: 'Where do you want the business a year from now?',
     options: [
-      { label: "I'm skeptical, not sure AI is right for my business", value: 'skeptic', score: 0 },
-      { label: "I know AI could help but I haven't done anything yet", value: 'aware', score: 10 },
-      { label: "I've tried AI tools for small things like writing or research", value: 'tried', score: 12 },
-      { label: "I'm actively looking for help implementing AI in my business", value: 'looking', score: 16 },
-      { label: "We've already built automations or have technical staff handling it", value: 'advanced', score: 16 },
+      { value: 'grow', label: 'Growing fast, with me still running it' },
+      { value: 'hands-off', label: 'Running without me day to day' },
+      { value: 'sell', label: 'Ready to sell' },
+      { value: 'calmer', label: 'Same size, just less chaos' },
     ],
   },
   {
-    id: 'q7',
-    question: 'If you found one change that clearly saved you time or made you money, how would you approach it?',
-    type: 'select',
+    id: 'ai',
+    q: 'Where are you with AI so far?',
     options: [
-      { label: "Probably wouldn't act, skeptical or budget's tight", value: 'not-likely', score: 0 },
-      { label: "I'd want to see proof first", value: 'somewhat', score: 5 },
-      { label: "I'm open if the ROI is clear", value: 'likely', score: 10 },
-      { label: "I'd move on it soon", value: 'very-likely', score: 15 },
-      { label: "I'd move fast, I'm ready now", value: 'definitely', score: 20 },
-    ],
-  },
-  {
-    id: 'q8',
-    question: 'Describe your cleaning company in one sentence. (Optional)',
-    type: 'text',
-    hint: 'Helps me tailor your results. Example: "We run a residential + commercial cleaning company with 15 cleaners across the Denver metro."',
-  },
-  {
-    id: 'q9',
-    question: "What's your approximate annual revenue?",
-    type: 'select',
-    options: [
-      { label: 'Under $500k', value: 'under-500k', score: 0 },
-      { label: '$500k - $1M', value: '500k-1m', score: 4 },
-      { label: '$1M - $3M', value: '1m-3m', score: 6 },
-      { label: '$3M - $10M', value: '3m-10m', score: 8 },
-      { label: 'Over $10M', value: 'over-10m', score: 8 },
+      { value: 'none', label: 'Haven’t really tried it' },
+      { value: 'chat', label: 'I use ChatGPT or similar for writing' },
+      { value: 'broke', label: 'Tried an automation, and it broke or fizzled' },
+      { value: 'running', label: 'We already run some automations' },
     ],
   },
 ]
 
-// Calculate score
-function calculateScore(answers: Answers): number {
-  let score = 0
-  questions.forEach((q) => {
-    if (q.options) {
-      const answer = answers[q.id]
-      const option = q.options.find((o) => o.value === answer)
-      if (option?.score !== undefined) {
-        score += option.score
-      }
+type Answers = Record<string, string>
+type RecKey = 'leads' | 'foundation' | 'backoffice'
+
+const labelOf = (id: string, value: string) =>
+  QUESTIONS.find((q) => q.id === id)?.options.find((o) => o.value === value)?.label ?? ''
+
+const FIRST_BUILD: Record<string, string> = {
+  leads: 'Lead follow-up: every new lead answered in seconds and followed up until they book or say no.',
+  schedule: 'Schedule help: open jobs offered to the right cleaner and conflicts flagged before the day starts.',
+  issues: 'Client issue watcher: unhappy clients caught and flagged to your team before they cancel.',
+  team: 'Hiring funnel: applicants screened and onboarded without you on the phone.',
+  admin: 'Back-office automation: invoices, supply orders or payroll prep handled for you.',
+}
+
+const OLD_LEADS: Record<string, number> = { lt250: 150, '250-1000': 600, '1000-3000': 1800, '3000+': 3500 }
+const JOB_VALUE: Record<string, number> = { lt150: 120, '150-250': 200, '250-400': 320, '400+': 450 }
+// The one result on record: CBUS Cleaning, 12 bookings in month one from 1,430 old leads.
+const CBUS_RATE = 12 / 1430
+
+function estimate(a: Answers): number | null {
+  const n = OLD_LEADS[a.oldLeads]
+  const v = JOB_VALUE[a.jobValue]
+  if (!n || !v) return null
+  return Math.round((n * CBUS_RATE * v) / 50) * 50
+}
+
+type Plan = {
+  key: RecKey
+  title: string
+  tagline: string
+  reasons: string[]
+  firstBuild: string
+  price: string
+  next: string
+}
+
+function buildPlan(a: Answers): Plan {
+  const leadsGap = a.followup !== 'automated' && a.leads !== 'lt25'
+  const handsOff = a.goal === 'hands-off' || a.goal === 'sell'
+  const bigList = a.oldLeads === '1000-3000' || a.oldLeads === '3000+'
+
+  let key: RecKey
+  if (handsOff) key = 'foundation'
+  else if (leadsGap || a.weekEater === 'leads') key = 'leads'
+  else key = 'backoffice'
+
+  const reasons: string[] = []
+  if (leadsGap) {
+    reasons.push(
+      `You get ${labelOf('leads', a.leads).toLowerCase()} leads a month, and ${
+        a.followup === 'nothing' || a.followup === 'unsure'
+          ? 'the ones who don’t book on day one mostly never hear from you again.'
+          : 'follow-up depends on someone remembering.'
+      }`,
+    )
+  }
+  if (bigList) reasons.push(`You have ${labelOf('oldLeads', a.oldLeads).toLowerCase()} old leads and past customers you already paid for.`)
+  if (handsOff) {
+    reasons.push(
+      `You want the business ${a.goal === 'sell' ? 'ready to sell' : 'running without you'}. That takes systems you own, not one-off fixes.`,
+    )
+  }
+  if (a.weekEater && a.weekEater !== 'leads') reasons.push(`${labelOf('weekEater', a.weekEater)} eats most of your week.`)
+  if (a.ai === 'broke' && key === 'foundation') {
+    reasons.push('You’ve had an automation fizzle before. That usually happens when it’s bolted on with nothing underneath. The foundation is what goes underneath.')
+  }
+
+  const buildFor = key === 'foundation' && leadsGap ? 'leads' : a.weekEater || 'leads'
+
+  if (key === 'leads') {
+    return {
+      key,
+      title: 'Start with your leads',
+      tagline: 'The fastest money: the leads you already paid for, finally worked.',
+      reasons,
+      firstBuild: FIRST_BUILD.leads,
+      price: '$1,500 for the build. Lead follow-up runs in your own GoHighLevel.',
+      next: 'Once leads are handled, most owners look at scheduling or client issues next.',
     }
-  })
-  return score
-}
-
-// Gate removed (2026-06-17): Roy will talk to anyone who completes the assessment.
-// Everyone who finishes gets the qualified path (book a call). Kept as a function so
-// the scoring/feedback call sites stay intact; flip the early return to re-enable a gate.
-function isDisqualified(_answers: Answers): boolean {
-  return false
-}
-
-// Generate dynamic feedback with detailed insights
-function generateFeedback(answers: Answers): { strengths: string[]; improvements: string[]; quickWins: string[] } {
-  const strengths: string[] = []
-  const improvements: string[] = []
-  const quickWins: string[] = []
-
-  // Q1: Manual hours
-  if (['25-50', 'more-50'].includes(answers.q1)) {
-    strengths.push('Significant time on repetitive tasks means high automation ROI potential')
-    if (answers.q1 === 'more-50') {
-      quickWins.push('With 50+ hours of manual work weekly, even a 30% reduction through automation could save 15+ hours/week')
-    } else {
-      quickWins.push('25-50 hours of manual work is a strong foundation for automation. Focus on the most repetitive tasks first.')
+  }
+  if (key === 'foundation') {
+    return {
+      key,
+      title: 'Start with the foundation',
+      tagline: 'The base every future system plugs into, in accounts you own. Then your first build on top.',
+      reasons,
+      firstBuild: FIRST_BUILD[buildFor],
+      price: '$2,500 for the foundation plus your first build. About $25 a month in tools, paid directly.',
+      next: 'Every build after that starts at $1,250 and is usually live within a week.',
     }
-  } else if (answers.q1 === 'less-10') {
-    improvements.push('Low volume of repetitive tasks. Automation ROI may be limited until you scale.')
   }
-
-  // Q2: Documentation
-  if (answers.q2 === 'yes') {
-    strengths.push('Strong process documentation. You can automate what you can document.')
-  } else if (answers.q2 === 'partial') {
-    strengths.push('Some processes already documented gives you a head start on automation')
-    quickWins.push('Prioritize documenting your highest-volume repetitive tasks first')
-  } else if (answers.q2 === 'no') {
-    improvements.push('Processes live in people\'s heads. This needs to change before AI can help.')
-    quickWins.push('Start by documenting your top 3 most frequent tasks. Even rough bullet points beat nothing.')
+  return {
+    key,
+    title: 'Start with one back-office build',
+    tagline: 'Your leads are covered. The time goes somewhere else, so that’s where to start.',
+    reasons,
+    firstBuild: FIRST_BUILD[buildFor],
+    price: 'From $1,500. If I host it, $50 a month, or $125 with changes included.',
+    next: 'If you’re planning more than one build, the foundation saves you money from the second build on.',
   }
-
-  // Q4: Team autonomy
-  if (answers.q4 === 'independent') {
-    strengths.push('Team operates independently, so automation won\'t create bottlenecks')
-  } else if (answers.q4 === 'need-input') {
-    strengths.push('Team is semi-autonomous, which is a good foundation for automation')
-  } else if (answers.q4 === 'come-to-me') {
-    improvements.push('You\'re the bottleneck. AI can help, but decision frameworks come first.')
-    quickWins.push('Pick one recurring decision and create a simple rule your team can follow without you')
-  }
-
-  // Q5: Team alignment
-  if (answers.q5 === 'aligned') {
-    strengths.push('Team is aligned on priorities, so automation projects will have buy-in')
-  } else if (answers.q5 === 'gaps') {
-    improvements.push('Communication gaps exist. Automation can help, but alignment matters.')
-  } else if (answers.q5 === 'silos') {
-    improvements.push('Team works in silos, which limits what automation can do')
-  }
-
-  // Q6: AI situation
-  if (answers.q6 === 'looking' || answers.q6 === 'advanced') {
-    strengths.push('Already engaged with AI, so you know what\'s possible')
-  } else if (answers.q6 === 'tried') {
-    strengths.push('You\'ve experimented with AI and are ready to go deeper')
-  } else if (answers.q6 === 'aware') {
-    strengths.push('Open to AI. You just need the right guidance.')
-  }
-
-  // Q3: Bottleneck-specific insights
-  if (answers.q3 === 'time') {
-    quickWins.push('Your bandwidth is the bottleneck. Automation should target tasks that eat your time.')
-  } else if (answers.q3 === 'people') {
-    quickWins.push('Hiring is hard. Automation can multiply your existing team\'s capacity instead.')
-  } else if (answers.q3 === 'leads') {
-    quickWins.push('Lead generation can be partially automated: follow-up sequences, qualification, outreach.')
-  }
-
-  return { strengths, improvements, quickWins }
 }
 
-// Generate DQ tips
-function getDQTips(answers: Answers): string[] {
-  const tips: string[] = []
+const money = (n: number) => `$${n.toLocaleString('en-US')}`
 
-  if (answers.q2 === 'no') {
-    tips.push('Start by documenting your top 3 processes. Even rough notes in Google Docs beats having everything in people\'s heads.')
-  }
-
-  if (answers.q4 === 'come-to-me') {
-    tips.push('Pick one recurring decision your team asks you about and create a simple rule they can follow without you.')
-  }
-
-  if (answers.q6 === 'skeptic') {
-    tips.push('Try using ChatGPT for one small task this week, like writing a customer follow-up text or a cleaner job checklist. See what clicks.')
-  }
-
-  if (answers.q9 === 'under-500k') {
-    tips.push('Focus on revenue first. AI becomes a multiplier once you have volume to work with.')
-  }
-
-  if (answers.q3 === 'cashflow') {
-    tips.push('Tighten up cash flow before investing in new systems. AI has real ROI, but it\'s not free.')
-  }
-
-  return tips.slice(0, 3)
+function track(event: string, extra: Record<string, unknown> = {}) {
+  if (typeof window !== 'undefined') window.dataLayer?.push({ event, ...extra })
 }
 
 export default function Assessment() {
-  const [hasStarted, setHasStarted] = useState(false)
-  const [currentStep, setCurrentStep] = useState(0)
+  const [started, setStarted] = useState(false)
+  const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<Answers>({})
-  const [contactInfo, setContactInfo] = useState({ name: '', email: '', phone: '', heardFrom: '' })
-  const [showResults, setShowResults] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [done, setDone] = useState(false)
+  const [contact, setContact] = useState({ name: '', email: '', phone: '', heardFrom: '' })
+  const [sent, setSent] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
+  const q = QUESTIONS[step]
 
-  // Get visible questions (filter out conditionals that don't apply)
-  const visibleQuestions = questions.filter((q) => {
-    if (!q.conditional) return true
-    const conditionAnswer = answers[q.conditional.questionId]
-    return q.conditional.values.includes(conditionAnswer)
-  })
-
-  const totalSteps = visibleQuestions.length + 1 // +1 for contact form
-  const progress = ((currentStep + 1) / totalSteps) * 100
-
-  const currentQuestion = visibleQuestions[currentStep]
-  const isContactStep = currentStep >= visibleQuestions.length
-
-  const handleOptionSelect = (value: string) => {
-    setAnswers((prev) => ({ ...prev, [currentQuestion.id]: value }))
-  }
-
-  const handleNext = () => {
-    if (currentStep < visibleQuestions.length) {
-      setCurrentStep((prev) => prev + 1)
+  const choose = (value: string) => {
+    const next = { ...answers, [q.id]: value }
+    setAnswers(next)
+    if (step < QUESTIONS.length - 1) {
+      setTimeout(() => setStep(step + 1), 180)
+    } else {
+      const plan = buildPlan(next)
+      track('assessment_complete', { assessment_recommendation: plan.key })
+      setTimeout(() => setDone(true), 180)
     }
   }
 
-  const handleBack = () => {
-    if (currentStep > 0) {
-      setCurrentStep((prev) => prev - 1)
-    }
+  const restart = () => {
+    setAnswers({})
+    setStep(0)
+    setDone(false)
+    setSent('idle')
   }
 
-  const canProceed = () => {
-    if (isContactStep) {
-      return contactInfo.name && contactInfo.email
-    }
-    if (currentQuestion.type === 'text') {
-      return true // free-text questions are optional, don't gate progress
-    }
-    return !!answers[currentQuestion.id]
-  }
+  const sendPlan = async (plan: Plan, est: number | null) => {
+    if (!contact.name || !contact.email) return
+    setSent('sending')
+    track('assessment_email', { assessment_recommendation: plan.key })
+    const qa = QUESTIONS.map((x) => ({ question: x.q, answer: labelOf(x.id, answers[x.id]) }))
 
-  const handleSubmit = () => {
-    // Show results immediately
-    setShowResults(true)
-
-    // Fire webhook in background (don't await)
-    const score = calculateScore(answers)
-    const qualified = !isDisqualified(answers)
-
-    // GTM: assessment completion
-    window.dataLayer?.push({
-      event: 'assessment_complete',
-      assessment_score: score,
-      assessment_qualified: qualified,
-    })
-    const { strengths, improvements, quickWins } = generateFeedback(answers)
-
-    const submissionData = {
-      type: 'assessment',
-      timestamp: new Date().toISOString(),
-      name: contactInfo.name,
-      email: contactInfo.email,
-      phone: contactInfo.phone,
-      // Attribution: 35-70% of AI-assistant referrals arrive with no
-      // referrer header, so self-reported source is the only signal
-      // that survives. Keep this field even if analytics improve.
-      heard_from: contactInfo.heardFrom,
-      score,
-      qualified,
-      q1: answers.q1 || '',
-      q2: answers.q2 || '',
-      q2a: answers.q2a || '',
-      q3: answers.q3 || '',
-      q4: answers.q4 || '',
-      q5: answers.q5 || '',
-      q6: answers.q6 || '',
-      q7: answers.q7 || '',
-      q8: answers.q8 || '',
-      q9: answers.q9 || '',
-    }
-
-    // Send to Google Sheets in background
-    fetch('https://script.google.com/macros/s/AKfycbzs806_T0UUwSAMwZa_ppjAobgf4STx_85d3pGjGCc28fr4GTRnG6RkBAm-BhMVBy-XaA/exec', {
+    fetch(SHEET_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(submissionData),
-    }).catch(error => {
-      console.error('Error submitting to Google Sheets:', error)
-    })
-
-    // Send emails via Resend
-    fetch('/api/send-assessment-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        to: contactInfo.email,
-        toName: contactInfo.name,
-        phone: contactInfo.phone,
-        heardFrom: contactInfo.heardFrom,
-        score,
-        qualified,
-        answers: {
-          q1: answers.q1 || '',
-          q2: answers.q2 || '',
-          q2a: answers.q2a || '',
-          q3: answers.q3 || '',
-          q4: answers.q4 || '',
-          q5: answers.q5 || '',
-          q6: answers.q6 || '',
-          q7: answers.q7 || '',
-          q8: answers.q8 || '',
-          q9: answers.q9 || '',
-        },
-        strengths,
-        improvements,
-        quickWins,
+        type: 'assessment',
+        version: 'where-to-start-2026-11',
+        timestamp: new Date().toISOString(),
+        name: contact.name,
+        email: contact.email,
+        phone: contact.phone,
+        heard_from: contact.heardFrom,
+        recommendation: plan.title,
+        estimate: est ?? '',
+        ...Object.fromEntries(QUESTIONS.map((x) => [x.id, labelOf(x.id, answers[x.id])])),
       }),
-    }).catch(error => {
-      console.error('Error sending assessment email:', error)
-    })
+    }).catch(() => {})
+
+    try {
+      const res = await fetch('/api/send-assessment-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: contact.email,
+          toName: contact.name,
+          phone: contact.phone,
+          heardFrom: contact.heardFrom,
+          recommendation: plan.title,
+          tagline: plan.tagline,
+          firstBuild: plan.firstBuild,
+          price: plan.price,
+          next: plan.next,
+          reasons: plan.reasons,
+          estimate: est,
+          answers: qa,
+        }),
+      })
+      setSent(res.ok ? 'sent' : 'error')
+    } catch {
+      setSent('error')
+    }
   }
 
-  // Intro screen
-  if (!hasStarted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-slate-100 relative overflow-hidden flex flex-col">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-
-        {/* Decorative blurred circles */}
-        <div className="absolute top-20 right-[10%] w-96 h-96 bg-blue-200/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-[5%] w-80 h-80 bg-blue-100/40 rounded-full blur-3xl" />
-
-        {/* Navbar */}
-        <nav className="relative z-50 bg-transparent">
-          <div className="max-w-5xl mx-auto px-6 py-4">
-            <Link to="/" className="font-serif text-[28px] leading-none text-slate-900 inline-flex items-center gap-1" aria-label="UpLevel">
-              UpLevel
-              <span className="inline-block w-[10px] h-[22px] bg-blue-600 ml-1" aria-hidden="true" />
-            </Link>
-          </div>
-        </nav>
-
-        {/* Centered content */}
-        <main className="relative z-10 flex-1 flex items-center justify-center px-6 pb-20">
-          <div className="max-w-3xl mx-auto text-center">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-8">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              You Can't Automate Chaos
-            </div>
-
-            {/* Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight mb-6">
-              Is Your Cleaning Company Ready for{' '}
-              <span className="text-blue-600">AI?</span>
-            </h1>
-
-            {/* Subtext */}
-            <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
-              Take this free 2-minute assessment, built for cleaning companies, to see where AI would actually save you time and money. Get your readiness score and a personalized roadmap in minutes.
-            </p>
-
-            {/* CTA button */}
-            <button
-              onClick={() => {
-                setHasStarted(true)
-                window.dataLayer?.push({ event: 'assessment_start' })
-              }}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors shadow-lg shadow-blue-600/25 mb-12"
-            >
-              Check Your Readiness Score
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </button>
-
-            {/* Trust indicators */}
-            <div className="text-sm text-slate-500 mb-2">
-              Helping cleaning companies build automation-ready operations
-            </div>
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-600">
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                AI Readiness Score
-              </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                Personalized Roadmap
-              </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                Expert Guidance
-              </div>
-            </div>
-          </div>
-        </main>
-
-        <footer className="relative z-10 py-8 px-6 text-center text-sm text-slate-500">
-          <span className="inline-flex items-center gap-4">
-            <a href="/privacy" className="hover:text-slate-700 transition-colors">
-              Privacy Policy
-            </a>
-            <a href="/terms" className="hover:text-slate-700 transition-colors">
-              Terms of Service
-            </a>
-          </span>
-        </footer>
-      </div>
-    )
-  }
-
-  // Loading screen while submitting
-  if (isSubmitting) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-slate-100 relative overflow-hidden flex flex-col">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-
-        {/* Decorative blurred circles */}
-        <div className="absolute top-20 right-[10%] w-96 h-96 bg-blue-200/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-[5%] w-80 h-80 bg-blue-100/40 rounded-full blur-3xl" />
-
-        {/* Navbar */}
-        <nav className="relative z-50 bg-transparent">
-          <div className="max-w-5xl mx-auto px-6 py-4">
-            <Link to="/" className="font-serif text-[28px] leading-none text-slate-900 inline-flex items-center gap-1" aria-label="UpLevel">
-              UpLevel
-              <span className="inline-block w-[10px] h-[22px] bg-blue-600 ml-1" aria-hidden="true" />
-            </Link>
-          </div>
-        </nav>
-
-        {/* Centered loading content */}
-        <main className="relative z-10 flex-1 flex items-center justify-center px-6">
-          <div className="text-center">
-            {/* Animated spinner */}
-            <div className="mb-8">
-              <svg className="w-16 h-16 mx-auto text-blue-600 animate-spin" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-              </svg>
-            </div>
-
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
-              Analyzing Your Results
-            </h2>
-            <p className="text-slate-600 text-lg max-w-md mx-auto">
-              We're generating your personalized AI readiness score and recommendations...
-            </p>
-          </div>
-        </main>
-      </div>
-    )
-  }
-
-  // Results page
-  if (showResults) {
-    const score = calculateScore(answers)
-    const qualified = !isDisqualified(answers)
-    const { strengths, improvements, quickWins } = generateFeedback(answers)
-    const dqTips = getDQTips(answers)
-
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-slate-100 relative overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-
-        {/* Decorative blurred circles */}
-        <div className="absolute top-20 right-[10%] w-96 h-96 bg-blue-200/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-[5%] w-80 h-80 bg-blue-100/40 rounded-full blur-3xl" />
-
-        {/* Navbar */}
-        <nav className="relative z-50 border-b border-slate-200/50 bg-[#f7f2e9]/80 backdrop-blur-md">
-          <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <Link to="/" className="font-serif text-[28px] leading-none text-slate-900 inline-flex items-center gap-1" aria-label="UpLevel">
-              UpLevel
-              <span className="inline-block w-[10px] h-[22px] bg-blue-600 ml-1" aria-hidden="true" />
-            </Link>
-          </div>
-        </nav>
-
-        {/* Results content */}
-        <main className="relative z-10 pt-16 pb-20 px-6">
-          <div className="max-w-2xl mx-auto">
-            {/* Score display */}
-            <div className="text-center mb-12">
-              <p className="text-slate-600 mb-2">Your AI Readiness Score</p>
-              <div className="text-6xl md:text-7xl font-bold text-slate-900 mb-2">
-                {score}<span className="text-3xl text-slate-400">/100</span>
-              </div>
-              <p className="text-base font-medium text-blue-700 max-w-md mx-auto">
-                {score >= 70
-                  ? 'Strong foundation — your cleaning company is ready to automate.'
-                  : score >= 45
-                  ? "You're further along than most cleaning companies. A few gaps to close and the upside is real."
-                  : "Lots of upside here. Close a few foundational gaps and AI starts paying off fast."}
-              </p>
-            </div>
-
-            {/* Dynamic feedback */}
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 mb-8">
-              {strengths.length > 0 && (
-                <div className="mb-6">
-                  <h3 className="font-semibold text-slate-900 mb-3 flex items-center gap-2">
-                    <svg className="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    What's working well
-                  </h3>
-                  <ul className="space-y-2">
-                    {strengths.map((s, i) => (
-                      <li key={i} className="text-slate-600 flex items-start gap-2">
-                        <span className="text-green-500 mt-1">•</span>
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {improvements.length > 0 && (
-                <div>
-                  <h3 className="font-semibold text-slate-900 mb-3 flex items-center gap-2">
-                    <svg className="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
-                    What needs work
-                  </h3>
-                  <ul className="space-y-2">
-                    {improvements.map((s, i) => (
-                      <li key={i} className="text-slate-600 flex items-start gap-2">
-                        <span className="text-amber-500 mt-1">•</span>
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            {/* Quick Wins - shown for everyone with quickWins */}
-            {quickWins.length > 0 && (
-              <div className="bg-blue-50 rounded-2xl border border-blue-100 p-8 mb-8">
-                <h3 className="font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                  Your Quick Wins
-                </h3>
-                <p className="text-slate-600 text-sm mb-4">Based on your answers, here's what to focus on:</p>
-                <ul className="space-y-3">
-                  {quickWins.slice(0, 3).map((win, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center flex-shrink-0 text-sm font-medium">
-                        {i + 1}
-                      </div>
-                      <p className="text-slate-700">{win}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* Qualified: Pitch the call */}
-            {qualified ? (
-              <>
-                {/* Big CTA */}
-                <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 mb-8 text-center">
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                    Ready to put AI to work in your cleaning company?
-                  </h2>
-                  <p className="text-blue-100 text-lg">
-                    You've got the foundation. Now let's build your roadmap.
-                  </p>
-                </div>
-
-                {/* Your next step: the free call */}
-                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 mb-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
-                      <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm text-blue-600 font-medium">Your Next Step</p>
-                      <h3 className="text-xl font-bold text-slate-900">A free 50-minute call</h3>
-                    </div>
-                  </div>
-
-                  <p className="text-slate-600 mb-4">
-                    We'll go through your results, look at how your company runs today, and I'll show you the systems I run in my own cleaning company. You'll leave with one clear recommendation and its price.
-                  </p>
-                  <p className="text-sm text-slate-500 mb-6">
-                    The call is free. Builds start at $1,500, with a 30-day money-back guarantee. No obligation.
-                  </p>
-
-                  <div className="grid sm:grid-cols-2 gap-4 mb-6">
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <p className="text-slate-600 text-sm">A look at how leads and jobs flow today</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <p className="text-slate-600 text-sm">Where AI would save you the most time</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <p className="text-slate-600 text-sm">What it would be worth in jobs and hours</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <p className="text-slate-600 text-sm">One recommendation, with a price</p>
-                    </div>
-                  </div>
-
-                  <div className="p-4 bg-blue-50 border border-blue-100 rounded-xl">
-                    <p className="text-blue-800 text-sm">
-                      <span className="font-semibold">Book a call to get started.</span> We'll review your assessment, talk through your cleaning operation, and figure out the one build that would help most.
-                    </p>
-                  </div>
-                </div>
-
-                {/* What happens on the call */}
-                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 mb-8">
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">What happens on the call</h3>
-                  <p className="text-slate-600 mb-6">50 minutes. No fluff. Here's exactly what we'll cover:</p>
-
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center flex-shrink-0 text-sm font-bold">
-                        1
-                      </div>
-                      <div>
-                        <p className="font-medium text-slate-900">Unpack your assessment results</p>
-                        <p className="text-sm text-slate-500">I'll walk through what your score actually means and where the gaps are</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center flex-shrink-0 text-sm font-bold">
-                        2
-                      </div>
-                      <div>
-                        <p className="font-medium text-slate-900">Discuss your biggest bottlenecks</p>
-                        <p className="text-sm text-slate-500">What's eating your time? Where are the manual tasks piling up?</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center flex-shrink-0 text-sm font-bold">
-                        3
-                      </div>
-                      <div>
-                        <p className="font-medium text-slate-900">Get one recommendation and a price</p>
-                        <p className="text-sm text-slate-500">If it's a fit, we'll map out next steps. If not, you'll still leave with clarity.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Risk reversal */}
-                  <div className="mt-6 p-4 bg-green-50 border border-green-100 rounded-xl">
-                    <p className="text-green-800 text-sm">
-                      <span className="font-semibold">Worst case?</span> You walk away with a clearer picture of what's possible and what to focus on first.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Who is Roy - Now comes after the pitch */}
-                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 mb-8">
-                  <h3 className="text-lg font-bold text-slate-900 mb-6">Who you'll be working with</h3>
-                  <div className="flex flex-col md:flex-row gap-8">
-                    {/* Photo and name */}
-                    <div className="md:w-1/3 text-center md:text-left">
-                      <img
-                        src="/roy-headshot.png"
-                        alt="Roy Banwell"
-                        className="w-32 h-32 mx-auto md:mx-0 rounded-2xl object-cover mb-4"
-                      />
-                      <h4 className="text-xl font-bold text-slate-900">Roy Banwell</h4>
-                      <p className="text-slate-500">AI Transformation Consultant</p>
-
-                      {/* Stats under photo */}
-                      <div className="flex justify-center md:justify-start gap-4 mt-4">
-                        <div className="text-center">
-                          <div className="text-xl font-bold text-blue-600">4+</div>
-                          <div className="text-xs text-slate-500">Years in AI</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-xl font-bold text-blue-600">$2M+</div>
-                          <div className="text-xs text-slate-500">AI Solutions Sold</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Bio and credentials */}
-                    <div className="md:w-2/3">
-                      <div className="space-y-4 text-slate-600">
-                        <p>
-                          I've spent 4+ years in AI, scoping and selling automation systems for small and mid-size businesses. I've personally sold over $2M in AI solutions designed to save time, cut costs, and improve operations.
-                        </p>
-                        <p>
-                          I'm a certified AI Transformation Consultant through the AAA Mastermind, the top AI transformation community in the world.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Testimonial — Alex Ray, approved in writing 2026-08-21. Verbatim, do not edit. */}
-                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 mb-8">
-                  <h3 className="text-lg font-bold text-slate-900 mb-6">What happened after someone else's call</h3>
-                  <figure className="bg-slate-50 rounded-xl p-6">
-                    <blockquote className="text-slate-600 leading-relaxed">
-                      "He did a free audit of my processes and gave me a report on where I could add automation. I started with a lead follow up automation which has{' '}
-                      <span className="font-semibold text-slate-900">already generated 12 new bookings in just the first month</span>{' '}
-                      and I plan on automating more processes in my business very soon."
-                    </blockquote>
-                    <figcaption className="flex items-center gap-3 mt-5 pt-5 border-t border-slate-200">
-                      <div>
-                        <p className="font-medium text-slate-900">Alex Ray</p>
-                        <p className="text-sm text-slate-500">Owner, CBUS Cleaning Company — Columbus, OH</p>
-                      </div>
-                    </figcaption>
-                  </figure>
-                </div>
-
-                {/* Book the call */}
-                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                  <div className="p-6 border-b border-slate-100">
-                    <h3 className="text-lg font-bold text-slate-900">Book your free strategy call</h3>
-                    <p className="text-slate-500 text-sm">Pick a time that works for you</p>
-                  </div>
-                  <Cal
-                    calLink="roy-banwell/30minaicall"
-                    style={{ width: '100%', height: '100%', overflow: 'scroll' }}
-                    config={{
-                      layout: 'month_view',
-                    }}
-                  />
-                </div>
-
-                {/* Process Mapper CTA - Fallback for those not ready to book */}
-                <div className="mt-8 p-6 bg-slate-50 rounded-2xl border border-slate-200 text-center">
-                  <p className="text-slate-600 mb-4">
-                    Not ready to book yet? Document one of your processes first and come back when you're ready.
-                  </p>
-                  <Link
-                    to="/process-mapper"
-                    className="inline-flex items-center justify-center px-6 py-3 text-slate-600 hover:text-slate-900 font-medium transition-colors"
-                  >
-                    Map a Process →
-                  </Link>
-                </div>
-              </>
-            ) : (
-              /* DQ'd: Give advice + Process Mapper CTA */
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-                <h2 className="text-xl font-bold text-slate-900 mb-4">
-                  You're not quite ready — and that's okay.
-                </h2>
-                <p className="text-slate-600 mb-6">
-                  AI works best when there's enough scale and structure to build on. Based on your answers, here's what to focus on first:
-                </p>
-
-                <div className="space-y-4 mb-8">
-                  {dqTips.map((tip, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0 text-sm font-medium">
-                        {i + 1}
-                      </div>
-                      <p className="text-slate-600">{tip}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Process Mapper CTA */}
-                <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-6 mt-8">
-                  <h3 className="text-lg font-bold text-white mb-2">
-                    Start Building Your Foundation
-                  </h3>
-                  <p className="text-blue-100 text-sm mb-4">
-                    The first step to AI readiness? Document your processes. Use our free Process Mapper to create a clear workflow in minutes — no AI experience needed.
-                  </p>
-                  <Link
-                    to="/process-mapper"
-                    className="inline-flex items-center justify-center w-full px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
-                  >
-                    Map Your First Process →
-                  </Link>
-                  <p className="text-blue-200 text-xs text-center mt-3">
-                    Once you've documented a few processes, retake this assessment — you'll be surprised how much your score improves.
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* Back to home */}
-            <div className="text-center mt-12">
-              <Link
-                to="/"
-                className="text-slate-500 hover:text-slate-700 transition-colors"
-              >
-                ← Back to home
-              </Link>
-            </div>
-          </div>
-        </main>
-      </div>
-    )
-  }
-
-  // Assessment form
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-slate-100 relative overflow-hidden flex flex-col">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-      }} />
-
-      {/* Decorative blurred circles */}
-      <div className="absolute top-20 right-[10%] w-96 h-96 bg-blue-200/30 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-[5%] w-80 h-80 bg-blue-100/40 rounded-full blur-3xl" />
-
-      {/* Navbar */}
-      <nav className="relative z-50 border-b border-slate-200/50 bg-[#f7f2e9]/80 backdrop-blur-md">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link to="/" className="font-serif text-[28px] leading-none text-slate-900 inline-flex items-center gap-1" aria-label="UpLevel">
-            UpLevel
-            <span className="inline-block w-[10px] h-[22px] bg-blue-600 ml-1" aria-hidden="true" />
-          </Link>
-          <span className="text-sm text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
-            {currentStep + 1} of {totalSteps}
-          </span>
-        </div>
-      </nav>
-
-      {/* Progress bar */}
-      <div className="relative z-40 h-1 bg-slate-200/50">
-        <div
-          className="h-full bg-blue-600 transition-all duration-300"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-
-      {/* Main content */}
-      <main className="relative z-10 flex-1 flex items-center justify-center py-12 px-6">
-        <div className="w-full max-w-xl">
-          {isContactStep ? (
-            /* Contact form */
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mb-3">
-                Almost there! Get your results.
-              </h2>
-              <p className="text-slate-600 mb-8">
-                Enter your info below to see your AI Readiness Score and personalized recommendations.
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main className="pt-28 pb-24 px-6">
+        <div className="max-w-2xl mx-auto">
+          {!started && (
+            <div className="text-center pt-6">
+              <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full mb-5">
+                8 questions · about 60 seconds
+              </span>
+              <h1 className="text-5xl md:text-6xl text-slate-900 leading-[1.05] mb-5">
+                Where should your company start with AI?
+              </h1>
+              <p className="text-lg text-slate-600 mb-9 max-w-xl mx-auto">
+                Answer eight quick questions and get one clear recommendation: what to build first, why, what it costs,
+                and what your old leads might be worth.
               </p>
-
-              <div className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">
-                    Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    value={contactInfo.name}
-                    onChange={(e) => setContactInfo((prev) => ({ ...prev, name: e.target.value }))}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow"
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    value={contactInfo.email}
-                    onChange={(e) => setContactInfo((prev) => ({ ...prev, email: e.target.value }))}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow"
-                    placeholder="you@company.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-1">
-                    Phone <span className="text-slate-400">(optional)</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    value={contactInfo.phone}
-                    onChange={(e) => setContactInfo((prev) => ({ ...prev, phone: e.target.value }))}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow"
-                    placeholder="(555) 123-4567"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="heardFrom" className="block text-sm font-medium text-slate-700 mb-1">
-                    How did you hear about us? <span className="text-slate-400">(optional)</span>
-                  </label>
-                  <select
-                    id="heardFrom"
-                    value={contactInfo.heardFrom}
-                    onChange={(e) => setContactInfo((prev) => ({ ...prev, heardFrom: e.target.value }))}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow text-slate-700"
-                  >
-                    <option value="">Select one</option>
-                    <option value="google">Google search</option>
-                    <option value="chatgpt">ChatGPT</option>
-                    <option value="perplexity">Perplexity</option>
-                    <option value="other_ai">Another AI assistant (Claude, Gemini, Copilot)</option>
-                    <option value="x_twitter">X / Twitter</option>
-                    <option value="linkedin">LinkedIn</option>
-                    <option value="youtube">YouTube</option>
-                    <option value="referral">Referral from another owner</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </div>
-
-              <p className="text-xs text-slate-500 mt-4">
-                By submitting, you agree to receive your results and occasional emails from UpLevel Automations. If you give us your phone number, we may also call or text you. You can unsubscribe anytime. See our{' '}
-                <a
-                  href="/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-slate-700"
-                >
-                  Privacy Policy
-                </a>
-                .
-              </p>
-            </div>
-          ) : (
-            /* Question */
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mb-3">
-                {currentQuestion.question}
-              </h2>
-              {currentQuestion.hint && (
-                <p className="text-slate-500 text-sm mb-8">{currentQuestion.hint}</p>
-              )}
-              {!currentQuestion.hint && <div className="mb-5" />}
-
-              {currentQuestion.type === 'select' ? (
-                <div className="space-y-3">
-                  {currentQuestion.options?.map((option) => (
-                    <button
-                      key={option.value}
-                      onClick={() => handleOptionSelect(option.value)}
-                      className={`w-full text-left px-5 py-4 rounded-xl border-2 transition-all ${
-                        answers[currentQuestion.id] === option.value
-                          ? 'border-blue-600 bg-blue-50 shadow-sm'
-                          : 'border-slate-200 hover:border-blue-300 hover:bg-slate-50 bg-white'
-                      }`}
-                    >
-                      <span className={answers[currentQuestion.id] === option.value ? 'text-blue-900 font-medium' : 'text-slate-700'}>
-                        {option.label}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <textarea
-                  value={answers[currentQuestion.id] || ''}
-                  onChange={(e) => setAnswers((prev) => ({ ...prev, [currentQuestion.id]: e.target.value }))}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow resize-none"
-                  rows={4}
-                  placeholder="Type your answer here..."
-                />
-              )}
+              <button
+                type="button"
+                onClick={() => {
+                  setStarted(true)
+                  track('assessment_start')
+                }}
+                className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
+              >
+                Start the quiz →
+              </button>
+              <p className="text-sm text-slate-500 mt-5">No email needed to see your answer.</p>
             </div>
           )}
 
-          {/* Navigation */}
-          <div className="flex items-center justify-between mt-10">
-            <button
-              onClick={handleBack}
-              disabled={currentStep === 0}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                currentStep === 0
-                  ? 'text-slate-300 cursor-not-allowed'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-              }`}
-            >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              Back
-            </button>
-
-            {isContactStep ? (
-              <button
-                onClick={handleSubmit}
-                disabled={!canProceed() || isSubmitting}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-colors ${
-                  canProceed() && !isSubmitting
-                    ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                    : 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                }`}
-              >
-                {isSubmitting ? 'Submitting...' : 'See My Results'}
-                {!isSubmitting && (
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+          {started && !done && (
+            <div>
+              <div className="flex items-center justify-between text-sm text-slate-500 mb-3">
+                <span>
+                  Question {step + 1} of {QUESTIONS.length}
+                </span>
+                {step > 0 && (
+                  <button type="button" onClick={() => setStep(step - 1)} className="hover:text-slate-900">
+                    ← Back
+                  </button>
                 )}
-              </button>
-            ) : (
-              <button
-                onClick={handleNext}
-                disabled={!canProceed()}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-colors ${
-                  canProceed()
-                    ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                    : 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                }`}
-              >
-                Next
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            )}
-          </div>
+              </div>
+              <div className="h-1.5 bg-slate-200 rounded-full overflow-hidden mb-10">
+                <div
+                  className="h-full bg-blue-600 transition-all duration-300"
+                  style={{ width: `${((step + 1) / QUESTIONS.length) * 100}%` }}
+                />
+              </div>
+              <h2 className="text-4xl md:text-5xl text-slate-900 leading-[1.1] mb-8">{q.q}</h2>
+              <div className="space-y-3">
+                {q.options.map((o) => {
+                  const on = answers[q.id] === o.value
+                  return (
+                    <button
+                      key={o.value}
+                      type="button"
+                      onClick={() => choose(o.value)}
+                      className={`w-full text-left px-5 py-4 rounded-xl border transition-all ${
+                        on
+                          ? 'border-blue-600 bg-blue-50 text-slate-900'
+                          : 'border-slate-200 bg-white hover:border-blue-400 hover:bg-blue-50/40 text-slate-700'
+                      }`}
+                    >
+                      {o.label}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
+          {done && <Results answers={answers} contact={contact} setContact={setContact} sent={sent} onSend={sendPlan} onRestart={restart} />}
         </div>
       </main>
+      <Footer />
+    </div>
+  )
+}
+
+function Results({
+  answers,
+  contact,
+  setContact,
+  sent,
+  onSend,
+  onRestart,
+}: {
+  answers: Answers
+  contact: { name: string; email: string; phone: string; heardFrom: string }
+  setContact: (c: { name: string; email: string; phone: string; heardFrom: string }) => void
+  sent: 'idle' | 'sending' | 'sent' | 'error'
+  onSend: (plan: Plan, est: number | null) => void
+  onRestart: () => void
+}) {
+  const plan = buildPlan(answers)
+  const est = estimate(answers)
+
+  return (
+    <div>
+      <p className="text-sm font-medium uppercase tracking-wider text-blue-700 mb-3">Your recommendation</p>
+      <h1 className="text-5xl md:text-6xl text-slate-900 leading-[1.05] mb-4">{plan.title}.</h1>
+      <p className="text-xl text-slate-600 mb-10">{plan.tagline}</p>
+
+      {plan.reasons.length > 0 && (
+        <div className="bg-white rounded-2xl border border-slate-200 p-7 mb-6">
+          <h3 className="font-semibold text-slate-900 mb-4">Why, based on your answers</h3>
+          <ul className="space-y-3">
+            {plan.reasons.map((r) => (
+              <li key={r} className="flex gap-3 text-slate-700">
+                <span className="mt-2 w-1.5 h-1.5 bg-blue-600 flex-none" />
+                <span>{r}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="bg-white rounded-2xl border-2 border-blue-600 p-7 mb-6">
+        <h3 className="font-semibold text-slate-900 mb-2">What I’d build first</h3>
+        <p className="text-slate-700 mb-5">{plan.firstBuild}</p>
+        <div className="border-t border-slate-200 pt-4 space-y-2 text-slate-600">
+          <p>
+            <span className="font-semibold text-slate-900">Price:</span> {plan.price}
+          </p>
+          <p>
+            <span className="font-semibold text-slate-900">After that:</span> {plan.next}
+          </p>
+          <p>
+            <span className="font-semibold text-slate-900">Guarantee:</span> 30 days. If it isn’t working end to end, you
+            get your money back.
+          </p>
+        </div>
+      </div>
+
+      {est !== null && est > 0 && (
+        <div className="bg-slate-900 text-white rounded-2xl p-7 mb-6">
+          <p className="text-slate-300 text-sm mb-1">What your old leads might be worth, month one</p>
+          <p className="font-serif text-6xl leading-none text-blue-300 mb-3">≈ {money(est)}</p>
+          <p className="text-slate-400 text-sm">
+            Based on one client’s real result (CBUS Cleaning booked 12 jobs in month one from 1,430 old leads), applied to
+            your list size and job value. First jobs only. Yours will differ.
+          </p>
+        </div>
+      )}
+
+      <div className="text-center my-10">
+        <a
+          href={CALL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track('cta_click', { cta_text: 'Book a call', cta_location: 'quiz_results', assessment_recommendation: plan.key })}
+          className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
+        >
+          Talk it through: book a free 50-min call →
+        </a>
+        <p className="text-sm text-slate-500 mt-3">With me, not a salesperson. You’ll leave with a price either way.</p>
+      </div>
+
+      <div className="bg-white rounded-2xl border border-slate-200 p-7">
+        {sent === 'sent' ? (
+          <p className="text-slate-700">
+            <span className="font-semibold text-slate-900">Sent.</span> Check your inbox for your plan.
+          </p>
+        ) : (
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              onSend(plan, est)
+            }}
+          >
+            <h3 className="font-semibold text-slate-900 mb-1">Want this plan in your inbox?</h3>
+            <p className="text-sm text-slate-500 mb-5">Optional. I’ll email it to you, and nothing else unless you reply.</p>
+            <div className="grid sm:grid-cols-2 gap-3 mb-3">
+              <input
+                required
+                placeholder="Your name"
+                value={contact.name}
+                onChange={(e) => setContact({ ...contact, name: e.target.value })}
+                className="px-4 py-3 rounded-lg border border-slate-200 bg-white focus:border-blue-600 outline-none"
+              />
+              <input
+                required
+                type="email"
+                placeholder="Email"
+                value={contact.email}
+                onChange={(e) => setContact({ ...contact, email: e.target.value })}
+                className="px-4 py-3 rounded-lg border border-slate-200 bg-white focus:border-blue-600 outline-none"
+              />
+              <input
+                placeholder="Phone (optional)"
+                value={contact.phone}
+                onChange={(e) => setContact({ ...contact, phone: e.target.value })}
+                className="px-4 py-3 rounded-lg border border-slate-200 bg-white focus:border-blue-600 outline-none"
+              />
+              <select
+                value={contact.heardFrom}
+                onChange={(e) => setContact({ ...contact, heardFrom: e.target.value })}
+                className="px-4 py-3 rounded-lg border border-slate-200 bg-white focus:border-blue-600 outline-none text-slate-700"
+              >
+                <option value="">How did you find me?</option>
+                <option value="x">X (Twitter)</option>
+                <option value="referral">A friend or client</option>
+                <option value="whatsapp">WhatsApp group</option>
+                <option value="google">Google</option>
+                <option value="ai">ChatGPT or another AI</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <button
+              type="submit"
+              disabled={sent === 'sending'}
+              className="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-lg transition-colors disabled:opacity-60"
+            >
+              {sent === 'sending' ? 'Sending…' : 'Email me my plan'}
+            </button>
+            {sent === 'error' && <p className="text-sm text-red-600 mt-3">That didn’t send. Try again, or just book a call.</p>}
+          </form>
+        )}
+      </div>
+
+      <div className="flex flex-wrap justify-between gap-4 mt-8 text-sm text-slate-500">
+        <button type="button" onClick={onRestart} className="hover:text-slate-900">
+          ↻ Retake the quiz
+        </button>
+        <Link to="/#start" className="hover:text-slate-900">
+          See both ways to start →
+        </Link>
+      </div>
     </div>
   )
 }
