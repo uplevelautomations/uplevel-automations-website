@@ -1,6 +1,6 @@
-/* Version C homepage (/versionc). Scoped under .vc.
-   Direction: an AI at work on the night shift. Near-black, one luminous
-   accent, serif headlines for the human voice, mono for the machine. */
+/* Homepage styles. Scoped under .vc. The page uses the light "clay"
+   theme (.vc--light.vc--clay); the dark base values are kept as defaults.
+   Serif headlines for the human voice, mono for the machine. */
 
 .vc {
   --bg: #090b0a;
@@ -1395,7 +1395,7 @@
 }
 
 
-/* ---------- light themes (preview with /versionc?t=clay|blue|gold) ---------- */
+/* ---------- light themes (the homepage uses clay) ---------- */
 .vc.vc--light {
   --line: rgba(var(--fg-rgb), 0.13);
   --line-2: rgba(var(--fg-rgb), 0.22);
@@ -1456,6 +1456,95 @@
   --acc-rgb: 190, 140, 20;
   --fg-rgb: 18, 26, 43;
   --bg-rgb: 250, 247, 240;
+}
+
+/* ---------- two ways to start ---------- */
+.vc-doors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 52px;
+}
+.vc-door {
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  background: var(--panel);
+  padding: clamp(24px, 3vw, 38px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.vc-door--found {
+  border-color: var(--acc);
+  box-shadow: 0 0 0 1px var(--acc), var(--shadow-lg);
+}
+.vc-door__k {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--acc);
+}
+.vc-door h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(32px, 3.4vw, 44px);
+  line-height: 1.05;
+  margin: 12px 0 14px;
+}
+.vc-door p {
+  color: var(--mute);
+  margin: 0 0 18px;
+}
+.vc-door ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  flex: 1;
+}
+.vc-door li {
+  padding: 10px 0 10px 22px;
+  border-top: 1px solid var(--line);
+  font-size: 15.5px;
+  position: relative;
+}
+.vc-door li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 19px;
+  width: 6px;
+  height: 6px;
+  background: var(--acc);
+}
+.vc-door__proof {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--text);
+  border-left: 2px solid var(--acc);
+  padding-left: 14px;
+  margin: 0 0 22px;
+}
+.vc-door__price {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  margin: 0 0 18px;
+}
+.vc-door__price b {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 34px;
+  letter-spacing: 0;
+  margin-right: 6px;
+}
+@media (max-width: 860px) {
+  .vc-doors {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* mobile dock */

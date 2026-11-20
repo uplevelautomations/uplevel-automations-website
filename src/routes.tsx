@@ -35,16 +35,12 @@ import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
-import VersionB from './pages/VersionB'
-import VersionC from './pages/VersionC'
 import NotFound from './pages/NotFound'
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/versionb" element={<VersionB />} />
-      <Route path="/versionc" element={<VersionC />} />
       <Route path="/ai-readiness" element={<Assessment />} />
       <Route path="/process-mapper" element={<ProcessMapper />} />
       <Route path="/case-studies" element={<CaseStudies />} />
